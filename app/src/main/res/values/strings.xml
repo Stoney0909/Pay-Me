@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Spring Soph Soft</string>
+    <string name="login">Username:</string>
+    <string name="password">Password:</string>
 </resources>
