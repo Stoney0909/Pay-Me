@@ -5,9 +5,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 
-
 public class MainActivity extends AppCompatActivity {
-    Databasehelper Databasehelper;
+    com.example.springsophsoft.Helper.Databasehelper Databasehelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
