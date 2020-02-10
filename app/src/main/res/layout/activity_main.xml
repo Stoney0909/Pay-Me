@@ -5,14 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbarAlwaysDrawHorizontalTrack="true"
     tools:context=".MainActivity">
 
     <EditText
+        android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
         android:layout_centerHorizontal="true"
         android:hint="Enter your email"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="280dp"
         android:gravity="center"
         />
 
@@ -28,17 +32,18 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:src="@drawable/money"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="95dp"
         />
 
-
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:hint="Password"
-        android:layout_marginTop="400dp"
+        android:inputType="textPassword"
+        android:layout_marginTop="330dp"
         android:gravity="center"
         />
 
@@ -49,22 +54,21 @@
         android:text="Login"
         android:textSize="20sp"
         android:textColor="#ffffff"
-        android:layout_marginTop="470dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginTop="390dp"
+        android:layout_marginLeft="95dp"
         android:background="@drawable/button_round"
         />
 
     <Button
-        android:id="@+id/btn_reg"
+        android:id="@+id/regisiter"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
-        android:layout_marginTop="540dp"
-        android:layout_marginLeft="85dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="450dp"
         android:background="@drawable/button_round"
-        />
+        android:text="Register"
+        android:textColor="#ffffff"
+        android:textSize="20sp"/>
 
 
 </RelativeLayout>
