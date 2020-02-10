@@ -21,6 +21,7 @@ public final class Database_Module {
         private static final String Last_Name = "Last_Name";
         private static final String Billing_Address = "Billing_Address";
         private static final String Billing_State = "Billing_State";
+        private static final String Billing_City = "Billing_City";
         private static final String Card_Type = "Card_Type";
         private final  Integer Card_Number = 0;
         private final  Integer EXPR = 0;
