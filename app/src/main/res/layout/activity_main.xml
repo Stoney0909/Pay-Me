@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbarAlwaysDrawHorizontalTrack="true"
+
     tools:context=".MainActivity">
 
     <EditText
@@ -68,7 +69,7 @@
         android:background="@drawable/button_round"
         android:text="Register"
         android:textColor="#ffffff"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
 
 </RelativeLayout>
