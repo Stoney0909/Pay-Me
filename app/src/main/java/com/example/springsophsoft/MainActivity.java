@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-import com.example.springsophsoft.helper.Databasehelper;
+
 
 import android.view.View;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     private static String TAG = "MainActivity";
 
-    Databasehelper mDatabasehelper;
+    com.example.springsophsoft.helper.Databasehelper mDatabasehelper;
     private Button btnAdd, btnViewData, btnDeleteDB;
     private EditText editText;
 private Button regisiter;
