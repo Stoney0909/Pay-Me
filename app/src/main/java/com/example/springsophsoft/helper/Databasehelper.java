@@ -1,5 +1,6 @@
 package com.example.springsophsoft.helper;
 
+import android.accessibilityservice.GestureDescription;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -55,11 +56,18 @@ public class Databasehelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
+    //Add a new row of data to the database
     public boolean addData(String firstName)
     {
+//        String lastName, String Username, String Password, String Email
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Pay_Me.Contact.First_Name, firstName);
+//        contentValues.put(Pay_Me.Contact.Last_Name, lastName);
+//        contentValues.put(Pay_Me.Contact.Username, Username);
+//        contentValues.put(Pay_Me.Contact.Password, Password);
+//        contentValues.put(Pay_Me.Contact.Email, Email);
 
         //Log.d(TAG,"addData: Adding " + firstName + " to " + SQL_CREATE_ENTRIES);
 
@@ -79,7 +87,12 @@ public class Databasehelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery("Select * from " + Pay_Me.Contact.TABLE_NAME, null);
         return data;
     }
+    public void ClearTable()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Pay_Me.Contact.TABLE_NAME,null, null);
 
+    }
 
 
 

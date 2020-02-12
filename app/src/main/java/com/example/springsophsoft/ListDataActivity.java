@@ -34,7 +34,7 @@ public class ListDataActivity extends AppCompatActivity {
         populateListView();
     }
     private void populateListView(){
-        Log.d(TAG, "populateListView: Dispalying data in the ListView");
+        Log.d(TAG, "populateListView: Displaying data in the ListView");
 
         //get the data and append to a List
         Cursor data = mDatabaseHelper.getData();
