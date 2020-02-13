@@ -22,7 +22,7 @@ public class Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         btnRegister = (Button) findViewById(R.id.signup);
-        password = (EditText) findViewById(R.id.passwordText);
+        password = (EditText) findViewById(R.id.passwordTextView);
         confirmPassword = (EditText) findViewById(R.id.confirmPassword);
         username = (EditText) findViewById(R.id.Username);
         email = (EditText) findViewById(R.id.email);
