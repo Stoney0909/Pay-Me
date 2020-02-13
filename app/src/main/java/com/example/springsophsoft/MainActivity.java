@@ -25,11 +25,8 @@ import com.example.springsophsoft.helper.Databasehelper;
 
 public class MainActivity extends AppCompatActivity {
     private static String TAG = "MainActivity";
-
-    Databasehelper mDatabasehelper;
-
-    private EditText user;
-    private Button regisiter;
+    private Button register;
+    private Button logIn;
 
     private VideoView videoBG;
     MediaPlayer mMediaPlayer;
@@ -41,34 +38,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        regisiter = (Button) findViewById(R.id.btnRegisiter);
-        mDatabasehelper = new Databasehelper(this);
-
-
-        // Hook up the VideoView to our UI.
+        register = (Button) findViewById(R.id.btnRegisiter);
+        logIn = (Button) findViewById(R.id.btn_login);
         videoBG = (VideoView) findViewById(R.id.IntroVideoView);
 
-        // Build your video Uri
-        Uri uri = Uri.parse("android.resource://" // First start with this,
-                + getPackageName() // then retrieve your package name,
-                + "/" // add a slash,
-                + R.raw.videoplayback); // and then finally add your video resource. Make sure it is stored
-        // in the raw folder.
+        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoplayback);
 
-        // Set the new Uri to our VideoView
         videoBG.setVideoURI(uri);
-        // Start the VideoView
+
         videoBG.start();
 
-        // Set an OnPreparedListener for our VideoView. For more information about VideoViews,
-        // check out the Android Docs: https://developer.android.com/reference/android/widget/VideoView.html
         videoBG.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mMediaPlayer = mediaPlayer;
-                // We want our video to play over and over so we set looping to true.
                 mMediaPlayer.setLooping(true);
-                // We then seek to the current posistion if it has been set and play the video.
                 if (mCurrentVideoPosition != 0) {
                     mMediaPlayer.seekTo(mCurrentVideoPosition);
                     mMediaPlayer.start();
@@ -77,12 +61,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        regisiter.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Register();
             }
         });
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogIn();
+            }
+
+
+        });
+
     }
 
     public void Register()
@@ -90,18 +83,22 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Signup.class);
         startActivity(intent);
     }
-
-    public void AddData(String firstName){
-        boolean insertData = mDatabasehelper.addData(firstName);
-        if (insertData)
-        {
-            toastMessage("Data Successfully Inserted");
-        }
-        else
-        {
-            toastMessage("Something went Wrong");
-        }
+    private void LogIn() {
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
     }
+//
+//    public void AddData(String firstName){
+//        boolean insertData = mDatabasehelper.addData(firstName);
+//        if (insertData)
+//        {
+//            toastMessage("Data Successfully Inserted");
+//        }
+//        else
+//        {
+//            toastMessage("Something went Wrong");
+//        }
+//    }
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

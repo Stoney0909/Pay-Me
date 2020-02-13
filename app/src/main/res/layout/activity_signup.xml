@@ -35,14 +35,6 @@
         android:layout_marginTop="360dp"
         android:gravity="center"
         />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="  Sign up"
-        android:background="#21CC26"
-        android:textSize="40dp"
-        android:textColor="#ffffff"
-        />
 
 
     <EditText
