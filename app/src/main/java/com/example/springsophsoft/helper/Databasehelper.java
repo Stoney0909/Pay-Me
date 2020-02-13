@@ -1,29 +1,20 @@
 package com.example.springsophsoft.helper;
 
-import android.accessibilityservice.GestureDescription;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.springsophsoft.model.Pay_Me;
 
-import javax.xml.datatype.DatatypeConstants;
-
-import static android.content.ContentValues.TAG;
-
 public class Databasehelper extends SQLiteOpenHelper {
 
-    private static final String SQL_CREATE_ENTRIES =
+    private static final String Create_Contacts =
             "CREATE TABLE " + Pay_Me.Contact.TABLE_NAME + " (" +
-                    Pay_Me.Contact._ID + " INTEGER PRIMARY KEY," +
-                    Pay_Me.Contact.First_Name + " TEXT," +
-                    Pay_Me.Contact.Last_Name + " TEXT," +
+                    Pay_Me.Contact._ID + " TEXT PRIMARY KEY," +
                     Pay_Me.Contact.Username + "TEXT," +
                     Pay_Me.Contact.Password + "TEXT," +
                     Pay_Me.Contact.Email + "TEXT)";
@@ -46,7 +37,7 @@ public class Databasehelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL(Create_Contacts);
     }
 
 
@@ -69,7 +60,7 @@ public class Databasehelper extends SQLiteOpenHelper {
 //        contentValues.put(Pay_Me.Contact.Password, Password);
 //        contentValues.put(Pay_Me.Contact.Email, Email);
 
-        //Log.d(TAG,"addData: Adding " + firstName + " to " + SQL_CREATE_ENTRIES);
+        //Log.d(TAG,"addData: Adding " + firstName + " to " + Create_Contacts);
 
         long result = db.insert(Pay_Me.Contact.TABLE_NAME, null, contentValues);
 
@@ -95,40 +86,41 @@ public class Databasehelper extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
-
-//    public void Query()
-//    {
-//        SQLiteDatabase db = Databasehelper.getReadableDatabase();
+//    public void updateUser() {
+//        SQLiteDatabase db = this.getWritableDatabase();
 //
-//// Define a projection that specifies which columns from the database
-//// you will actually use after this query.
-//        String[] projection = {
-//                BaseColumns._ID,
-//                FeedEntry.COLUMN_NAME_TITLE,
-//                FeedEntry.COLUMN_NAME_SUBTITLE
-//        };
+//        ContentValues values = new ContentValues();
+//        values.put(COLUMN_USER_NAME, user.getName());
+//        values.put(COLUMN_USER_EMAIL, user.getEmail());
+//        values.put(COLUMN_USER_PASSWORD, user.getPassword());
 //
-//// Filter results WHERE "title" = 'My Title'
-//        String selection = FeedEntry.COLUMN_NAME_TITLE + " = ?";
-//        String[] selectionArgs = { "My Title" };
-//
-//// How you want the results sorted in the resulting Cursor
-//        String sortOrder =
-//                FeedEntry.COLUMN_NAME_SUBTITLE + " DESC";
-//
-//        Cursor cursor = db.query(
-//                FeedEntry.TABLE_NAME,   // The table to query
-//                projection,             // The array of columns to return (pass null to get all)
-//                selection,              // The columns for the WHERE clause
-//                selectionArgs,          // The values for the WHERE clause
-//                null,                   // don't group the rows
-//                null,                   // don't filter by row groups
-//                sortOrder               // The sort order
-//        );
+//        // updating row
+//        db.update(TABLE_USER, values, COLUMN_USER_ID + " = ?",
+//                new String[]{String.valueOf(user.getId())});
+//        db.close();
 //    }
 
-}
+    public boolean checkUser(String username, String password) {
+
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query((Pay_Me.Contact.TABLE_NAME),
+                new String[]{Pay_Me.Contact._ID, Pay_Me.Contact.Username, Pay_Me.Contact.Password},//Selecting columns want to query
+                Pay_Me.Contact.Username + "=?",
+                new String[]{username},//Where clause
+                null, null, null);
+
+        int cursorCount = cursor.getCount();
+
+        cursor.close();
+        db.close();
+        if (cursorCount > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    }
+
