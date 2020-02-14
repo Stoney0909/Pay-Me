@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -16,11 +17,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.springsophsoft.Helper.Databasehelper;
 
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private VideoView videoBG;
     MediaPlayer mMediaPlayer;
     int mCurrentVideoPosition;
-
+//
+//      Databasehelper mDatabasehelper;
+//    private TextView textView, anotherText;
+//    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,28 @@ public class MainActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.btnRegisiter);
         logIn = (Button) findViewById(R.id.btn_login);
         videoBG = (VideoView) findViewById(R.id.IntroVideoView);
+
+
+
+//        mDatabasehelper = new Databasehelper(this);
+//        button = (Button) findViewById(R.id.button);
+//        textView = (TextView) findViewById(R.id.textView);
+//        anotherText = (TextView)findViewById(R.id.textView2) ;
+//
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AddData(textView.getText().toString(), anotherText.getText().toString());
+//            }
+//        });
+//
+
+
+
+
+
+
+
 
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoplayback);
 
@@ -70,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                AddData("yes", "yes", "yes");
                 LogIn();
             }
 
@@ -80,16 +109,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void Register()
     {
-        Intent intent = new Intent(this, Signup.class);
+        Intent intent = new Intent(this, activity_sign_up.class);
         startActivity(intent);
     }
     private void LogIn() {
-        Intent intent = new Intent(this, LogIn.class);
+        Intent intent = new Intent(this, activity_LogIn.class);
         startActivity(intent);
     }
-//
-//    public void AddData(String firstName){
-//        boolean insertData = mDatabasehelper.addData(firstName);
+
+//    public void AddData(String username, String email, String password){
+//        boolean insertData = mDatabasehelper.addData(username, email, password);
 //        if (insertData)
 //        {
 //            toastMessage("Data Successfully Inserted");
@@ -127,56 +156,4 @@ public class MainActivity extends AppCompatActivity {
         mMediaPlayer = null;
     }
 }
-
-
-
-
-
-
-
-
-
-//@Override
-//protected void onCreate(Bundle savedInstanceState){
-//    super.onCreate(savedInstanceState);
-//    setContentView(R.layout.activity_main);
-//    editText = (EditText) findViewById(R.id.editText);
-//    btnAdd = (Button) findViewById(R.id.btnAdd);
-//    btnViewData = (Button) findViewById(R.id.btnViewData);
-//    mDatabasehelper = new Databasehelper(this);
-//    btnDeleteDB = (Button) findViewById(R.id.btnDeleteTable);
-//
-//
-//    btnAdd.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            String newEntry = editText.getText().toString();
-//            if (editText.length() != 0){
-//                AddData(newEntry);
-//                editText.setText("");
-//            }
-//            else{
-//                toastMessage("You must put something in the text field!");
-//            }
-//        }
-//    }
-//
-//    );
-//    btnViewData.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            Intent intent = new Intent(MainActivity.this, ListDataActivity.class);
-//            startActivity(intent);
-//        }
-//    });
-//
-//    btnDeleteDB.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            mDatabasehelper.ClearTable();
-//            toastMessage("Database Successfully deleted.");
-//        }
-//    });
-//}
-
 

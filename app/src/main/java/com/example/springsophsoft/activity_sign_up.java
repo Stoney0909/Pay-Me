@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.springsophsoft.Helper.Databasehelper;
-//import com.example.springsophsoft.helper.Databasehelper;
 
-public class Signup extends AppCompatActivity {
+import com.example.springsophsoft.Helper.Databasehelper;
+
+public class activity_sign_up extends AppCompatActivity {
 
     private static String TAG = "Signup";
     Databasehelper mDatabasehelper;
@@ -20,10 +20,10 @@ public class Signup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_sign_up);
 
         btnRegister = (Button) findViewById(R.id.signup);
-        password = (EditText) findViewById(R.id.passwordTextView);
+        password = (EditText) findViewById(R.id.passwordText);
         confirmPassword = (EditText) findViewById(R.id.confirmPassword);
         username = (EditText) findViewById(R.id.UsernameText);
         email = (EditText) findViewById(R.id.emailText);
@@ -41,7 +41,7 @@ public class Signup extends AppCompatActivity {
 
 
 
-        public void AddData(String username, String email, String password){
+    public void AddData(String username, String email, String password){
         boolean insertData = mDatabasehelper.addData(username, email, password);
         if (insertData)
         {

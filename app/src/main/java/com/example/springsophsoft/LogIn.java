@@ -32,9 +32,9 @@ User myuser;
                 myuser.setUsername(username.getText().toString());
                 myuser.setPassword(password.getText().toString());
 
-                boolean chkuserpass = db.checkUser(myuser.getUsername(), myuser.getPassword());
-                if (chkuserpass)toastMessage("Log in successfull");
-                else toastMessage("Wrong Email or Password");
+//                boolean chkuserpass = db.checkUser(myuser.getUsername(), myuser.getPassword());
+//                if (chkuserpass)toastMessage("Log in successfull");
+//                else toastMessage("Wrong Email or Password");
             }
         });
 
