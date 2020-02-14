@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.Databasehelper;
 
-public class activity_sign_up extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
     private static String TAG = "Signup";
     Databasehelper mDatabasehelper;
@@ -28,6 +28,10 @@ public class activity_sign_up extends AppCompatActivity {
         username = (EditText) findViewById(R.id.UsernameText);
         email = (EditText) findViewById(R.id.emailText);
         mDatabasehelper = new Databasehelper(this);
+
+
+
+
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

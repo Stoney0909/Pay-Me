@@ -5,7 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Signup">
+    tools:context=".SignUp">
 
     <EditText
         android:id="@+id/UsernameText"
@@ -42,8 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:gravity="center"
         android:ems="10"
+        android:gravity="center"
         android:hint="Password"
         android:inputType="numberPassword"
         app:layout_constraintEnd_toEndOf="parent"
