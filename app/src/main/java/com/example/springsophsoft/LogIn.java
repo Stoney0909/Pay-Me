@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.springsophsoft.helper.Databasehelper;
+import com.example.springsophsoft.Helper.Databasehelper;
 
 public class LogIn extends AppCompatActivity {
 

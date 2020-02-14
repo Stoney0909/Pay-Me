@@ -1,14 +1,17 @@
-package com.example.springsophsoft.helper;
+package com.example.springsophsoft.Helper;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.springsophsoft.model.Pay_Me;
+
+import static android.content.ContentValues.TAG;
 
 public class Databasehelper extends SQLiteOpenHelper {
 
@@ -60,7 +63,8 @@ public class Databasehelper extends SQLiteOpenHelper {
 //        contentValues.put(Pay_Me.Contact.Password, Password);
 //        contentValues.put(Pay_Me.Contact.Email, Email);
 
-        //Log.d(TAG,"addData: Adding " + firstName + " to " + Create_Contacts);
+        Log.d(TAG,"addData: Adding " + firstName + " to " + Create_Contacts);
+
 
         long result = db.insert(Pay_Me.Contact.TABLE_NAME, null, contentValues);
 

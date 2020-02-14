@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.springsophsoft.helper.Databasehelper;
+import com.example.springsophsoft.Helper.Databasehelper;
+//import com.example.springsophsoft.helper.Databasehelper;
 
 public class Signup extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class Signup extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String Username = username.getText().toString();
 
                 if (password.length() == 0) {
                     toastMessage("You must enter something in the Password.");
@@ -46,8 +47,9 @@ public class Signup extends AppCompatActivity {
                     toastMessage("Passwords do not match.");
                 }
                 else{
-//                    mDatabasehelper.addData();
-                    toastMessage("Success!");
+                    boolean didAdd = mDatabasehelper.addData(Username);
+                    if (didAdd)toastMessage("Success!");
+                    else toastMessage("Failure");
                 }
 
             }
