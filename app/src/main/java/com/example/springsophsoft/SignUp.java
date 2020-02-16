@@ -36,7 +36,44 @@ public class SignUp extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddData(username.getText().toString(), email.getText().toString(), password.getText().toString());
+                String susername = username.getText().toString();
+                String semail = email.getText().toString();
+                String spassword = password.getText().toString();
+                String sconfirmpassword = confirmPassword.getText().toString();
+
+
+                if (susername.equals("")|| semail.equals("")|| spassword.equals(""))
+                {
+                    toastMessage("Fields are Empty");
+                }
+                else{
+                    if(spassword.equals(sconfirmpassword)){
+                        boolean chkemail = mDatabasehelper.chkemail(semail);
+                        if (chkemail){
+                            boolean chkusername = mDatabasehelper.chkusername(susername);
+                            if (chkusername){
+                                boolean insert = mDatabasehelper.addData(susername, semail, sconfirmpassword);
+                                if (insert){
+                                    toastMessage("Register Successfull");
+                                }
+                                else {
+                                    toastMessage("Register Failure");
+                                }
+                            }
+                            else {
+                                toastMessage("Username is taken");
+                            }
+                        }
+                        else{
+                            toastMessage("Email already exists.");
+                        }
+
+                    }
+                    else{
+                        toastMessage("Password and Confirm Password do not Match");
+                    }
+                }
+
 
             }
         });
