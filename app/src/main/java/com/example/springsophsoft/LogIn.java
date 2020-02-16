@@ -2,6 +2,7 @@ package com.example.springsophsoft;
 
         import androidx.appcompat.app.AppCompatActivity;
 
+        import android.content.Intent;
         import android.os.Bundle;
         import android.view.View;
         import android.widget.Button;
@@ -29,21 +30,21 @@ public class LogIn extends AppCompatActivity {
             login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    myuser.setUsername(username.getText().toString());
-                    myuser.setPassword(password.getText().toString());
-
+                        Homepage();
+//                    myuser.setUsername(username.getText().toString());
+//                    myuser.setPassword(password.getText().toString());
 //                boolean chkuserpass = db.checkUser(myuser.getUsername(), myuser.getPassword());
 //                if (chkuserpass)toastMessage("Log in successfull");
 //                else toastMessage("Wrong Email or Password");
                 }
             });
-
-
-
-
-
-
         }
+        private void Homepage()
+        {
+            Intent intent = new Intent(this, HomePage.class);
+            startActivity(intent);
+        }
+
         private void toastMessage(String message){
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }

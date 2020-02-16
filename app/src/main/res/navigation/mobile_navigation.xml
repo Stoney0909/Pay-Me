@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.springsophsoft.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_Search"
+        android:name="com.example.springsophsoft.ui.Search.SearchFragment"
+        android:label="@string/menu_search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/nav_THistory"
+        android:name="com.example.springsophsoft.ui.Tranhistory.TranHistoryFragment"
+        android:label="@string/menu_THistory"
+        tools:layout="@layout/fragment_tran_history" />
+
+    <fragment
+        android:id="@+id/nav_AddCash"
+        android:name="com.example.springsophsoft.ui.AddCash.AddCashFragment"
+        android:label="@string/menu_AddCash"
+        tools:layout="@layout/fragment_add_cash" />
+
+    <fragment
+        android:id="@+id/nav_Balance"
+        android:name="com.example.springsophsoft.ui.Balance.BalanceFragment"
+        android:label="@string/menu_Balance"
+        tools:layout="@layout/fragment_balance" />
+
+    <fragment
+        android:id="@+id/nav_Setting"
+        android:name="com.example.springsophsoft.ui.Setting.SettingFragment"
+        android:label="@string/menu_setting"
+        tools:layout="@layout/fragment_setting" />
+</navigation>

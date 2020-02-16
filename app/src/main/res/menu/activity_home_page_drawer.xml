@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_Search"
+            android:icon="@drawable/ic_menu_search"
+            android:title="@string/menu_search" />
+        <item
+            android:id="@+id/nav_THistory"
+            android:icon="@drawable/ic_menu_history"
+            android:title="@string/menu_THistory" />
+        <item
+            android:id="@+id/nav_AddCash"
+            android:icon="@drawable/ic_menu_cash"
+            android:title="@string/menu_AddCash" />
+
+        <item
+            android:id="@+id/nav_Balance"
+            android:icon="@drawable/ic_menu_balance"
+            android:title="@string/menu_Balance" />
+        <item
+            android:id="@+id/nav_Setting"
+            android:icon="@drawable/ic_menu_setting"
+            android:title="@string/menu_setting" />
+    </group>
+
+</menu>
