@@ -26,19 +26,29 @@ public class LogIn extends AppCompatActivity {
             login = (Button) findViewById(R.id.btnLogIn);
             username = (EditText) findViewById(R.id.usernameTextView);
             password = (EditText) findViewById(R.id.passwordTextView);
+            db = new Databasehelper(this);
 
-            login.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                        Homepage();
-//                    myuser.setUsername(username.getText().toString());
-//                    myuser.setPassword(password.getText().toString());
-//                boolean chkuserpass = db.checkUser(myuser.getUsername(), myuser.getPassword());
-//                if (chkuserpass)toastMessage("Log in successfull");
-//                else toastMessage("Wrong Email or Password");
-                }
-            });
-        }
+//             login.setOnClickListener(new View.OnClickListener() {
+//                 @Override
+//                 public void onClick(View v) {
+// <<<<<<< Ethan'sDev
+//                         Homepage();
+// //                    myuser.setUsername(username.getText().toString());
+// //                    myuser.setPassword(password.getText().toString());
+// //                boolean chkuserpass = db.checkUser(myuser.getUsername(), myuser.getPassword());
+// //                if (chkuserpass)toastMessage("Log in successfull");
+// //                else toastMessage("Wrong Email or Password");
+// =======
+//                 String susername = username.getText().toString();
+//                 String spassword = password.getText().toString();
+
+//                 boolean chkuserpass = db.chkusernamepassword(susername, spassword);
+//                 if (chkuserpass)toastMessage("Log in successfull");
+//                 else toastMessage("Wrong Email or Password");
+// >>>>>>> OumarDev's
+//                 }
+//             });
+//         }
         private void Homepage()
         {
             Intent intent = new Intent(this, HomePage.class);
