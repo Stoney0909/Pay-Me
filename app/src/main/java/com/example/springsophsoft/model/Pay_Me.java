@@ -28,6 +28,7 @@ public final class Pay_Me {
 //    }
 //    public final class  Transactions implements BaseColumns{
 //        public static final String Transaction_ID = BaseColumns._ID;
+//        public static Integer ID = "ID";
 //        public static final String Reason = "Reason";
 //        public static final Integer Account_ID = 0;
 //        public final Integer Transfer_To = 0;
