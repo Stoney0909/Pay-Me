@@ -15,7 +15,7 @@ public class LogIn extends AppCompatActivity {
         Databasehelper db;
         private Button login;
         private EditText username, password;
-        User myuser;
+        public User myuser;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,9 @@ public class LogIn extends AppCompatActivity {
                 boolean chkuserpass = db.chkusernamepassword(susername, spassword);
                 if (chkuserpass)toastMessage("Log in successfull");
                 else toastMessage("Wrong Email or Password");
+
+                myuser.setUsername(susername);
+                myuser.setPassword(spassword);
                 }
             });
 

@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         videoBG = (VideoView) findViewById(R.id.IntroVideoView);
 
 
-
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoplayback);
 
         videoBG.setVideoURI(uri);
