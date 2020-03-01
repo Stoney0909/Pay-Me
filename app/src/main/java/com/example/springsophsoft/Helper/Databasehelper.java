@@ -1,5 +1,6 @@
 package com.example.springsophsoft.Helper;
 
+import android.app.TaskStackBuilder;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -21,6 +22,7 @@ public class Databasehelper extends SQLiteOpenHelper {
     private static final String COL4 = "Passowrd";
     private static final String COL5 = "FirstName";
     private static final String COL6 = "LastName";
+    private static final String COL7 = "PhoneNumber";
 
     public Databasehelper(Context context) {
         super(context, TABLE_NAME, null, 1);
@@ -29,7 +31,8 @@ public class Databasehelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL2 +" TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 +" TEXT," + COL6 + "TEXT)";
+                COL2 +" TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 +" TEXT," + COL6 + "TEXT,"
+                + COL7 + "TEXT)";
         db.execSQL(createTable);
 
     }
@@ -104,5 +107,71 @@ public class Databasehelper extends SQLiteOpenHelper {
         if (cursor.getCount()>0)return true;
         else return false;
     }
-}
 
+
+
+    public boolean  AdditionalInfo(String firstname, String lastname,String phone ){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL5, firstname);
+        contentValues.put(COL6, lastname);
+        contentValues.put(COL7,phone);
+
+        Log.d(TAG, "addData: Adding " + firstname + " to " + TABLE_NAME);
+        Log.d(TAG, "addData: Adding " + lastname + " to " + TABLE_NAME);
+        Log.d(TAG, "addData: Adding " + phone + " to " + TABLE_NAME);
+
+        long result = db.insert(TABLE_NAME, null, contentValues);
+
+        //if date as inserted incorrectly it will return -1
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public void Update(String id, String username,String Password, String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE" + TABLE_NAME + " SET "
+                + COL2 + " = '" + username + "'" + ","+
+                COL4 + " = '" + Password + "'" + COL3 + " = '" + email + "'" + ","+
+                " Where "+ COL1+" = '"+id+"'";
+        db.execSQL(query);
+    }
+    public boolean Update2(int id, String username, String email, String phone,String firstname,String lastname){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL2, username);
+        contentValues.put(COL7, phone);
+        contentValues.put(COL3, email);
+        contentValues.put(COL5, firstname);
+        contentValues.put(COL6, lastname);
+        db.update(TABLE_NAME, contentValues, "ID = ? ", new String[] { Integer.toString(id) } );
+        return true;
+    }
+    //    public String getID(){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//    /*Cursor cursor = db.query(TABLE, new String[] {COLUMN_USERNAME, COLUMN_PASSWORD}, COLUMN_USERNAME , null, null, null, null);
+//    cursor.moveToFirst();*/
+//        String selectQuery = "SELECT "+ COL1 + " FROM " + TABLE_NAME;
+//        Cursor cursor = db.rawQuery(selectQuery, null);
+//        cursor.moveToFirst();
+//        String TheID=cursor.getString(cursor.getColumnIndex(COL1));
+//        return TheID;
+//    }
+    public String getUsername() {
+        String username = "";
+        Cursor cursor = this.getReadableDatabase().query(
+                TABLE_NAME, new String[] { COL2},
+                null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                username = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return username;
+    }
+
+}

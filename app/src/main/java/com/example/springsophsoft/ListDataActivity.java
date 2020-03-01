@@ -38,7 +38,6 @@ public class ListDataActivity extends AppCompatActivity {
         populateListView();
 
 
-
     }
     private void populateListView(){
         Log.d(TAG, "populateListView: Displaying data in the ListView");
