@@ -36,8 +36,6 @@ public class ListDataActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
         mDatabaseHelper = new Databasehelper(this);
         populateListView();
-
-
     }
     private void populateListView(){
         Log.d(TAG, "populateListView: Displaying data in the ListView");

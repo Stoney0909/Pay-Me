@@ -34,7 +34,7 @@ public class CardDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL2 +" TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 +" TEXT," + COL6 + "TEXT,"
-                + COL7 + "TEXT)";
+                + COL7 + "TEXT," + COL8 + "TEXT)";
         db.execSQL(createTable);
     }
 
@@ -57,8 +57,6 @@ public class CardDBHelper extends SQLiteOpenHelper {
         contentValues.put(COL6, day);
         contentValues.put(COL7, year);
 
-
-
         Log.d(TAG, "addData: Adding " + Card + " to " + TABLE_NAME);
         Log.d(TAG, "addData: Adding " + cvc + " to " + TABLE_NAME);
         Log.d(TAG, "addData: Adding " + Fname + " to " + TABLE_NAME);
@@ -70,7 +68,9 @@ public class CardDBHelper extends SQLiteOpenHelper {
 
         if (result == -1) {
             return false;
-        } else {
+        }
+        else
+            {
             return true;
         }
     }
@@ -81,4 +81,8 @@ public class CardDBHelper extends SQLiteOpenHelper {
         return query;
     }
 
+    public void setPersonNumber()
+    {
+
+    }
 }

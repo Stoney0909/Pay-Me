@@ -2,6 +2,7 @@ package com.example.springsophsoft;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ConditionVariable;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
+import com.example.springsophsoft.ui.AddCash.AddCashFragment;
 
 public class AddingCardNumber extends AppCompatActivity {
 
@@ -30,7 +32,7 @@ public class AddingCardNumber extends AppCompatActivity {
         summbit = (Button)findViewById(R.id.btn_submmit);
         yearT = (EditText)findViewById(R.id.year);
 
-
+        db=new CardDBHelper(this);
         summbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
@@ -60,25 +62,25 @@ public class AddingCardNumber extends AppCompatActivity {
                 }
                 if(card.length() == 16 && CVCP.length() == 3 && EXday.length() == 2 && YEAR.length() == 4)
                 {
-                        AddData(card, CVCP, FName, LName, EXday, YEAR);
+                    boolean insertData = db.addCard(card, CVCP, FName, LName, EXday, YEAR);
+                    if(insertData)
+                    {
+                        toastMessage("Adding card success!");
+                        Intent intent = new Intent(getApplication(), AddCashFragment.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        toastMessage("Adding card fail!");
+                    }
                 }
-            }
+
+                }
+
 
         });
     }
-    public void AddData(String card, String CVC, String Fname, String Lname, String Eday, String year)
-    {
-        Boolean InsertData = db.addCard(card, CVC, Fname, Lname, Eday, year);
 
-        if(InsertData == true)
-        {
-            toastMessage("Adding card success!");
-        }
-        else
-        {
-            toastMessage("Adding card fail!");
-        }
-    }
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

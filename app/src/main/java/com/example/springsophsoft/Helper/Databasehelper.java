@@ -174,4 +174,10 @@ public class Databasehelper extends SQLiteOpenHelper {
         return username;
     }
 
+    public Cursor getID()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor query = db.rawQuery(" SELECT " + COL1 + " FROM " + TABLE_NAME, null);
+        return query;
+    }
 }
