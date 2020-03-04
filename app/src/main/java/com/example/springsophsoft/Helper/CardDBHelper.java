@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 public class CardDBHelper extends SQLiteOpenHelper {
     private static final String TAG = "CardDBHelper";
 
