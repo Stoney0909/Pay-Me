@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.ui.AddCash.AddCashFragment;
 
+import java.time.Year;
+
 public class AddingCardNumber extends AppCompatActivity {
 
     CardDBHelper db;
@@ -29,7 +31,7 @@ public class AddingCardNumber extends AppCompatActivity {
         summbit = (Button)findViewById(R.id.btn_submmit);
         yearT = (EditText)findViewById(R.id.year);
 
-        db=new CardDBHelper(this);
+        db = new CardDBHelper(this);
         summbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
@@ -60,11 +62,14 @@ public class AddingCardNumber extends AppCompatActivity {
                 if(card.length() == 16 && CVCP.length() == 3 && EXday.length() == 2 && YEAR.length() == 4)
                 {
                     boolean insertData = db.addCard(card, CVCP, FName, LName, EXday, YEAR);
-                    if(insertData)
+                    boolean inserting =db.add(card,CVCP,FName,LName,EXday);
+                    if(inserting)
                     {
                         toastMessage("Adding card success!");
-                        Intent intent = new Intent(getApplication(), AddCashFragment.class);
-                        startActivity(intent);
+                        Intent me= new Intent(getApplication(),AddCashFragment.class);
+                        startActivity(me);
+                    //    Intent intent = new Intent(getApplication(), AddCashFragment.class);
+                      //  startActivity(intent);
                     }
                     else
                     {
@@ -73,8 +78,6 @@ public class AddingCardNumber extends AppCompatActivity {
                 }
 
                 }
-
-
         });
     }
 

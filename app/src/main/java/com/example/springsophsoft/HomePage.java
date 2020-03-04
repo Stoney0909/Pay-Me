@@ -1,5 +1,6 @@
 package com.example.springsophsoft;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,12 +25,13 @@ import android.view.Menu;
 public class HomePage extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
+ //  public String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
+        Intent i = getIntent();
+         String username = i.getStringExtra("Send_Username");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

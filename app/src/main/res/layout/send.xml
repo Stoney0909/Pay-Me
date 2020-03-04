@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/UsernameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="Sending"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:id="@+id/Amount_Sending"
+        android:hint="Amount: $0"
+        android:inputType="number"/>
+    <EditText
+        android:layout_marginTop="95dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Comment:"
+        android:inputType="text"
+        android:id="@+id/Sending_Message"
+        />
+        <Button
+            android:id="@+id/Send"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="250dp"
+            android:text="Send Now"
+            />
+</RelativeLayout>

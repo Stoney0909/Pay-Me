@@ -42,6 +42,34 @@ public class CardDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public boolean add(String Card, String cvc,String Fname,String Lname, String day)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL2, Card);
+        contentValues.put(COL3, cvc);
+        contentValues.put(COL4, Fname);
+        contentValues.put(COL5, Lname);
+   //     contentValues.put(COL6, day);
+  //      contentValues.put(COL7, year);
+
+//   //     Log.d(TAG, "addData: Adding " + Card + " to " + TABLE_NAME);
+//        Log.d(TAG, "addData: Adding " + cvc + " to " + TABLE_NAME);
+//        Log.d(TAG, "addData: Adding " + Fname + " to " + TABLE_NAME);
+//        Log.d(TAG, "addData: Adding " + Lname + " to " + TABLE_NAME);
+//        Log.d(TAG, "addData: Adding " + day + " to " + TABLE_NAME);
+   //     Log.d(TAG, "addData: Adding " + year + " to " + TABLE_NAME);
+
+        long result = db.insert(TABLE_NAME, null, contentValues);
+
+        if (result == -1) {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
 
     public boolean addCard(String Card, String cvc, String Fname, String Lname, String day, String year)

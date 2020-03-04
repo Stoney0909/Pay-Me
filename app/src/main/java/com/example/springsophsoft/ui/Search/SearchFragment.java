@@ -1,5 +1,6 @@
 package com.example.springsophsoft.ui.Search;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,7 +20,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.HomePage;
 import com.example.springsophsoft.R;
+import com.example.springsophsoft.SendMoney;
 
 import java.util.ArrayList;
 
@@ -46,9 +49,12 @@ public class SearchFragment extends Fragment {
         userlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 String text=userlist.getItemAtPosition(position).toString();
-                toastMessage(text);
+                Intent intent = new Intent(getActivity(), SendMoney.class);
+                intent.putExtra("Person_SendingTo",text);
+                startActivity(intent);
+
+             //   toastMessage(text);
             }
         });
 
