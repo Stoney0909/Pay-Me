@@ -31,7 +31,7 @@ public class SendMoney extends AppCompatActivity {
                 String Person_SendingTo = i.getStringExtra("Person_SendingTo");
                 String amount = Amount.getText().toString();
                 String message = Comment.getText().toString();
-                boolean insert = db.add("Oumar",Person_SendingTo, amount,message);
+                boolean insert = db.add(LogIn.getString(),Person_SendingTo, amount,message);
                 if (insert) {
                     toastMessage("You successfully send money");
                     Homepage();

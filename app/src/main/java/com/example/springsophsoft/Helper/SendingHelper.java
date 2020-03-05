@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class SendingHelper extends SQLiteOpenHelper {
 
@@ -39,8 +40,10 @@ public class SendingHelper extends SQLiteOpenHelper {
         contentValues.put(COL2, Person_sending);
         contentValues.put(COL3, Person_receiving);
         contentValues.put(COL4, amount);
-        contentValues.put(COL5, Message);
-
+      //  contentValues.put(COL5, Message);
+        Log.d(TAG, "addData: Adding " + Person_sending + " to " + TABLE_NAME);
+        Log.d(TAG, "addData: Adding " + Person_receiving + " to " + TABLE_NAME);
+        Log.d(TAG, "addData: Adding " + amount + " to " + TABLE_NAME);
         long result = db.insert(TABLE_NAME, null, contentValues);
 
         if (result == -1) {
