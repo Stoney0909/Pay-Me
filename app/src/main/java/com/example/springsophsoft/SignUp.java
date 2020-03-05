@@ -2,7 +2,9 @@ package com.example.springsophsoft;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +57,7 @@ public class SignUp extends AppCompatActivity {
                                 boolean insert = mDatabasehelper.addData(susername, semail, sconfirmpassword);
                                 if (insert){
                                     toastMessage("Register Successfull");
+                                    LogIn();
                                 }
                                 else {
                                     toastMessage("Register Failure");
@@ -92,6 +95,10 @@ public class SignUp extends AppCompatActivity {
         {
             toastMessage("Something went Wrong");
         }
+    }
+    private void LogIn() {
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
     }
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
