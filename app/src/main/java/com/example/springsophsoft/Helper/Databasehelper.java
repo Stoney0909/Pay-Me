@@ -137,14 +137,17 @@ public class Databasehelper extends SQLiteOpenHelper {
         String query = " UPDATE " + TABLE_NAME + " SET "
                 + COL2 + " = '" + username + "'" + "," +
                 COL3 + " = '" + email + "'"+"," +
-                COL5 + " = '" + FirstName + "'"+ "," +
-                COL6 + " = '" + LastName + "'"+
-                " Where " + COL1 + " = '" + id + "'" +" AND "+ COL5+ " is NULL AND "+COL6 +" is NULL";
+                COL5 + " = '" + FirstName + "'"+
+                //"," +
+              //  COL6 + " = '" + LastName + "'"+
+                " Where " + COL2 + " = '" + id + "'" +" AND "+ COL5+ " is not NULL" ;
+        //+
+      //  String quer = " UPDATE " + TABLE_NAME + " SET "
+        //        + COL6 + " = '" + LastName + "'" + "," +
+          //      COL7 + " = '" + Phone + "'"+
+            //    " Where " + COL2 + " = '" + id + "'" +" AND "+ COL6+ " is NULL" ;
 
-        String quer = " UPDATE " + TABLE_NAME + " SET "+
-                COL6 + " = '" + LastName + "'"+
-                " Where " + COL1 + " = '" + id + "'" +" AND "+ COL6+ " is Null";
-
+      //  db.execSQL(quer);
         db.execSQL(query);
         //   db.execSQL(quer);
     }
