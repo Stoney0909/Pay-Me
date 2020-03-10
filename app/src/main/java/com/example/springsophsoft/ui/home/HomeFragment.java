@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.springsophsoft.Global;
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.R;
@@ -37,23 +39,16 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        mListView = (ListView)root.findViewById(R.id.transactionListView);
-        addtransaction = (Button)root.findViewById(R.id.addTransactionbtn);
+        mListView = (ListView)root.findViewById(R.id.TransactionListView);
         final TransactionHelper transactiondb = new TransactionHelper(getActivity());
         Databasehelper userdb = new Databasehelper(getActivity());
-
-        final String id = getActivity().getIntent().getStringExtra("id");
-
-        addtransaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              transactiondb.addData(1, id, "1", "First com.example.springsophsoft.Transaction", "0");
-            }
-        });
-        Cursor data = transactiondb.getData(id);
+        
+        Cursor data = transactiondb.getData(Global.username);
         transactionList(data);
         return root;
     }
+
+
     private void transactionList(Cursor data){
 
         ArrayList<Transaction> listData = new ArrayList<>();
@@ -68,7 +63,10 @@ public class HomeFragment extends Fragment {
             listData.add(mytransaction);
         }
 
-        TransactionListAdapter adapter = new TransactionListAdapter(getActivity(), R.layout.content_home_page, listData);
+        TransactionListAdapter adapter = new TransactionListAdapter(listData, getActivity());
         mListView.setAdapter(adapter);
     }
+
+
 }
+

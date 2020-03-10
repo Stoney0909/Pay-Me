@@ -4,52 +4,69 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
 public class TransactionListAdapter extends ArrayAdapter<Transaction> {
-    private static final String TAG = "TransactionListApadter";
 
-    private Context mContext;
-    private int mresource;
+    private ArrayList<Transaction> dataSet;
+    Context mContext;
 
-    public TransactionListAdapter(Context context, int resource, ArrayList<Transaction> objects) {
-        super(context, resource, objects);
-        this.mContext = context;
-        mresource = resource;
+    // View lookup cache
+    private static class ViewHolder {
+        TextView txtReciever;
+        TextView txtSender;
+        TextView txtAmount;
+
     }
 
-    @NonNull
+    public TransactionListAdapter(ArrayList<Transaction> data, Context context) {
+        super(context, R.layout.transactionlist, data);
+        this.dataSet = data;
+        this.mContext=context;
+
+    }
+
+    private int lastPosition = -1;
+
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        String firstname = getItem(position).getRecieverid();
-        String lastname = getItem(position).getSenderid();
-        String amount = getItem(position).getAmount();
-        String reason = getItem(position).getReason();
-        String recieved = getItem(position).getDate();
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Get the data item for this position
+        Transaction dataModel = getItem(position);
+        // Check if an existing view is being reused, otherwise inflate the view
+        ViewHolder viewHolder; // view lookup cache stored in tag
 
-        Transaction transaction = new Transaction(firstname, lastname, amount, reason, "R");
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(mresource, parent, false);
+        final View result;
 
-        TextView firstnameview = (TextView) convertView.findViewById(R.id.recieveridtextview);
-        TextView lastnameview = (TextView) convertView.findViewById(R.id.senderidtextview);
-        TextView amountview = (TextView) convertView.findViewById(R.id.amounttextview);
-        TextView reasonView = (TextView) convertView.findViewById(R.id.reasontextView);
-        TextView recievedView = (TextView) convertView.findViewById(R.id.dateTextView);
+        if (convertView == null) {
 
-        firstnameview.setText(firstname);
-        lastnameview.setText(lastname);
-        amount = "$" + amount;
-        amountview.setText(amount);
-        reasonView.setText(reason);
-        recievedView.setText(recieved);
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.transactionlist, parent, false);
+            viewHolder.txtReciever = (TextView) convertView.findViewById(R.id.recieverTextView);
+            viewHolder.txtSender = (TextView) convertView.findViewById(R.id.senderTextView);
+            viewHolder.txtAmount = (TextView) convertView.findViewById(R.id.amountTextView);
 
+            result=convertView;
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+            result=convertView;
+        }
+
+        Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+        result.startAnimation(animation);
+        lastPosition = position;
+
+        viewHolder.txtReciever.setText(dataModel.getRecieverid());
+        viewHolder.txtSender.setText(dataModel.getSenderid());
+        viewHolder.txtAmount.setText(dataModel.getAmount());
+        // Return the completed view to render on screen
         return convertView;
     }
 }
