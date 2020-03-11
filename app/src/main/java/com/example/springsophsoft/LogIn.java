@@ -16,9 +16,7 @@ public class LogIn extends AppCompatActivity {
         Databasehelper db;
         private Button login;
         private EditText username, password;
-        public static String user;
         User myuser;
-
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -37,27 +35,21 @@ public class LogIn extends AppCompatActivity {
                     String spassword = password.getText().toString();
                 boolean chkuserpass = db.chkusernamepassword(susername, spassword);
                 if (chkuserpass) {
-
-                    Homepage();
-                   user=susername;
+                    Homepage(susername);
                 }
                 else toastMessage("Wrong Email or Password");
                 }
             });
         }
-        private void Homepage()
+        private void Homepage(String username)
         {
             Intent intent = new Intent(this, HomePage.class);
+            intent.putExtra("id", username);
             startActivity(intent);
         }
 
         private void toastMessage(String message){
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
-    public static String getString() {
-        String result;
-        // assign value to string here
-        result = user;
-        return result;
-    }
+
     }
