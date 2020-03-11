@@ -1,5 +1,6 @@
 package com.example.springsophsoft.ui.home;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -40,9 +41,14 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         mListView = (ListView)root.findViewById(R.id.TransactionListView);
+
         final TransactionHelper transactiondb = new TransactionHelper(getActivity());
-        Databasehelper userdb = new Databasehelper(getActivity());
+        final Databasehelper userdb = new Databasehelper(getActivity());
+
+
+        Global.username = getActivity().getIntent().getStringExtra("id");
         
+
         Cursor data = transactiondb.getData(Global.username);
         transactionList(data);
         return root;

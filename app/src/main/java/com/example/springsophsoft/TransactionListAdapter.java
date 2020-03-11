@@ -21,6 +21,9 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
         TextView txtReciever;
         TextView txtSender;
         TextView txtAmount;
+        TextView txtReason;
+        TextView txtDate;
+
 
     }
 
@@ -50,6 +53,8 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
             viewHolder.txtReciever = (TextView) convertView.findViewById(R.id.recieverTextView);
             viewHolder.txtSender = (TextView) convertView.findViewById(R.id.senderTextView);
             viewHolder.txtAmount = (TextView) convertView.findViewById(R.id.amountTextView);
+            viewHolder.txtReason = (TextView) convertView.findViewById(R.id.reasonTextView);
+            viewHolder.txtDate = (TextView) convertView.findViewById(R.id.DateTextView);
 
             result=convertView;
 
@@ -66,6 +71,8 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
         viewHolder.txtReciever.setText(dataModel.getRecieverid());
         viewHolder.txtSender.setText(dataModel.getSenderid());
         viewHolder.txtAmount.setText(dataModel.getAmount());
+        viewHolder.txtReason.setText(dataModel.getReason());
+        viewHolder.txtDate.setText(dataModel.getDate());
         // Return the completed view to render on screen
         return convertView;
     }
