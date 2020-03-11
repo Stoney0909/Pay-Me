@@ -16,6 +16,7 @@ public class LogIn extends AppCompatActivity {
         Databasehelper db;
         private Button login;
         private EditText username, password;
+        public static String user;
         User myuser;
 
         @Override
@@ -33,6 +34,7 @@ public class LogIn extends AppCompatActivity {
                 public void onClick(View v) {
                    String susername = username.getText().toString();
                     String spassword = password.getText().toString();
+                    user = susername;
                 boolean chkuserpass = db.chkusernamepassword(susername, spassword);
                 if (chkuserpass) {
                     Homepage(susername);
@@ -52,4 +54,7 @@ public class LogIn extends AppCompatActivity {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
 
+    public static String getString() {
+        return user;
+    }
     }
