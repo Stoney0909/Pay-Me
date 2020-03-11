@@ -14,10 +14,10 @@ import com.example.springsophsoft.ui.AddCash.AddCashFragment;
 import java.time.Year;
 
 public class AddingCardNumber extends AppCompatActivity {
-
+    int cardmoney = 0;
     CardDBHelper db;
-     EditText Card_number, cvc, F_name, L_name, month, yearT;
-     Button summbit;
+    EditText Card_number, cvc, F_name, L_name, month, yearT;
+    Button summbit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,37 +39,34 @@ public class AddingCardNumber extends AppCompatActivity {
                 String CVCP = cvc.getText().toString();
                 String FName = F_name.getText().toString();
                 String LName = L_name.getText().toString();
-                String EXday = month.getText().toString();
-                String YEAR = yearT.getText().toString();
+                int EXday = Integer.parseInt( month.getText().toString());
+                int YEAR = Integer.parseInt(yearT.getText().toString());
+
 
                 if(card.length() != 16)
                 {
                     toastMessage("Please enter 16 digits for your card");
                 }
-                if(CVCP.length() != 3)
+                else if(CVCP.length() != 3)
                 {
                     toastMessage("Please enter the right CVC code");
                 }
 
-                if(EXday.length() != 2)
+                else if(EXday < 1 || EXday > 12)
                 {
                     toastMessage("Please enter month");
                 }
-                if(YEAR.length() != 4)
+                else if(YEAR > 3000 || YEAR < 2020)
                 {
-                    toastMessage("Please enter year");
+                    toastMessage("Please enter the correct year");
                 }
-                if(card.length() == 16 && CVCP.length() == 3 && EXday.length() == 2 && YEAR.length() == 4)
+                else
                 {
-                    boolean insertData = db.addCard(card, CVCP, FName, LName, EXday, YEAR);
-                    boolean inserting =db.add(card,CVCP,FName,LName,EXday);
+                    boolean inserting =db.add(card, CVCP, LogIn.getString(), cardmoney, FName, LName, EXday, YEAR);
                     if(inserting)
                     {
                         toastMessage("Adding card success!");
-                        Intent me= new Intent(getApplication(),AddCashFragment.class);
-                        startActivity(me);
-                    //    Intent intent = new Intent(getApplication(), AddCashFragment.class);
-                      //  startActivity(intent);
+                        goback();
                     }
                     else
                     {
@@ -77,8 +74,14 @@ public class AddingCardNumber extends AppCompatActivity {
                     }
                 }
 
-                }
+            }
         });
+    }
+
+    private void goback()
+    {
+        Intent intent = new Intent(this,AddCashFragment.class);
+        startActivity(intent);
     }
 
 

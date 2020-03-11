@@ -13,8 +13,7 @@ import com.example.springsophsoft.Helper.SendingHelper;
 
 public class SendMoney extends AppCompatActivity {
     SendingHelper db;
-     EditText Amount,
-             Comment;
+     EditText Amount, Comment;
      Button Send;
     @Override
     protected void onCreate(Bundle savedInstanceState){

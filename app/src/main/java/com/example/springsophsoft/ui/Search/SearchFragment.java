@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.HomePage;
+import com.example.springsophsoft.LogIn;
 import com.example.springsophsoft.R;
 import com.example.springsophsoft.SendMoney;
 
@@ -34,7 +35,7 @@ public class SearchFragment extends Fragment {
     ArrayAdapter adapter;
     private ListView userlist;
     private EditText et;
-
+    String user  = LogIn.getString();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class SearchFragment extends Fragment {
         userlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String text=userlist.getItemAtPosition(position).toString();
+                String text = userlist.getItemAtPosition(position).toString();
                 Intent intent = new Intent(getActivity(), SendMoney.class);
                 intent.putExtra("Person_SendingTo",text);
                 startActivity(intent);
@@ -80,7 +81,7 @@ public class SearchFragment extends Fragment {
             toastMessage("The data is empty.");
         }else {
             while (cursor.moveToNext()){
-                listItem.add(cursor.getString(1));
+                    listItem.add(cursor.getString(1));
             }
             adapter=new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,listItem);
             userlist.setAdapter(adapter);

@@ -9,6 +9,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
 import android.util.Log;
+
+import com.example.springsophsoft.LogIn;
+import com.example.springsophsoft.SignUp;
+
 import java.util.ArrayList;
 import java.util.List;
 public class Databasehelper extends SQLiteOpenHelper {
@@ -16,15 +20,15 @@ public class Databasehelper extends SQLiteOpenHelper {
     private static final String TAG = "DatabaseHelper";
 
     public static final String TABLE_NAME = "Account_Table";
-    private static final String COL1 = "ID";
-    private static final String COL2 = "Username";
-    private static final String COL3 = "Email";
-    private static final String COL4 = "Passowrd";
-    private static final String COL5 = "FirstName";
-    private static final String COL6 = "LastName";
-    private static final String COL7 = "PhoneNumber";
-
-    //  private DatabaseHelper dbHelper;
+    public static final String COL1 = "ID";
+    public static final String COL2 = "Username";
+    public static final String COL3 = "Email";
+    public static final String COL4 = "Passowrd";
+    public static final String COL5 = "FirstName";
+    public static final String COL6 = "LastName";
+    public static final String COL7 = "PhoneNumber";
+    public static final String COL8 = "Balance";
+    String name = LogIn.getString();
 
     public Databasehelper(Context context) {
         super(context, TABLE_NAME, null, 1);
@@ -33,8 +37,8 @@ public class Databasehelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL2 + " TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 + " TEXT," + COL6 + "TEXT,"
-                + COL7 + "TEXT)";
+                COL2 + " TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 + " TEXT," + COL6 + " TEXT,"
+                + COL7 + " TEXT, " + COL8 + " TEXT)";
         db.execSQL(createTable);
     }
 
@@ -44,12 +48,53 @@ public class Databasehelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String username, String email, String password) {
+
+    public int GetUserID()
+    {
+        String usernanme = LogIn.getString();
+        String where = COL2 +" LIKE '%"+usernanme+"%'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.query(true, TABLE_NAME, null,
+                where, null, null, null, null, null);
+        if(c.getCount()>0)
+            return c.getInt(0);
+        else
+            return 0;
+    }
+
+    public String getBalance() {
+        String usernanme = LogIn.getString();
+        String blance = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            blance = csr.getString(csr.getColumnIndex(COL8));
+        }
+        return blance;
+    }
+
+    public void updateBalance(String balance)
+    {
+        String user = LogIn.getString();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = " UPDATE " + TABLE_NAME + " SET "
+                + COL8 + " = '" + balance + "'" +
+                " Where " + COL2 + " = '" + user + "'";
+        db.execSQL(query);
+    }
+
+
+
+    public boolean addData(String username, String email, String password, int bal) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, username);
         contentValues.put(COL3, email);
         contentValues.put(COL4, password);
+        contentValues.put(COL8, bal);
 
         Log.d(TAG, "addData: Adding " + username + " to " + TABLE_NAME);
         Log.d(TAG, "addData: Adding " + email + " to " + TABLE_NAME);
@@ -167,6 +212,9 @@ public class Databasehelper extends SQLiteOpenHelper {
 
         return username;
     }
+
+
+
     public Cursor fetchAllData() {
         SQLiteDatabase db=this.getReadableDatabase();
         String query = "SELECT * FROM "+TABLE_NAME;
@@ -195,7 +243,11 @@ public class Databasehelper extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getReadableDatabase();
         String query = "SELECT * FROM "+TABLE_NAME;
         Cursor cursor=db.rawQuery(query,null);
-
         return cursor;
     }
+
+
+
+
+
 }
