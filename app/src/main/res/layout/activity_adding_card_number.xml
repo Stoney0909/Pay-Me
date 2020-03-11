@@ -33,7 +33,7 @@
         android:layout_marginTop="220dp"
         android:hint="CVC"
         android:gravity="center_horizontal"
-        android:inputType="text|number"
+        android:inputType="numberPassword"
         android:textSize="20sp"
         />
 

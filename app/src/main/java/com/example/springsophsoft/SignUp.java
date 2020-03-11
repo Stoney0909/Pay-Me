@@ -2,6 +2,7 @@ package com.example.springsophsoft;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +17,8 @@ public class SignUp extends AppCompatActivity {
     Databasehelper mDatabasehelper;
     private EditText password, username, email, confirmPassword;
     private Button btnRegister;
-
+    int balance = 3000;
+    public static String user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +33,6 @@ public class SignUp extends AppCompatActivity {
 
 
 
-
-
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +40,7 @@ public class SignUp extends AppCompatActivity {
                 String semail = email.getText().toString();
                 String spassword = password.getText().toString();
                 String sconfirmpassword = confirmPassword.getText().toString();
-
+                user = susername;
 
                 if (susername.equals("")|| semail.equals("")|| spassword.equals(""))
                 {
@@ -52,9 +52,11 @@ public class SignUp extends AppCompatActivity {
                         if (chkemail){
                             boolean chkusername = mDatabasehelper.chkusername(susername);
                             if (chkusername){
-                                boolean insert = mDatabasehelper.addData(susername, semail, sconfirmpassword);
+                                boolean insert = mDatabasehelper.addData(susername, semail, sconfirmpassword, balance);
                                 if (insert){
                                     toastMessage("Register Successfull");
+                                   // mDatabasehelper.update_balance();
+                                    login();
                                 }
                                 else {
                                     toastMessage("Register Failure");
@@ -74,26 +76,24 @@ public class SignUp extends AppCompatActivity {
                     }
                 }
 
-
             }
         });
-
     }
 
-
-
-    public void AddData(String username, String email, String password){
-        boolean insertData = mDatabasehelper.addData(username, email, password);
-        if (insertData)
-        {
-            toastMessage("Data Successfully Inserted");
-        }
-        else
-        {
-            toastMessage("Something went Wrong");
-        }
+    public static String getUsername()
+    {
+        String name;
+        name = user;
+        return name;
     }
+
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void login()
+    {
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
     }
 }

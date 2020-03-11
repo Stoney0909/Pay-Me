@@ -17,8 +17,6 @@ public class LogIn extends AppCompatActivity {
         private Button login;
         private EditText username, password;
         public static String user;
-        User myuser;
-
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +54,6 @@ public class LogIn extends AppCompatActivity {
         }
     public static String getString() {
         String result;
-        // assign value to string here
         result = user;
         return result;
     }
