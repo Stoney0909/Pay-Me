@@ -28,6 +28,7 @@ public class Databasehelper extends SQLiteOpenHelper {
     public static final String COL6 = "LastName";
     public static final String COL7 = "PhoneNumber";
     public static final String COL8 = "Balance";
+
     String name = LogIn.getString();
 
     public Databasehelper(Context context) {
@@ -48,18 +49,29 @@ public class Databasehelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
-    public int GetUserID()
+    public String getPassword()
     {
         String usernanme = LogIn.getString();
-        String where = COL2 +" LIKE '%"+usernanme+"%'";
+        String password = "not found";
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.query(true, TABLE_NAME, null,
-                where, null, null, null, null, null);
-        if(c.getCount()>0)
-            return c.getInt(0);
-        else
-            return 0;
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            password = csr.getString(csr.getColumnIndex(COL4));
+        }
+        return password;
+    }
+
+    public void updatePassword(String p)
+    {
+        String user = LogIn.getString();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = " UPDATE " + TABLE_NAME + " SET "
+                + COL4 + " = '" + p + "'" +
+                " Where " + COL2 + " = '" + user + "'";
+        db.execSQL(query);
     }
 
     public String getBalance() {

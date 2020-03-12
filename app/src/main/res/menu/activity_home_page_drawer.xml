@@ -21,10 +21,10 @@
             android:icon="@drawable/ic_menu_cash"
             android:title="@string/menu_AddCash" />
 
-        <item
-            android:id="@+id/nav_Balance"
-            android:icon="@drawable/ic_menu_balance"
-            android:title="@string/menu_Balance" />
+<!--        <item-->
+<!--            android:id="@+id/nav_Balance"-->
+<!--            android:icon="@drawable/ic_menu_balance"-->
+<!--            android:title="@string/menu_Balance" />-->
         <item
             android:id="@+id/nav_Setting"
             android:icon="@drawable/ic_menu_setting"
