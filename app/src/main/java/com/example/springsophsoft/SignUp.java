@@ -55,7 +55,6 @@ public class SignUp extends AppCompatActivity {
                                 boolean insert = mDatabasehelper.addData(susername, semail, sconfirmpassword, balance);
                                 if (insert){
                                     toastMessage("Register Successfull");
-                                   // mDatabasehelper.update_balance();
                                     login();
                                 }
                                 else {

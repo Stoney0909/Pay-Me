@@ -39,51 +39,53 @@ public class AddingCardNumber extends AppCompatActivity {
                 String CVCP = cvc.getText().toString();
                 String FName = F_name.getText().toString();
                 String LName = L_name.getText().toString();
-                int EXday = Integer.parseInt( month.getText().toString());
-                int YEAR = Integer.parseInt(yearT.getText().toString());
+                String EXDAYText =  month.getText().toString();
+                String YEARTEXT = yearT.getText().toString();
 
 
-                if(card.length() != 16)
+                if(card.equals("") || CVCP.equals("") || FName.equals("") || LName.equals("") || EXDAYText.equals("") || YEARTEXT.equals(""))
                 {
-                    toastMessage("Please enter 16 digits for your card");
-                }
-                else if(CVCP.length() != 3)
-                {
-                    toastMessage("Please enter the right CVC code");
-                }
-
-                else if(EXday < 1 || EXday > 12)
-                {
-                    toastMessage("Please enter month");
-                }
-                else if(YEAR > 3000 || YEAR < 2020)
-                {
-                    toastMessage("Please enter the correct year");
+                    toastMessage("every fields need a input");
                 }
                 else
                 {
-                    boolean inserting =db.add(card, CVCP, LogIn.getString(), cardmoney, FName, LName, EXday, YEAR);
-                    if(inserting)
+                    int EXday = Integer.parseInt( month.getText().toString());
+                    int YEAR = Integer.parseInt(yearT.getText().toString());
+                    if(card.length() != 16)
                     {
-                        toastMessage("Adding card success!");
-                        goback();
+                        toastMessage("Please enter 16 digits for your card");
+                    }
+                    else if(CVCP.length() != 3)
+                    {
+                        toastMessage("Please enter the right CVC code");
+                    }
+
+                    else if(EXday < 1 || EXday > 12)
+                    {
+                        toastMessage("Please enter month");
+                    }
+                    else if(YEAR > 3000 || YEAR < 2020)
+                    {
+                        toastMessage("Please enter the correct year");
                     }
                     else
                     {
-                        toastMessage("Adding card fail!");
-                    }
-                }
+                        boolean inserting =db.add(card, CVCP, LogIn.getString(), cardmoney, FName, LName, EXday, YEAR);
+                        if(inserting)
+                        {
+                            toastMessage("Adding card success!");
 
+                        }
+                        else
+                        {
+                            toastMessage("Adding card fail!");
+                        }
+                    }
+
+                }
             }
         });
     }
-
-    private void goback()
-    {
-        Intent intent = new Intent(this,AddCashFragment.class);
-        startActivity(intent);
-    }
-
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

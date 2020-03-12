@@ -47,24 +47,30 @@ public class ChangePassword extends AppCompatActivity {
         String ConFNewPass = CNpass.getText().toString();
         String DATAPASSWORD = mydb.getPassword();
 
-        if(!OldPassword.equals(DATAPASSWORD))
+        if(OldPassword.equals("") || NewPassword.equals("") || ConFNewPass.equals(""))
         {
-            toastMessage("Old password incorrect");
-        }
-        else if(NewPassword.equals(DATAPASSWORD))
-        {
-            toastMessage("New password can not be the old password");
-        }
-        else if(!NewPassword.equals(ConFNewPass))
-        {
-            toastMessage("Password don't match");
+            toastMessage("All the fields need a input");
         }
         else
         {
-            mydb.updatePassword(ConFNewPass);
-            toastMessage("Password changed success");
+            if(!OldPassword.equals(DATAPASSWORD))
+            {
+                toastMessage("Old password incorrect");
+            }
+            else if(NewPassword.equals(DATAPASSWORD))
+            {
+                toastMessage("New password can not be the old password");
+            }
+            else if(!NewPassword.equals(ConFNewPass))
+            {
+                toastMessage("Password don't match");
+            }
+            else
+            {
+                mydb.updatePassword(ConFNewPass);
+                toastMessage("Password changed success");
+            }
         }
-
     }
 
     private void toastMessage(String message){

@@ -16,56 +16,61 @@
 
 
     <EditText
-        android:id="@+id/UsernameUpdateText"
+        android:id="@+id/UsernameT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="190dp"
         android:layout_marginRight="4dp"
+        android:inputType="text"
         android:gravity="center"
         android:hint="Username" />
 
     <EditText
-        android:id="@+id/EmailUpdateText"
+        android:id="@+id/EmailT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Email"
+        android:inputType="textEmailAddress"
         android:layout_marginTop="235dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         />
     <EditText
-        android:id="@+id/PhoneUpdateText"
+        android:id="@+id/PhoneT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Phone"
+        android:inputType="phone"
         android:layout_marginTop="280dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         />
     <EditText
-        android:id="@+id/FirstNameText"
+        android:id="@+id/FirstNameT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="FirstName"
+        android:inputType="text"
         android:layout_marginTop="320dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         />
     <EditText
-        android:id="@+id/LastNameText"
+        android:id="@+id/LastNameT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="LastName"
+        android:inputType="text"
         android:layout_marginTop="370dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         />
     <Button
-        android:id="@+id/Update"
+        android:id="@+id/btn_Update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

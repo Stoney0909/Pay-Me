@@ -29,8 +29,6 @@ public class Databasehelper extends SQLiteOpenHelper {
     public static final String COL7 = "PhoneNumber";
     public static final String COL8 = "Balance";
 
-    String name = LogIn.getString();
-
     public Databasehelper(Context context) {
         super(context, TABLE_NAME, null, 1);
     }
@@ -98,8 +96,6 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-
-
     public boolean addData(String username, String email, String password, int bal) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -114,7 +110,6 @@ public class Databasehelper extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
-        //if date as inserted incorrectly it will return -1
         if (result == -1) {
             return false;
         } else {
@@ -168,45 +163,16 @@ public class Databasehelper extends SQLiteOpenHelper {
         else return false;
     }
 
-    public boolean AdditionalInfo(String firstname, String lastname, String phone) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL5, firstname);
-        contentValues.put(COL6, lastname);
-        contentValues.put(COL7, phone);
-
-        Log.d(TAG, "addData: Adding " + firstname + " to " + TABLE_NAME);
-        Log.d(TAG, "addData: Adding " + lastname + " to " + TABLE_NAME);
-        Log.d(TAG, "addData: Adding " + phone + " to " + TABLE_NAME);
-
-        long result = db.insert(TABLE_NAME, null, contentValues);
-
-        //if date as inserted incorrectly it will return -1
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public void Update(String id, String username, String email,String FirstName,String LastName,String Phone) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = " UPDATE " + TABLE_NAME + " SET "
-                + COL2 + " = '" + username + "'" + "," +
-                COL3 + " = '" + email + "'"+"," +
-                COL5 + " = '" + FirstName + "'"+
-                //"," +
-              //  COL6 + " = '" + LastName + "'"+
-                " Where " + COL2 + " = '" + id + "'" +" AND "+ COL5+ " is not NULL" ;
-        //+
-      //  String quer = " UPDATE " + TABLE_NAME + " SET "
-        //        + COL6 + " = '" + LastName + "'" + "," +
-          //      COL7 + " = '" + Phone + "'"+
-            //    " Where " + COL2 + " = '" + id + "'" +" AND "+ COL6+ " is NULL" ;
-
-      //  db.execSQL(quer);
+        String query = " UPDATE " + TABLE_NAME + " SET " +
+                  COL2 + " = '" + username + "'" + "," +
+                  COL3 + " = '" + email + "'" + "," +
+                  COL5 + " = '" + FirstName + "'"+ "," +
+                  COL6 + " = '" + LastName + "'" + ", " +
+                  COL7 + " = '" + Phone + "'" +
+                " Where " + COL2 + " = '" + id + "'";
         db.execSQL(query);
-        //   db.execSQL(quer);
     }
 
 
@@ -258,8 +224,65 @@ public class Databasehelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public String getFirstName()
+    {
+        String usernanme = LogIn.getString();
+        String Fname = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            Fname = csr.getString(csr.getColumnIndex(COL5));
+        }
+        return Fname;
+    }
 
+    public String getLastName()
+    {
+        String usernanme = LogIn.getString();
+        String Lname = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            Lname = csr.getString(csr.getColumnIndex(COL6));
+        }
+        return Lname;
+    }
 
+    public String getPhone()
+    {
+        String usernanme = LogIn.getString();
+        String Phone = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            Phone = csr.getString(csr.getColumnIndex(COL7));
+        }
+        return Phone;
+    }
+
+    public String getEmail()
+    {
+        String usernanme = LogIn.getString();
+        String Email = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            Email = csr.getString(csr.getColumnIndex(COL3));
+        }
+        return Email;
+    }
 
 
 }
