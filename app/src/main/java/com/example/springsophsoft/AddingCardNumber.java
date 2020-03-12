@@ -54,19 +54,23 @@ public class AddingCardNumber extends AppCompatActivity {
                     if(card.length() != 16)
                     {
                         toastMessage("Please enter 16 digits for your card");
+                        Card_number.setText("");
                     }
                     else if(CVCP.length() != 3)
                     {
                         toastMessage("Please enter the right CVC code");
+                        cvc.setText("");
                     }
 
                     else if(EXday < 1 || EXday > 12)
                     {
                         toastMessage("Please enter month");
+                        month.setText("");
                     }
                     else if(YEAR > 3000 || YEAR < 2020)
                     {
                         toastMessage("Please enter the correct year");
+                        yearT.setText("");
                     }
                     else
                     {

@@ -14,6 +14,7 @@ public class Profile extends AppCompatActivity {
     Databasehelper db;
     private EditText UsernameUpdateText, EmailUpdateText, PhoneUpdateText, FirstNameText,LastNameText;
     private Button Update;
+    boolean userC = false, emailC = false, phoneC = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +33,11 @@ public class Profile extends AppCompatActivity {
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String susername = UsernameUpdateText.getText().toString();
+                String susername = UsernameUpdateText.getText().toString();;
                 String firstName = FirstNameText.getText().toString();
-                String lastName = LastNameText.getText().toString();
-                String Phone = PhoneUpdateText.getText().toString();
-                String Email= EmailUpdateText.getText().toString();
+                String lastName  = LastNameText.getText().toString();;
+                String Phone = PhoneUpdateText.getText().toString();;
+                String Email =  EmailUpdateText.getText().toString();;
 
                 if(susername.equals("") && firstName.equals("") && lastName.equals("") && Phone.equals("") && Email.equals(""))
                 {
@@ -44,37 +45,103 @@ public class Profile extends AppCompatActivity {
                 }
                 else
                 {
+
                     if(susername.equals(""))
                     {
                         susername = LogIn.getString();
+                        userC = true;
                     }
+                    else
+                    {
+                        boolean chkusername = db.chkusername(susername);
+                        if (chkusername == false){
+                            toastMessage("Username is taken");
+                            UsernameUpdateText.setText("");
+                            userC = false;
+                        }
+                        else
+                        {
+                            susername = UsernameUpdateText.getText().toString();
+                            userC = true;
+                        }
+
+                    }
+
                     if(firstName.equals(""))
                     {
                         firstName = db.getFirstName();
                     }
+                    else
+                    {
+                        firstName = FirstNameText.getText().toString();
+                    }
+
                     if(lastName.equals(""))
                     {
                         lastName = db.getLastName();
                     }
+                    else
+                    {
+                        lastName  = LastNameText.getText().toString();
+                    }
+
                     if(Phone.equals(""))
                     {
                         Phone = db.getPhone();
+                        phoneC = true;
                     }
+                    else
+                    {
+                        if(Phone.length() != 10)
+                        {
+                            toastMessage("PLease enter the correct phone number");
+                            PhoneUpdateText.setText("");
+                            phoneC = false;
+                        }
+                        else
+                        {
+                            Phone = PhoneUpdateText.getText().toString();
+                            phoneC = true;
+                        }
+                    }
+
                     if( Email.equals(""))
                     {
                         Email = db.getEmail();
+                        emailC = true;
+                    }
+                    else
+                    {
+                        boolean chkemail = db.chkemail(Email);
+                        if(chkemail == false)
+                        {
+                            toastMessage("Email already exists.");
+                            EmailUpdateText.setText("");
+                            emailC = false;
+                        }
+                        else
+                        {
+                            Email =  EmailUpdateText.getText().toString();
+                            emailC = true;
+                        }
+
+                    }
+
+                    if(phoneC == true && userC == true && emailC == true)
+                    {
+                        db.Update(LogIn.getString(),susername,Email,firstName,lastName,Phone);
+                        toastMessage("Update success");
+                        UsernameUpdateText.setText("");
+                        FirstNameText.setText("");
+                        LastNameText.setText("");
+                        PhoneUpdateText.setText("");
+                        EmailUpdateText.setText("");
                     }
 
 
 
 
-                    db.Update(LogIn.getString(),susername,Email,firstName,lastName,Phone);
-                    toastMessage("Update success");
-                    UsernameUpdateText.setText("");
-                    FirstNameText.setText("");
-                    LastNameText.setText("");
-                    PhoneUpdateText.setText("");
-                    EmailUpdateText.setText("");
+
                 }
         }
         });

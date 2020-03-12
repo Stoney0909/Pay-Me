@@ -65,7 +65,7 @@ public class SignUp extends AppCompatActivity {
                                 toastMessage("Username is taken");
                             }
                         }
-                        else{
+                        else {
                             toastMessage("Email already exists.");
                         }
 
