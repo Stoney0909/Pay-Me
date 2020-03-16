@@ -10,10 +10,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.springsophsoft.Helper.SendingHelper;
+import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 public class SendMoney extends AppCompatActivity {
-    SendingHelper db;
+    TransactionHelper db;
      EditText Amount, Comment;
      Button Send;
     @Override
@@ -23,7 +24,7 @@ public class SendMoney extends AppCompatActivity {
         Amount = (EditText)findViewById(R.id.Amount_Sending);
         Comment = (EditText)findViewById(R.id.Sending_Message);
         Send=(Button)findViewById(R.id.Send);
-        db =new SendingHelper(this);
+        db =new TransactionHelper(this);
         Send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {

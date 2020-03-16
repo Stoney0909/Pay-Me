@@ -76,7 +76,27 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public boolean add(String Person_sending, String Person_receiving,String amount,String Message)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL4, Person_sending);
+        contentValues.put(COL3, Person_receiving);
+        contentValues.put(COL2, amount);
+        contentValues.put(COL5, Message);
+        Log.d(TAG, "addData: Adding " + Person_sending + " to " + TABLE_NAME);
+        Log.d(TAG, "addData: Adding " + Person_receiving + " to " + TABLE_NAME);
+        Log.d(TAG, "addData: Adding " + amount + " to " + TABLE_NAME);
+        long result = db.insert(TABLE_NAME, null, contentValues);
 
+        if (result == -1) {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
 
 }
