@@ -79,15 +79,15 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
 
         String rName = db.getFirstNameByUsername(dataModel.getRecieverid()) + " " + db.getLastNameByUsername(dataModel.getRecieverid());
         String sName = db.getFirstNameByUsername(dataModel.getSenderid()) + " " + db.getLastNameByUsername(dataModel.getSenderid());
-        if (rName.equals("") || rName.equals("not found not found")){
+        if (rName.equals("null null") || rName.equals("not found not found")){
             viewHolder.txtReciever.setText(dataModel.getRecieverid());
         }
         else{viewHolder.txtReciever.setText(rName);}
 
-        if (sName.equals("")|| sName.equals("not found not found")) {
+        if (sName.equals("null null")|| sName.equals("not found not found")) {
             viewHolder.txtSender.setText(dataModel.getSenderid());
         }
-        else{viewHolder.txtSender.setText(sName);};
+        else{viewHolder.txtSender.setText(sName);}
 
 
         viewHolder.txtReason.setText(dataModel.getReason());
