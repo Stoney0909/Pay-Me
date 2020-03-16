@@ -47,8 +47,6 @@ public class TransMoney_card extends AppCompatActivity {
                 adding();
             }
         });
-
-
         drop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,12 +67,15 @@ public class TransMoney_card extends AppCompatActivity {
     public void adding()
     {
         String input =  Tran.getText().toString();
-        int money =  Integer.parseInt(input); // Input
+
         String Cardnumber = AddCashFragment.getCard();
-//        while(money < 1 || input.length() == 0)
-//        {
-//            toastMessage("Please enter amount that greater than 0");
-//        }
+        if(input.equals(""))
+        {
+            toastMessage("The field need a input");
+        }
+        else
+        {
+            int money = Integer.parseInt(input);
             if(COnvAmount < money)
             {
                 toastMessage("You don't have enough money to make a transfer, account Balance: " + COnvAmount);
@@ -91,35 +92,40 @@ public class TransMoney_card extends AppCompatActivity {
                 mydb.updateBalance(ACCBalance);
 
                 toastMessage("Transfer success,Your card balance: " + Balance);
-                Intent intent = new Intent(this, AddCashFragment.class);
-                startActivity(intent);
             }
-
+        }
     }
 
     public void droping()
     {
+        String input =  Tran.getText().toString();
         String Cardnumber = AddCashFragment.getCard();
-        int money =  Integer.parseInt( Tran.getText().toString());
-        if(CardAmount < money)
+        if(input.equals(""))
         {
-            toastMessage("You don't have enough money to make a transfer, card Balance: " + CardAmount);
-            Tran.setText("");
+            toastMessage("The field need a input");
         }
-        else {
-            int calAmount = CardAmount - money;
-            String Balance = Integer.toString(calAmount);
-            Carddb.UpdateCardBalance(Cardnumber, Balance);
+        else
+        {
+            int money =  Integer.parseInt(input);
+            if(CardAmount < money)
+            {
+                toastMessage("You don't have enough money to make a transfer, card Balance: " + CardAmount);
+                Tran.setText("");
+            }
+            else {
+                int calAmount = CardAmount - money;
+                String Balance = Integer.toString(calAmount);
+                Carddb.UpdateCardBalance(Cardnumber, Balance);
 
-            int CalAccAmount = COnvAmount + money;
-            String ACCBalance = Integer.toString(CalAccAmount);
-            mydb.updateBalance(ACCBalance);
+                int CalAccAmount = COnvAmount + money;
+                String ACCBalance = Integer.toString(CalAccAmount);
+                mydb.updateBalance(ACCBalance);
 
-            toastMessage("CardBalance = " + Balance);
+                toastMessage("CardBalance = " + Balance);
+            }
 
-            Intent intent = new Intent(this, AddCashFragment.class);
-            startActivity(intent);
         }
+
 
     }
 
