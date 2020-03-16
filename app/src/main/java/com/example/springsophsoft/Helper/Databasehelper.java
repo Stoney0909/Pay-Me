@@ -44,6 +44,63 @@ public class Databasehelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public String getPhone()
+    {
+        String usernanme = LogIn.getString();
+        String Phone = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            Phone = csr.getString(csr.getColumnIndex(COL7));
+        }
+        return Phone;
+    }
+
+    public String getEmail()
+    {
+        String usernanme = LogIn.getString();
+        String Email = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            Email = csr.getString(csr.getColumnIndex(COL3));
+        }
+        return Email;
+    }
+
+
+    public String getPassword()
+    {
+        String usernanme = LogIn.getString();
+        String password = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            password = csr.getString(csr.getColumnIndex(COL4));
+        }
+        return password;
+    }
+
+    public void updatePassword(String p)
+    {
+        String user = LogIn.getString();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = " UPDATE " + TABLE_NAME + " SET "
+                + COL4 + " = '" + p + "'" +
+                " Where " + COL2 + " = '" + user + "'";
+        db.execSQL(query);
+    }
+
+
     public int GetUserID()
     {
         String usernanme = LogIn.getString();
@@ -89,7 +146,7 @@ public class Databasehelper extends SQLiteOpenHelper {
 
     public String getFirstName() {
         String usernanme = LogIn.getString();
-        String firstname = "not found";
+        String firstname = "";
         SQLiteDatabase db = this.getReadableDatabase();
         String whereclause = "Username=?";
         String[] where = new String[]{usernanme};
@@ -102,7 +159,7 @@ public class Databasehelper extends SQLiteOpenHelper {
     }
     public String getFirstNameByUsername(String username) {
         String usernanme = username;
-        String firstname = "not found";
+        String firstname = "";
         SQLiteDatabase db = this.getReadableDatabase();
         String whereclause = "Username=?";
         String[] where = new String[]{usernanme};
@@ -242,23 +299,16 @@ public class Databasehelper extends SQLiteOpenHelper {
 
     public void Update(String id, String username, String email,String FirstName,String LastName,String Phone) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = " UPDATE " + TABLE_NAME + " SET "
-                + COL2 + " = '" + username + "'" + "," +
-                COL3 + " = '" + email + "'"+"," +
-                COL5 + " = '" + FirstName + "'"+
-                //"," +
-              //  COL6 + " = '" + LastName + "'"+
-                " Where " + COL2 + " = '" + id + "'" +" AND "+ COL5+ " is not NULL" ;
-        //+
-      //  String quer = " UPDATE " + TABLE_NAME + " SET "
-        //        + COL6 + " = '" + LastName + "'" + "," +
-          //      COL7 + " = '" + Phone + "'"+
-            //    " Where " + COL2 + " = '" + id + "'" +" AND "+ COL6+ " is NULL" ;
-
-      //  db.execSQL(quer);
+        String query = " UPDATE " + TABLE_NAME + " SET " +
+                COL2 + " = '" + username + "'" + "," +
+                COL3 + " = '" + email + "'" + "," +
+                COL5 + " = '" + FirstName + "'"+ "," +
+                COL6 + " = '" + LastName + "'" + ", " +
+                COL7 + " = '" + Phone + "'" +
+                " Where " + COL2 + " = '" + id + "'";
         db.execSQL(query);
-        //   db.execSQL(quer);
     }
+
 
     public String getUsername() {
         String username = "";

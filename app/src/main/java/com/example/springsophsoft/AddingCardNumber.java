@@ -44,7 +44,7 @@ public class AddingCardNumber extends AppCompatActivity {
 
                 if(card.equals("") || CVCP.equals("") || FName.equals("") || LName.equals("") || EXDAYText.equals("") || YEARTEXT.equals(""))
                 {
-                    toastMessage("every fields need a input");
+                    toastMessage("Every fields need a input");
                 }
                 else
                 {

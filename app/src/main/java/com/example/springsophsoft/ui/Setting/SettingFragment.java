@@ -15,8 +15,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.springsophsoft.ChangePassword;
-import com.example.springsophsoft.LogIn;
-import com.example.springsophsoft.MainActivity;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
+import com.example.springsophsoft.ui.signUpAndLogIn.MainActivity;
 import com.example.springsophsoft.Profile;
 import com.example.springsophsoft.R;
 
