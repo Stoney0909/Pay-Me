@@ -23,10 +23,20 @@
         />
 
     <Button
-        android:id="@+id/btnLogout"
+        android:id="@+id/btnChangePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
+        android:background="@drawable/button_round"
+        android:text="Change Password"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
         android:background="@drawable/signout_button"
         android:text="SIgn out"
         android:textSize="20dp"

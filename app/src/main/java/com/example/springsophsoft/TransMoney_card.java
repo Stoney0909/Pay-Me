@@ -71,10 +71,6 @@ public class TransMoney_card extends AppCompatActivity {
         String input =  Tran.getText().toString();
         int money =  Integer.parseInt(input); // Input
         String Cardnumber = AddCashFragment.getCard();
-//        while(money < 1 || input.length() == 0)
-//        {
-//            toastMessage("Please enter amount that greater than 0");
-//        }
             if(COnvAmount < money)
             {
                 toastMessage("You don't have enough money to make a transfer, account Balance: " + COnvAmount);
@@ -91,8 +87,6 @@ public class TransMoney_card extends AppCompatActivity {
                 mydb.updateBalance(ACCBalance);
 
                 toastMessage("Transfer success,Your card balance: " + Balance);
-                Intent intent = new Intent(this, AddCashFragment.class);
-                startActivity(intent);
             }
 
     }
@@ -116,9 +110,6 @@ public class TransMoney_card extends AppCompatActivity {
             mydb.updateBalance(ACCBalance);
 
             toastMessage("CardBalance = " + Balance);
-
-            Intent intent = new Intent(this, AddCashFragment.class);
-            startActivity(intent);
         }
 
     }
