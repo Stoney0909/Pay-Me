@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.springsophsoft.Helper.SendingHelper;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 public class SendMoney extends AppCompatActivity {
     SendingHelper db;

@@ -6,16 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.springsophsoft.LogIn;
-import com.example.springsophsoft.MainActivity;
+import com.example.springsophsoft.ui.signUpAndLogIn.MainActivity;
 import com.example.springsophsoft.Profile;
 import com.example.springsophsoft.R;
 

@@ -1,4 +1,4 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.home;
 
 public class Transaction {
     private String reason, recieverid, senderid, amount, date;

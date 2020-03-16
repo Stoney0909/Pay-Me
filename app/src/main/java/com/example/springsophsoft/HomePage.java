@@ -3,9 +3,11 @@ package com.example.springsophsoft;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.springsophsoft.Helper.Databasehelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -21,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 public class HomePage extends AppCompatActivity {
 
@@ -56,6 +59,24 @@ public class HomePage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        Databasehelper db = new Databasehelper(this);
+
+        View header = navigationView.getHeaderView(0);
+        TextView balanceText = (TextView) header.findViewById(R.id.balanceTextView);
+        String balance = "$" + db.getBalance();
+        balanceText.setText(balance);
+        TextView usernameText = (TextView) header.findViewById(R.id.usernameTextView);
+        usernameText.setText(db.getUsername());
+        TextView nameText = (TextView) header.findViewById(R.id.nameTextView);
+
+        String name = db.getFirstName() + " " + db.getLastName();
+        if (!db.getFirstName().equals("") || !db.getLastName().equals("")){
+            nameText.setText(name);
+        }
+
+
+
     }
 
     @Override

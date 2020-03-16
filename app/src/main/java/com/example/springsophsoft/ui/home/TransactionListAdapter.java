@@ -1,6 +1,8 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.home;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.springsophsoft.Global;
+import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.R;
 
 import java.util.ArrayList;
 
@@ -67,12 +73,36 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
         Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
         result.startAnimation(animation);
         lastPosition = position;
+        Databasehelper db = new Databasehelper(mContext);
 
-        viewHolder.txtReciever.setText(dataModel.getRecieverid());
-        viewHolder.txtSender.setText(dataModel.getSenderid());
-        viewHolder.txtAmount.setText(dataModel.getAmount());
+
+
+        String rName = db.getFirstNameByUsername(dataModel.getRecieverid()) + " " + db.getLastNameByUsername(dataModel.getRecieverid());
+        String sName = db.getFirstNameByUsername(dataModel.getSenderid()) + " " + db.getLastNameByUsername(dataModel.getSenderid());
+        if (rName.equals("") || rName.equals("not found not found")){
+            viewHolder.txtReciever.setText(dataModel.getRecieverid());
+        }
+        else{viewHolder.txtReciever.setText(rName);}
+
+        if (sName.equals("")|| sName.equals("not found not found")) {
+            viewHolder.txtSender.setText(dataModel.getSenderid());
+        }
+        else{viewHolder.txtSender.setText(sName);};
+
+
         viewHolder.txtReason.setText(dataModel.getReason());
         viewHolder.txtDate.setText(dataModel.getDate());
+        if (dataModel.getRecieverid().equals(Global.username))
+        {
+            viewHolder.txtAmount.setTextColor(Color.parseColor("#8315D520"));
+            String amount = "+$" + dataModel.getAmount();
+            viewHolder.txtAmount.setText(amount);
+        }
+        else{
+            viewHolder.txtAmount.setTextColor(Color.parseColor("#FC0000"));
+            String amount = "-$" + dataModel.getAmount();
+            viewHolder.txtAmount.setText(amount);
+        }
         // Return the completed view to render on screen
         return convertView;
     }

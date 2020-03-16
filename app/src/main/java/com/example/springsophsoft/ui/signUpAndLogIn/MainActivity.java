@@ -1,4 +1,4 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.signUpAndLogIn;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import com.example.springsophsoft.R;
 
 
 public class MainActivity extends AppCompatActivity {

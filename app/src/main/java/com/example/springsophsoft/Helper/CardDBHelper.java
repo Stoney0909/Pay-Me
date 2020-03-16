@@ -5,9 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import com.example.springsophsoft.LogIn;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 public class CardDBHelper extends SQLiteOpenHelper {
     private static final String TAG = "CardDBHelper";

@@ -1,20 +1,16 @@
 package com.example.springsophsoft.Helper;
 
-import android.app.TaskStackBuilder;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
+import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.util.Log;
 
-import com.example.springsophsoft.LogIn;
-import com.example.springsophsoft.SignUp;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
-import java.util.ArrayList;
-import java.util.List;
 public class Databasehelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
@@ -48,7 +44,6 @@ public class Databasehelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
     public int GetUserID()
     {
         String usernanme = LogIn.getString();
@@ -60,6 +55,22 @@ public class Databasehelper extends SQLiteOpenHelper {
             return c.getInt(0);
         else
             return 0;
+    }
+
+    public void setFirstName(String firstName){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL5, firstName);
+        db.update(TABLE_NAME, cv, COL2 + "=?", new String[]{LogIn.getString()});
+    }
+
+    public void setLastname(String lastName){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL6, lastName);
+        db.update(TABLE_NAME, cv, COL2 + "=?", new String[]{LogIn.getString()});
+
+
     }
 
     public String getBalance() {
@@ -76,8 +87,62 @@ public class Databasehelper extends SQLiteOpenHelper {
         return blance;
     }
 
-    public void updateBalance(String balance)
-    {
+    public String getFirstName() {
+        String usernanme = LogIn.getString();
+        String firstname = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            firstname = csr.getString(csr.getColumnIndex(COL5));
+        }
+        return firstname;
+    }
+    public String getFirstNameByUsername(String username) {
+        String usernanme = username;
+        String firstname = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            firstname = csr.getString(csr.getColumnIndex(COL5));
+        }
+        return firstname;
+    }
+
+    public String getLastNameByUsername(String username) {
+        String usernanme = username;
+        String lastname = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            lastname = csr.getString(csr.getColumnIndex(COL6));
+        }
+        return lastname;
+    }
+
+    public String getLastName() {
+        String usernanme = LogIn.getString();
+        String lastname = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{usernanme};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            lastname = csr.getString(csr.getColumnIndex(COL6));
+        }
+        return lastname;
+    }
+
+    public void updateBalance(String balance) {
         String user = LogIn.getString();
         SQLiteDatabase db = this.getWritableDatabase();
         String query = " UPDATE " + TABLE_NAME + " SET "
@@ -85,8 +150,6 @@ public class Databasehelper extends SQLiteOpenHelper {
                 " Where " + COL2 + " = '" + user + "'";
         db.execSQL(query);
     }
-
-
 
     public boolean addData(String username, String email, String password, int bal) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -197,7 +260,6 @@ public class Databasehelper extends SQLiteOpenHelper {
         //   db.execSQL(quer);
     }
 
-
     public String getUsername() {
         String username = "";
         Cursor cursor = this.getReadableDatabase().query(
@@ -213,8 +275,6 @@ public class Databasehelper extends SQLiteOpenHelper {
         return username;
     }
 
-
-
     public Cursor fetchAllData() {
         SQLiteDatabase db=this.getReadableDatabase();
         String query = "SELECT * FROM "+TABLE_NAME;
@@ -224,6 +284,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         }
         return row;
     }
+
     public Cursor fetchdatabyfilter(String inputText,String filtercolumn) throws SQLException {
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor row = null;
@@ -239,12 +300,14 @@ public class Databasehelper extends SQLiteOpenHelper {
         }
         return row;
     }
+
     public Cursor viewData(){
         SQLiteDatabase db=this.getReadableDatabase();
         String query = "SELECT * FROM "+TABLE_NAME;
         Cursor cursor=db.rawQuery(query,null);
         return cursor;
     }
+
 
 
 

@@ -20,8 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.springsophsoft.Helper.Databasehelper;
-import com.example.springsophsoft.HomePage;
-import com.example.springsophsoft.LogIn;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 import com.example.springsophsoft.R;
 import com.example.springsophsoft.SendMoney;
 
