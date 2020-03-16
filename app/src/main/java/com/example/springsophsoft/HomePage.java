@@ -71,7 +71,10 @@ public class HomePage extends AppCompatActivity {
         TextView nameText = (TextView) header.findViewById(R.id.nameTextView);
 
         String name = db.getFirstName() + " " + db.getLastName();
-        if (!db.getFirstName().equals("") || !db.getLastName().equals("")){
+        if (db.getFirstName() == null || db.getLastName() == null){
+            nameText.setText(" ");
+        }
+        else if (!db.getFirstName().equals("") || !db.getLastName().equals("")){
             nameText.setText(name);
         }
 
