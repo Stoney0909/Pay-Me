@@ -32,7 +32,7 @@
         android:layout_marginTop="430dp"
         android:layout_marginRight="105dp"
         android:background="@drawable/button_round"
-        android:text="Add"
+        android:text="Deposit"
         android:textColor="#ffffff"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
