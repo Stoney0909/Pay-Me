@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,10 @@ public class HomeFragment extends Fragment {
 
         Button recievedbtn = (Button)root.findViewById(R.id.recievedBtn);
         Button sentbtn = (Button)root.findViewById(R.id.sentBtn);
+        TextView balance = (TextView)root.findViewById(R.id.balanceTextView);
+        Databasehelper databasehelper = new Databasehelper(getActivity());
+        String amount = "$" + databasehelper.getBalance();
+        balance.setText(amount);
 
         recievedbtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -57,7 +57,7 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
             convertView = inflater.inflate(R.layout.transactionlist, parent, false);
             viewHolder.txtReciever = (TextView) convertView.findViewById(R.id.recieverTextView);
             viewHolder.txtSender = (TextView) convertView.findViewById(R.id.senderTextView);
-            viewHolder.txtAmount = (TextView) convertView.findViewById(R.id.amountTextView);
+            viewHolder.txtAmount = (TextView) convertView.findViewById(R.id.balanceTextView);
             viewHolder.txtReason = (TextView) convertView.findViewById(R.id.reasonTextView);
             viewHolder.txtDate = (TextView) convertView.findViewById(R.id.DateTextView);
 
