@@ -29,6 +29,6 @@
     <string name="menu_search">Send Money</string>
     <string name="menu_THistory">Transaction History</string>
     <string name="menu_AddCash">Add Cash</string>
-    <string name="menu_Balance">Show Balance</string>
+    <string name="menu_Balance">Sign out</string>
     <string name="menu_setting">Setting</string>
 </resources>

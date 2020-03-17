@@ -28,18 +28,18 @@ public class SettingFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         settingViewModel = ViewModelProviders.of(this).get(SettingViewModel.class);
         View root = inflater.inflate(R.layout.fragment_setting, container, false);
-        signout = (Button)root.findViewById(R.id.btnLogout);
+        //signout = (Button)root.findViewById(R.id.btnLogout);
         profile = (Button)root.findViewById(R.id.btnProfile);
         changePassword = (Button)root.findViewById(R.id.btnChangePassword);
 
 
 
-        signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signout();
-            }
-        });
+//        signout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                signout();
+//            }
+//        });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override

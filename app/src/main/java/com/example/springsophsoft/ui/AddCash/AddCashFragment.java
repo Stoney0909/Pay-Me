@@ -108,10 +108,10 @@ public class AddCashFragment extends Fragment {
         Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
 
-  public void addCard()
-  {
-      Intent intent = new Intent(getActivity(), AddingCardNumber.class);
-      startActivity(intent);
-  }
+    public void addCard()
+    {
+        Intent intent = new Intent(getActivity(), AddingCardNumber.class);
+        startActivity(intent);
+    }
 
 }

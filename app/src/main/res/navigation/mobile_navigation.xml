@@ -30,14 +30,14 @@
         tools:layout="@layout/fragment_add_cash" />
 
     <fragment
-        android:id="@+id/nav_Balance"
-        android:name="com.example.springsophsoft.ui.Balance.BalanceFragment"
-        android:label="@string/menu_Balance"
-        tools:layout="@layout/fragment_balance" />
-
-    <fragment
         android:id="@+id/nav_Setting"
         android:name="com.example.springsophsoft.ui.Setting.SettingFragment"
         android:label="@string/menu_setting"
         tools:layout="@layout/fragment_setting" />
+
+    <fragment
+        android:id="@+id/nav_Balance"
+        android:name="com.example.springsophsoft.ui.Balance.BalanceFragment"
+        android:label="@string/menu_Balance"
+        tools:layout="@layout/fragment_balance" />
 </navigation>

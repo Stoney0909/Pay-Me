@@ -32,14 +32,14 @@
         android:textSize="20dp"
         />
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:background="@drawable/signout_button"
-        android:text="SIgn out"
-        android:textSize="20dp"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/btnLogout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="400dp"-->
+<!--        android:background="@drawable/signout_button"-->
+<!--        android:text="SIgn out"-->
+<!--        android:textSize="20dp"-->
+<!--        />-->
 
 </RelativeLayout>
