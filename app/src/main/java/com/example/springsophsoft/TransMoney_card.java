@@ -1,5 +1,6 @@
 package com.example.springsophsoft;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,11 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.ui.AddCash.AddCashFragment;
+
+import org.w3c.dom.Text;
 
 public class TransMoney_card extends AppCompatActivity {
 
@@ -19,6 +23,11 @@ public class TransMoney_card extends AppCompatActivity {
     Databasehelper mydb;
     private EditText Tran;
     private Button add, drop;
+    public static String amount = "";
+    public static String CardAmout = "";
+    public static String CardN = "";
+    public static String AccB = "";
+    private TextView showmoney;
 
     String AccountAmount;
     int CardAmount = AddCashFragment.getCardBalance();
@@ -32,6 +41,9 @@ public class TransMoney_card extends AppCompatActivity {
         Carddb = new CardDBHelper(this);
         mydb = new Databasehelper(this);
 
+
+
+
         Tran = (EditText)findViewById(R.id.Money);
         add = (Button)findViewById(R.id.btn_add_to_card);
         drop = (Button)findViewById(R.id.btn_drop_to_card);
@@ -39,7 +51,12 @@ public class TransMoney_card extends AppCompatActivity {
         AccountAmount = mydb.getBalance();
         COnvAmount = Integer.parseInt(AccountAmount);
 
-        toastMessage("Your Account balance: " + COnvAmount + "\nYour card balance: " + CardAmount);
+        showmoney = (TextView) findViewById(R.id.showAmount);
+        String display1 = "Card amount: $" + CardAmount;
+        String display2 = "Account amount: $" + COnvAmount;
+        showmoney.setText(display1 + "\n\n" + display2);
+
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +73,11 @@ public class TransMoney_card extends AppCompatActivity {
 
 
     }
-
+    public void otherclass()
+    {
+        Intent i = new Intent(this, Trans_money_pop_view.class);
+        startActivity(i);
+    }
 
 
     public void toastMessage(String message){
@@ -67,7 +88,6 @@ public class TransMoney_card extends AppCompatActivity {
     public void adding()
     {
         String input =  Tran.getText().toString();
-
         String Cardnumber = AddCashFragment.getCard();
         if(input.equals(""))
         {
@@ -83,22 +103,33 @@ public class TransMoney_card extends AppCompatActivity {
             }
             else
             {
+                amount = Integer.toString(money);
+
                 int calCardAmount = CardAmount + money;
                 String Balance = Integer.toString(calCardAmount);
-                Carddb.UpdateCardBalance(Cardnumber, Balance);
 
                 int CalAccAmount = COnvAmount - money;
                 String ACCBalance = Integer.toString(CalAccAmount);
-                mydb.updateBalance(ACCBalance);
 
-                toastMessage("Transfer success,Your card balance: " + Balance);
+                CardAmout = Balance;
+                CardN = Cardnumber;
+                AccB = ACCBalance;
+
+                otherclass();
             }
         }
+    }
+
+    public void otherclass2()
+    {
+        Intent i = new Intent(this, Trans_money_pop_view2.class);
+        startActivity(i);
     }
 
     public void droping()
     {
         String input =  Tran.getText().toString();
+        amount = input;
         String Cardnumber = AddCashFragment.getCard();
         if(input.equals(""))
         {
@@ -113,20 +144,50 @@ public class TransMoney_card extends AppCompatActivity {
                 Tran.setText("");
             }
             else {
+                amount = Integer.toString(money);
+
                 int calAmount = CardAmount - money;
                 String Balance = Integer.toString(calAmount);
-                Carddb.UpdateCardBalance(Cardnumber, Balance);
 
                 int CalAccAmount = COnvAmount + money;
                 String ACCBalance = Integer.toString(CalAccAmount);
-                mydb.updateBalance(ACCBalance);
 
-                toastMessage("CardBalance = " + Balance);
+                CardAmout = Balance;
+                CardN = Cardnumber;
+                AccB = ACCBalance;
+
+                otherclass2();
             }
 
         }
 
+    }
 
+    public static String cardNUmber()
+    {
+        String cardN;
+        cardN = CardN;
+        return cardN;
+    }
+
+    public static String cardAmount()
+    {
+        String money;
+        money = CardAmout;
+        return money;
+    }
+
+    public static String ACCbalance()
+    {
+        String balance;
+        balance = AccB;
+        return balance;
+    }
+
+    public static String amountEnter()
+    {
+        String money = amount;
+        return money;
     }
 
 }
