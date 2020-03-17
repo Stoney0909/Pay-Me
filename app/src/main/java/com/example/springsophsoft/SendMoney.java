@@ -2,6 +2,7 @@ package com.example.springsophsoft;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,12 +10,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.Helper.SendingHelper;
 import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 public class SendMoney extends AppCompatActivity {
     TransactionHelper db;
+    Databasehelper databasehelper;
      EditText Amount, Comment;
      Button Send;
     @Override
@@ -25,6 +28,8 @@ public class SendMoney extends AppCompatActivity {
         Comment = (EditText)findViewById(R.id.Sending_Message);
         Send=(Button)findViewById(R.id.Send);
         db =new TransactionHelper(this);
+        databasehelper = new Databasehelper(this);
+
         Send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
@@ -34,7 +39,11 @@ public class SendMoney extends AppCompatActivity {
                 String message = Comment.getText().toString();
                 boolean insert = db.add(LogIn.getString(),Person_SendingTo, amount,message);
                 if (insert) {
-                    toastMessage("You successfully send money");
+                    toastMessage("You successfully sent money");
+                    Integer mybal = Integer.parseInt(databasehelper.getBalance()) - Integer.parseInt(amount);
+                    databasehelper.updateBalance(mybal.toString(), LogIn.getString());
+                    Integer rmoney = Integer.parseInt(databasehelper.getBalanceByUsername(Person_SendingTo)) + Integer.parseInt(amount);
+                    databasehelper.updateBalance(rmoney.toString(), Person_SendingTo);
                     Homepage();
                 }
                 else toastMessage("Something went wrong");

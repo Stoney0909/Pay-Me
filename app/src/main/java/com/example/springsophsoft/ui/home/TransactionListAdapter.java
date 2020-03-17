@@ -2,7 +2,6 @@ package com.example.springsophsoft.ui.home;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.springsophsoft.Global;
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.R;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 import java.util.ArrayList;
 
@@ -92,7 +91,7 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
 
         viewHolder.txtReason.setText(dataModel.getReason());
         viewHolder.txtDate.setText(dataModel.getDate());
-        if (dataModel.getRecieverid().equals(Global.username))
+        if (dataModel.getSenderid().equals(LogIn.getString()))
         {
             viewHolder.txtAmount.setTextColor(Color.parseColor("#8315D520"));
             String amount = "+$" + dataModel.getAmount();

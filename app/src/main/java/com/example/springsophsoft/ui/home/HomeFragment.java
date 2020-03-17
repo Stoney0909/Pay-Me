@@ -7,17 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.springsophsoft.Global;
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.R;
-import com.google.android.material.navigation.NavigationView;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 import java.util.ArrayList;
 
@@ -41,18 +39,14 @@ public class HomeFragment extends Fragment {
         addtransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                transactiondb.addData(100, Global.username, "Reciever", "Test String", "3/12/2020");
+                transactiondb.addData(100, LogIn.getString(), "Reciever", "Test String", "3/12/2020");
             }
         });
 
-        Global.username = getActivity().getIntent().getStringExtra("id");
         
 
-        Cursor data = transactiondb.getData(Global.username);
+        Cursor data = transactiondb.getData(LogIn.getString());
         transactionList(data);
-
-
-
 
         return root;
     }
@@ -61,8 +55,9 @@ public class HomeFragment extends Fragment {
     private void transactionList(Cursor data){
 
         ArrayList<Transaction> listData = new ArrayList<>();
-        Transaction mytransaction = new Transaction("recieverid", "senderid", "amount","reason", "T");
+
         while (data.moveToNext()){
+            Transaction mytransaction = new Transaction("recieverid", "senderid", "amount","reason", "T");
 
             mytransaction.setRecieverid(data.getString(3));
             mytransaction.setSenderid(data.getString(2));
