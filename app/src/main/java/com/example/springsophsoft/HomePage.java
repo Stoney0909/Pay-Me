@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -67,7 +68,7 @@ public class HomePage extends AppCompatActivity {
         String balance = "$" + db.getBalance();
         balanceText.setText(balance);
         TextView usernameText = (TextView) header.findViewById(R.id.usernameTextView);
-        usernameText.setText(db.getUsername());
+        usernameText.setText(LogIn.getString());
         TextView nameText = (TextView) header.findViewById(R.id.nameTextView);
 
         String name = db.getFirstName() + " " + db.getLastName();
@@ -77,9 +78,6 @@ public class HomePage extends AppCompatActivity {
         else if (!db.getFirstName().equals("") || !db.getLastName().equals("")){
             nameText.setText(name);
         }
-
-
-
     }
 
     @Override

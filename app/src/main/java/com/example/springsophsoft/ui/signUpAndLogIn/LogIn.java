@@ -40,16 +40,15 @@ public class LogIn extends AppCompatActivity {
                     user = susername;
                 boolean chkuserpass = db.chkusernamepassword(susername, spassword);
                 if (chkuserpass) {
-                    Homepage(susername);
+                    Homepage();
                 }
                 else toastMessage("Wrong Email or Password");
                 }
             });
         }
-        private void Homepage(String username)
+        private void Homepage()
         {
             Intent intent = new Intent(this, HomePage.class);
-            intent.putExtra("id", username);
             startActivity(intent);
         }
 

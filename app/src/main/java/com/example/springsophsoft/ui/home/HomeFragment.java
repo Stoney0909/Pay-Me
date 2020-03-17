@@ -1,5 +1,6 @@
 package com.example.springsophsoft.ui.home;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,68 +14,56 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.springsophsoft.Global;
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.Helper.TransactionHelper;
+import com.example.springsophsoft.HomePage;
 import com.example.springsophsoft.R;
-import com.google.android.material.navigation.NavigationView;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private Button addtransaction;
-    private ListView mListView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        mListView = (ListView)root.findViewById(R.id.TransactionListView);
+        Button recievedbtn = (Button)root.findViewById(R.id.recievedBtn);
+        Button sentbtn = (Button)root.findViewById(R.id.sentBtn);
+        TextView balance = (TextView)root.findViewById(R.id.balanceTextView);
+        Databasehelper databasehelper = new Databasehelper(getActivity());
+        String amount = "$" + databasehelper.getBalance();
+        balance.setText(amount);
 
-        final TransactionHelper transactiondb = new TransactionHelper(getActivity());
-        final Databasehelper userdb = new Databasehelper(getActivity());
-        addtransaction = (Button)root.findViewById(R.id.addtransactionbutton);
-        addtransaction.setOnClickListener(new View.OnClickListener() {
+        recievedbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                transactiondb.addData(100, Global.username, "Reciever", "Test String", "3/12/2020");
+                recieved();
             }
         });
-
-        Global.username = getActivity().getIntent().getStringExtra("id");
-        
-
-        Cursor data = transactiondb.getData(Global.username);
-        transactionList(data);
-
-
+        sentbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sent();
+            }
+        });
 
 
         return root;
     }
-
-
-    private void transactionList(Cursor data){
-
-        ArrayList<Transaction> listData = new ArrayList<>();
-        Transaction mytransaction = new Transaction("recieverid", "senderid", "amount","reason", "T");
-        while (data.moveToNext()){
-
-            mytransaction.setRecieverid(data.getString(3));
-            mytransaction.setSenderid(data.getString(2));
-            mytransaction.setAmount(data.getString(1));
-            mytransaction.setReason(data.getString(4));
-            mytransaction.setDate(data.getString(5));
-            listData.add(mytransaction);
-        }
-
-        TransactionListAdapter adapter = new TransactionListAdapter(listData, getActivity());
-        mListView.setAdapter(adapter);
+private void recieved(){
+    Intent intent = new Intent(getActivity(), Recieved.class);
+    startActivity(intent);
+}
+private void sent(){
+        Intent intent = new Intent(getActivity(), Sent.class);
+        startActivity(intent);
     }
+
+
 
 
 }

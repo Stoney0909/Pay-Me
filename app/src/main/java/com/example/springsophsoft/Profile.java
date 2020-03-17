@@ -1,6 +1,7 @@
 package com.example.springsophsoft;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -137,6 +138,7 @@ public class Profile extends AppCompatActivity {
                         LastNameText.setText("");
                         PhoneUpdateText.setText("");
                         EmailUpdateText.setText("");
+                        Homepage();
                     }
 
 
@@ -150,5 +152,10 @@ public class Profile extends AppCompatActivity {
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    private void Homepage()
+    {
+        Intent intent = new Intent(getApplication(), HomePage.class);
+        startActivity(intent);
     }
 }

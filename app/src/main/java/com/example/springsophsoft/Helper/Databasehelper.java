@@ -144,6 +144,19 @@ public class Databasehelper extends SQLiteOpenHelper {
         return blance;
     }
 
+    public String getBalanceByUsername(String username){
+        String balance = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{username};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            balance = csr.getString(csr.getColumnIndex(COL8));
+        }
+        return balance;
+    }
+
     public String getFirstName() {
         String usernanme = LogIn.getString();
         String firstname = "";
@@ -157,6 +170,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         }
         return firstname;
     }
+
     public String getFirstNameByUsername(String username) {
         String usernanme = username;
         String firstname = "";
@@ -199,12 +213,21 @@ public class Databasehelper extends SQLiteOpenHelper {
         return lastname;
     }
 
-    public void updateBalance(String balance) {
-        String user = LogIn.getString();
+    public void updateBalance(String balance){
+
         SQLiteDatabase db = this.getWritableDatabase();
         String query = " UPDATE " + TABLE_NAME + " SET "
                 + COL8 + " = '" + balance + "'" +
-                " Where " + COL2 + " = '" + user + "'";
+                " Where " + COL2 + " = '" + LogIn.getString() + "'";
+        db.execSQL(query);
+    }
+
+
+    public void updateBalance(String balance, String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = " UPDATE " + TABLE_NAME + " SET "
+                + COL8 + " = '" + balance + "'" +
+                " Where " + COL2 + " = '" + username + "'";
         db.execSQL(query);
     }
 
@@ -308,7 +331,6 @@ public class Databasehelper extends SQLiteOpenHelper {
                 " Where " + COL2 + " = '" + id + "'";
         db.execSQL(query);
     }
-
 
     public String getUsername() {
         String username = "";
