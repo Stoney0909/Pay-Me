@@ -356,7 +356,7 @@ public class Databasehelper extends SQLiteOpenHelper {
 
     public Cursor viewData(){
         SQLiteDatabase db=this.getReadableDatabase();
-        String query = "SELECT * FROM "+TABLE_NAME;
+        String query = "SELECT * FROM "+TABLE_NAME+" WHERE " + COL2 + " != '" +LogIn.getString() + "'";
         Cursor cursor=db.rawQuery(query,null);
         return cursor;
     }
@@ -404,18 +404,13 @@ public class Databasehelper extends SQLiteOpenHelper {
     }
     public boolean chkemailForProfile(String ID,String email) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + COL3 +
-                " FROM " + TABLE_NAME + " WHERE " + COL1 + " != '" + ID + "'";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL1 + " != '" + ID + "'";
         Cursor row = db.rawQuery(query, null);
         for (row.moveToFirst(); !row.isAfterLast(); row.moveToNext()) {
-            // do what you need with the cursor here
-
                if((row.getString(row.getColumnIndex(COL3)) == email)) {
-
-                   return false;}
+                   return false;
+               }
         }
-
          return true;
     }
-
 }

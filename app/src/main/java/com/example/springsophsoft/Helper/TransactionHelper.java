@@ -13,12 +13,15 @@ public class TransactionHelper  extends SQLiteOpenHelper {
     private static final String TAG = "TransactionHelper";
 
     private static final String TABLE_NAME = "Transaction_Table";
+    private static final String TABLE_NAME2 = "Request_Table";
     private static final String COL1 = "ID";
     private static final String COL2 = "amount";
     private static final String COL3 = "receiver";
     private static final String COL4 = "sender";
     private static final String COL5 = "message";
     private static final String COL6 = "date";
+    private static final String COL7 = "status";
+
 
 
 
@@ -30,14 +33,22 @@ public class TransactionHelper  extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL2 +" INTEGER, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 +" TEXT," + COL6 + " TEXT)";
+                COL2 +" INTEGER, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 +" TEXT, " + COL6 + " TEXT, "
+                + COL7 + " TEXT)";
         db.execSQL(createTable);
+
+
+        String createTable2 = "CREATE TABLE " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL2 +" INTEGER, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 +" TEXT, " + COL6 + " TEXT, "
+                + COL7 + " TEXT)";
+        db.execSQL(createTable2);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
         onCreate(db);
 
     }
@@ -88,9 +99,11 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         contentValues.put(COL2, amount);
         contentValues.put(COL5, Message);
         contentValues.put(COL6, date);
+        contentValues.put(COL7,"SENT");
         Log.d(TAG, "addData: Adding " + Person_sending + " to " + TABLE_NAME);
         Log.d(TAG, "addData: Adding " + Person_receiving + " to " + TABLE_NAME);
         Log.d(TAG, "addData: Adding " + amount + " to " + TABLE_NAME);
+
         long result = db.insert(TABLE_NAME, null, contentValues);
 
         if (result == -1) {
@@ -101,6 +114,28 @@ public class TransactionHelper  extends SQLiteOpenHelper {
             return true;
         }
     }
+    public boolean Request(String Person_sending, String Person_requesting,String amount,String Message, String date)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL4, Person_sending);
+        contentValues.put(COL3, Person_requesting);
+        contentValues.put(COL2, amount);
+        contentValues.put(COL5, Message);
+        contentValues.put(COL6, date);
+        contentValues.put(COL7,"Request");
+        Log.d(TAG, "addData: Adding " + Person_sending + " to " + TABLE_NAME);
+        Log.d(TAG, "addData: Adding " + Person_requesting + " to " + TABLE_NAME);
+        Log.d(TAG, "addData: Adding " + amount + " to " + TABLE_NAME);
 
+        long result = db.insert(TABLE_NAME2, null, contentValues);
 
+        if (result == -1) {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }

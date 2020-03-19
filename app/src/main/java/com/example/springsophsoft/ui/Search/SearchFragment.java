@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.Send_Request;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 import com.example.springsophsoft.R;
 import com.example.springsophsoft.SendMoney;
@@ -50,7 +51,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String text = userlist.getItemAtPosition(position).toString();
-                Intent intent = new Intent(getActivity(), SendMoney.class);
+                Intent intent = new Intent(getActivity(), Send_Request.class);
                 intent.putExtra("Person_SendingTo",text);
                 startActivity(intent);
 

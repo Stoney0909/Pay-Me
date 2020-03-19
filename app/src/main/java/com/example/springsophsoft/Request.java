@@ -18,23 +18,23 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class SendMoney extends AppCompatActivity {
+public class Request extends AppCompatActivity {
     TransactionHelper db;
     Databasehelper databasehelper;
     EditText Amount, Comment;
-    Button Send;
+    Button Request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.send);
-        Amount = (EditText) findViewById(R.id.Amount_Sending);
-        Comment = (EditText) findViewById(R.id.Sending_Message);
-        Send = (Button) findViewById(R.id.Send);
+        setContentView(R.layout.request);
+        Amount = (EditText) findViewById(R.id.Amount_Requesting);
+        Comment = (EditText) findViewById(R.id.Requesting_Message);
+        Request = (Button) findViewById(R.id.Request);
         db = new TransactionHelper(this);
         databasehelper = new Databasehelper(this);
 
-        Send.setOnClickListener(new View.OnClickListener() {
+        Request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
                 Intent i = getIntent();
@@ -42,13 +42,9 @@ public class SendMoney extends AppCompatActivity {
                 String amount = Amount.getText().toString();
                 String message = Comment.getText().toString();
                 String date = "dd-MMM-yyyy";
-                boolean insert = db.add(LogIn.getString(), Person_SendingTo, amount, message, getCurrentDate());
+                boolean insert = db.Request(LogIn.getString(), Person_SendingTo, amount, message, getCurrentDate());
                 if (insert) {
-                    toastMessage("You successfully sent money");
-                    Integer mybal = Integer.parseInt(databasehelper.getBalance()) - Integer.parseInt(amount);
-                    databasehelper.updateBalance(mybal.toString(), LogIn.getString());
-                    Integer rmoney = Integer.parseInt(databasehelper.getBalanceByUsername(Person_SendingTo)) + Integer.parseInt(amount);
-                    databasehelper.updateBalance(rmoney.toString(), Person_SendingTo);
+                    toastMessage("You successfully requested money");
                     Homepage();
                 } else toastMessage("Something went wrong");
             }
