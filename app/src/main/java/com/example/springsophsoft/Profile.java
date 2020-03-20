@@ -26,7 +26,7 @@ public class Profile extends AppCompatActivity {
         db = new Databasehelper(this);
 
         Update=(Button) findViewById(R.id.btn_Update);
-       // UsernameUpdateText=(EditText) findViewById(R.id.UsernameT);
+        UsernameUpdateText=(EditText) findViewById(R.id.UsernameT);
         EmailUpdateText =(EditText) findViewById(R.id.EmailT);
         PhoneUpdateText=(EditText) findViewById(R.id.PhoneT);
         FirstNameText =(EditText) findViewById(R.id.FirstNameT);
@@ -35,39 +35,39 @@ public class Profile extends AppCompatActivity {
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String susername = UsernameUpdateText.getText().toString();;
+                String susername = UsernameUpdateText.getText().toString();
                 String firstName = FirstNameText.getText().toString();
-                String lastName  = LastNameText.getText().toString();;
-                String Phone = PhoneUpdateText.getText().toString();;
-                String Email =  EmailUpdateText.getText().toString();;
+                String lastName  = LastNameText.getText().toString();
+                String Phone = PhoneUpdateText.getText().toString();
+                String Email =  EmailUpdateText.getText().toString();
 
-                if(susername.equals("") && firstName.equals("") && lastName.equals("") && Phone.equals("") && Email.equals(""))
+                if(firstName.equals("") && lastName.equals("") && Phone.equals("") && Email.equals(""))
                 {
                     toastMessage("Profile Unchanged");
                 }
                 else
                 {
 
-//                    if(susername.equals(""))
-//                    {
-//                        susername = LogIn.getString();
-//                        userC = true;
-//                    }
-//                    else
-//                    {
-//                        boolean chkusername = db.chkusername(susername);
-//                        if (chkusername == false){
-//                            toastMessage("Username is taken");
-//                            UsernameUpdateText.setText("");
-//                            userC = false;
-//                        }
-//                        else
-//                        {
-//                            susername = UsernameUpdateText.getText().toString();
-//                            userC = true;
-//                        }
-//
-//                    }
+                    if(susername.equals(""))
+                    {
+                        susername = LogIn.getString();
+                        userC = true;
+                    }
+                    else
+                    {
+                        boolean chkusername = db.chkusername(susername);
+                        if (chkusername == false){
+                            toastMessage("Username is taken");
+                            UsernameUpdateText.setText("");
+                            userC = false;
+                        }
+                        else
+                        {
+                            susername = UsernameUpdateText.getText().toString();
+                            userC = true;
+                        }
+
+                    }
 
                     if(firstName.equals(""))
                     {
@@ -129,7 +129,7 @@ public class Profile extends AppCompatActivity {
 
                     }
 
-                    if(phoneC == true && emailC == true)
+                    if(phoneC == true && emailC == true && userC == true)
                     {
                         db.Update(LogIn.getString(),susername,Email,firstName,lastName,Phone);
                         toastMessage("Update success");

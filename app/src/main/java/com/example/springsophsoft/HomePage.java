@@ -65,18 +65,19 @@ public class HomePage extends AppCompatActivity {
 
         View header = navigationView.getHeaderView(0);
         TextView balanceText = (TextView) header.findViewById(R.id.balanceTextView);
-        String balance = "$" + db.getBalance();
+        String balance = "Balance: $" + db.getBalance();
         balanceText.setText(balance);
-        TextView usernameText = (TextView) header.findViewById(R.id.usernameTextView);
-        usernameText.setText(LogIn.getString());
-        TextView nameText = (TextView) header.findViewById(R.id.nameTextView);
 
+        TextView usernameText = (TextView) header.findViewById(R.id.usernameTextView);
+        usernameText.setText("Username: " + LogIn.getString());
+
+        TextView nameText = (TextView) header.findViewById(R.id.nameTextView);
         String name = db.getFirstName() + " " + db.getLastName();
         if (db.getFirstName() == null || db.getLastName() == null){
-            nameText.setText(" ");
+            nameText.setText("Name:");
         }
         else if (!db.getFirstName().equals("") || !db.getLastName().equals("")){
-            nameText.setText(name);
+            nameText.setText("Name: " + name);
         }
     }
 

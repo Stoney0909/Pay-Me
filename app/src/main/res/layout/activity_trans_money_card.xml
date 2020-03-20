@@ -30,8 +30,9 @@
        android:layout_marginTop="300dp"
        android:hint="Amount of add or drop into the card"
        android:gravity="center"
+       android:maxLength="7"
        android:textSize="20dp"
-       android:inputType="number"
+       android:inputType="numberDecimal"
        />
 
     <Button

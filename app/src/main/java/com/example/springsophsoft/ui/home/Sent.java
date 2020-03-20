@@ -36,7 +36,7 @@ public class Sent extends AppCompatActivity {
     private void transactionList(Cursor data){
 
         ArrayList<Transaction> listData = new ArrayList<>();
-        Integer intamount = 0;
+        double intamount = 0;
 
         while (data.moveToNext()){
             Transaction mytransaction = new Transaction("recieverid", "senderid", "amount","reason", "T");
@@ -44,7 +44,7 @@ public class Sent extends AppCompatActivity {
             mytransaction.setRecieverid(data.getString(3));
             mytransaction.setSenderid(data.getString(2));
             mytransaction.setAmount(data.getString(1));
-            intamount+= Integer.parseInt(data.getString(1));
+            intamount+= Double.parseDouble(data.getString(1));
             mytransaction.setReason(data.getString(4));
             mytransaction.setDate(data.getString(5));
             listData.add(mytransaction);
@@ -52,7 +52,7 @@ public class Sent extends AppCompatActivity {
         Collections.reverse(listData);
 
         TextView amount = (TextView) findViewById(R.id.amountSentTextView);
-        String stringamount = "$" + intamount.toString();
+        String stringamount = "$" + Double.toString(intamount);
         amount.setText(stringamount);
 
         TransactionListAdapter adapter = new TransactionListAdapter(listData, this);

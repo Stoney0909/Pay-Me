@@ -44,13 +44,30 @@ public class SendMoney extends AppCompatActivity {
                 String amount = Amount.getText().toString();
                 String message = Comment.getText().toString();
                 String date = "dd-MMM-yyyy";
-                boolean insert = db.add(LogIn.getString(), Person_SendingTo, amount, message, getCurrentDate());
+
+                double balanceAmount =  Double.parseDouble(databasehelper.getBalance());
+                double amountInput = Double.parseDouble(amount);
+
+                String formattedValue = String.format("%.2f", balanceAmount);
+                String formattedValue2 = String.format("%.2f", amountInput);
+
+
+
+
+                boolean insert = db.add(LogIn.getString(), Person_SendingTo, formattedValue2, message, getCurrentDate());
                 if (insert) {
+                    double balance = Double.parseDouble(formattedValue);
+                    double inputamount = Double.parseDouble(formattedValue2);
+
                     toastMessage("You successfully sent money");
-                    Integer mybal = Integer.parseInt(databasehelper.getBalance()) - Integer.parseInt(amount);
-                    databasehelper.updateBalance(mybal.toString(), LogIn.getString());
-                    Integer rmoney = Integer.parseInt(databasehelper.getBalanceByUsername(Person_SendingTo)) + Integer.parseInt(amount);
-                    databasehelper.updateBalance(rmoney.toString(), Person_SendingTo);
+                    double mybal = balance - inputamount;
+                    double rmoney = balance + inputamount;
+
+                    String Value = String.format("%.2f", mybal);
+                    String Value2 = String.format("%.2f", rmoney);
+
+                    databasehelper.updateBalance(Value, LogIn.getString());
+                    databasehelper.updateBalance(Value2, Person_SendingTo);
                     Homepage();
                 } else toastMessage("Something went wrong");
             }

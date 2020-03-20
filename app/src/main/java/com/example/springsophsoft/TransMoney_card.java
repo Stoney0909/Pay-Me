@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,8 @@ import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.ui.AddCash.AddCashFragment;
 
 import org.w3c.dom.Text;
+
+import java.text.DecimalFormat;
 
 public class TransMoney_card extends AppCompatActivity {
 
@@ -30,8 +33,8 @@ public class TransMoney_card extends AppCompatActivity {
     private TextView showmoney;
 
     String AccountAmount;
-    int CardAmount = AddCashFragment.getCardBalance();
-    int COnvAmount;
+    double CardAmount = AddCashFragment.getCardBalance();
+    double COnvAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +52,13 @@ public class TransMoney_card extends AppCompatActivity {
         drop = (Button)findViewById(R.id.btn_drop_to_card);
 
         AccountAmount = mydb.getBalance();
-        COnvAmount = Integer.parseInt(AccountAmount);
+        COnvAmount = Double.parseDouble(AccountAmount);
+        String formattedValue = String.format("%.2f", CardAmount);
+        String formattedValue2 = String.format("%.2f", COnvAmount);
 
         showmoney = (TextView) findViewById(R.id.showAmount);
-        String display1 = "Card amount: $" + CardAmount;
-        String display2 = "Account amount: $" + COnvAmount;
+        String display1 = "Card amount: $" + formattedValue;
+        String display2 = "Account amount: $" + formattedValue2;
         showmoney.setText(display1 + "\n\n" + display2);
 
 
@@ -70,7 +75,6 @@ public class TransMoney_card extends AppCompatActivity {
                 droping();
             }
         });
-
 
     }
     public void otherclass()
@@ -95,21 +99,23 @@ public class TransMoney_card extends AppCompatActivity {
         }
         else
         {
-            int money = Integer.parseInt(input);
-            if(COnvAmount < money)
+            double money = Double.parseDouble(input);
+            String formattedValue = String.format("%.2f", money);
+            double money2 = Double.parseDouble(formattedValue);
+            if(COnvAmount < money2)
             {
                 toastMessage("You don't have enough money to make a transfer, account Balance: " + COnvAmount);
                 Tran.setText("");
             }
             else
             {
-                amount = Integer.toString(money);
+                amount = Double.toString(money2);
 
-                int calCardAmount = CardAmount + money;
-                String Balance = Integer.toString(calCardAmount);
+                double calCardAmount = CardAmount + money2;
+                String Balance = Double.toString(calCardAmount);
 
-                int CalAccAmount = COnvAmount - money;
-                String ACCBalance = Integer.toString(CalAccAmount);
+                double CalAccAmount = COnvAmount - money2;
+                String ACCBalance =  Double.toString(CalAccAmount);
 
                 CardAmout = Balance;
                 CardN = Cardnumber;
@@ -129,7 +135,6 @@ public class TransMoney_card extends AppCompatActivity {
     public void droping()
     {
         String input =  Tran.getText().toString();
-        amount = input;
         String Cardnumber = AddCashFragment.getCard();
         if(input.equals(""))
         {
@@ -137,20 +142,22 @@ public class TransMoney_card extends AppCompatActivity {
         }
         else
         {
-            int money =  Integer.parseInt(input);
+            double money = Double.parseDouble(input);
+            String formattedValue = String.format("%.2f", money);
+            double money2 = Double.parseDouble(formattedValue);
             if(CardAmount < money)
             {
                 toastMessage("You don't have enough money to make a transfer, card Balance: " + CardAmount);
                 Tran.setText("");
             }
             else {
-                amount = Integer.toString(money);
+                amount = Double.toString(money2);
 
-                int calAmount = CardAmount - money;
-                String Balance = Integer.toString(calAmount);
+                double calAmount = CardAmount - money2;
+                String Balance = Double.toString(calAmount);
 
-                int CalAccAmount = COnvAmount + money;
-                String ACCBalance = Integer.toString(CalAccAmount);
+                double CalAccAmount = COnvAmount + money2;
+                String ACCBalance = Double.toString(CalAccAmount);
 
                 CardAmout = Balance;
                 CardN = Cardnumber;

@@ -20,9 +20,6 @@ public class TransactionHelper  extends SQLiteOpenHelper {
     private static final String COL5 = "message";
     private static final String COL6 = "date";
 
-
-
-
     public TransactionHelper(Context context) {
         super(context, TABLE_NAME, null, 1);
     }
@@ -30,7 +27,7 @@ public class TransactionHelper  extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL2 +" INTEGER, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 +" TEXT," + COL6 + " TEXT)";
+                COL2 +" TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 +" TEXT," + COL6 + " TEXT)";
         db.execSQL(createTable);
 
     }
