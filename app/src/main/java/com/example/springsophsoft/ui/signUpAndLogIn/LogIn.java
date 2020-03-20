@@ -3,6 +3,8 @@ package com.example.springsophsoft.ui.signUpAndLogIn;
         import androidx.appcompat.app.AppCompatActivity;
 
         import android.content.Intent;
+        import android.database.Cursor;
+        import android.database.sqlite.SQLiteDatabase;
         import android.os.Bundle;
         import android.view.View;
         import android.widget.Button;
@@ -20,6 +22,7 @@ public class LogIn extends AppCompatActivity {
         private Button login;
         private EditText username, password;
         public static String user;
+        public static String ID;
         User myuser;
 
         @Override
@@ -38,8 +41,11 @@ public class LogIn extends AppCompatActivity {
                    String susername = username.getText().toString();
                     String spassword = password.getText().toString();
                     user = susername;
+
                 boolean chkuserpass = db.chkusernamepassword(susername, spassword);
                 if (chkuserpass) {
+                    ID=db.getIdOfPersonLogin(susername);
+                    toastMessage(ID);
                     Homepage();
                 }
                 else toastMessage("Wrong Email or Password");
@@ -59,4 +65,8 @@ public class LogIn extends AppCompatActivity {
     public static String getString() {
         return user;
     }
-    }
+     public static String getID(){
+           return ID;
+
+     }
+}

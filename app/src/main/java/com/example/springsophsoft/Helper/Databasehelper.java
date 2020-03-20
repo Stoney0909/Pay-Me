@@ -24,7 +24,7 @@ public class Databasehelper extends SQLiteOpenHelper {
     public static final String COL6 = "LastName";
     public static final String COL7 = "PhoneNumber";
     public static final String COL8 = "Balance";
-    String name = LogIn.getString();
+
 
     public Databasehelper(Context context) {
         super(context, TABLE_NAME, null, 1);
@@ -299,36 +299,17 @@ public class Databasehelper extends SQLiteOpenHelper {
         else return false;
     }
 
-    public boolean AdditionalInfo(String firstname, String lastname, String phone) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL5, firstname);
-        contentValues.put(COL6, lastname);
-        contentValues.put(COL7, phone);
 
-        Log.d(TAG, "addData: Adding " + firstname + " to " + TABLE_NAME);
-        Log.d(TAG, "addData: Adding " + lastname + " to " + TABLE_NAME);
-        Log.d(TAG, "addData: Adding " + phone + " to " + TABLE_NAME);
 
-        long result = db.insert(TABLE_NAME, null, contentValues);
-
-        //if date as inserted incorrectly it will return -1
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public void Update(String id, String username, String email,String FirstName,String LastName,String Phone) {
+    public void Update(String id, String email,String FirstName,String LastName,String Phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = " UPDATE " + TABLE_NAME + " SET " +
-                COL2 + " = '" + username + "'" + "," +
+
                 COL3 + " = '" + email + "'" + "," +
                 COL5 + " = '" + FirstName + "'"+ "," +
                 COL6 + " = '" + LastName + "'" + ", " +
                 COL7 + " = '" + Phone + "'" +
-                " Where " + COL2 + " = '" + id + "'";
+                " Where " + COL1 + " = '" + id + "'";
         db.execSQL(query);
     }
 
@@ -375,14 +356,61 @@ public class Databasehelper extends SQLiteOpenHelper {
 
     public Cursor viewData(){
         SQLiteDatabase db=this.getReadableDatabase();
-        String query = "SELECT * FROM "+TABLE_NAME;
+        String query = "SELECT * FROM "+TABLE_NAME+" WHERE " + COL2 + " != '" +LogIn.getString() + "'";
         Cursor cursor=db.rawQuery(query,null);
         return cursor;
     }
+    public String getInfo(int number) {
+        SQLiteDatabase db=this.getReadableDatabase();
+        String query = "SELECT "+COL5+" , " +COL6+" , "+COL7+" , " +COL2+" , " +COL3+
+                " FROM "+TABLE_NAME +" WHERE " + COL1 + " = '" + LogIn.getID() + "'";
+        Cursor row = db.rawQuery(query, null);
+        if(row.moveToFirst()) {
+            if (number == 1) {
+                return  row.getString(row.getColumnIndex(COL5));
+            }
+            if(number==2)
+            {
+                return row.getString(row.getColumnIndex(COL6));
+            }
+            if(number==3)
+            {
+                return row.getString(row.getColumnIndex(COL7));
+            }
+            if(number==4)
+            {
+                return row.getString(row.getColumnIndex(COL2));
+            }
+            if(number==5)
+            {
+                return row.getString(row.getColumnIndex(COL3));
+            }
+        }
+        row.close();
+        return "";
+    }
 
 
-
-
-
-
+    public String getIdOfPersonLogin(String username) {
+        SQLiteDatabase db=this.getReadableDatabase();
+        String query = "SELECT "+COL1+
+                " FROM "+TABLE_NAME +" WHERE " + COL2 + " = '" + username + "'";
+        Cursor row = db.rawQuery(query, null);
+        if(row.moveToFirst()) {
+                return  row.getString(row.getColumnIndex(COL1));
+        }
+        row.close();
+        return "";
+    }
+    public boolean chkemailForProfile(String ID,String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL1 + " != '" + ID + "'";
+        Cursor row = db.rawQuery(query, null);
+        for (row.moveToFirst(); !row.isAfterLast(); row.moveToNext()) {
+               if((row.getString(row.getColumnIndex(COL3)) == email)) {
+                   return false;
+               }
+        }
+         return true;
+    }
 }
