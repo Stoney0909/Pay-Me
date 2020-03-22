@@ -45,7 +45,7 @@ public class LogIn extends AppCompatActivity {
                 boolean chkuserpass = db.chkusernamepassword(susername, spassword);
                 if (chkuserpass) {
                     ID=db.getIdOfPersonLogin(susername);
-                    toastMessage(ID);
+//                    toastMessage(ID);
                     Homepage();
                 }
                 else toastMessage("Wrong Email or Password");

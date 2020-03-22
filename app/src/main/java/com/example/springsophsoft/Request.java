@@ -42,7 +42,7 @@ public class Request extends AppCompatActivity {
                 String amount = Amount.getText().toString();
                 String message = Comment.getText().toString();
                 String date = "dd-MMM-yyyy";
-                boolean insert = db.Request(LogIn.getString(), Person_SendingTo, amount, message, getCurrentDate());
+                boolean insert = db.Request(Person_SendingTo, LogIn.getString(), amount, message, getCurrentDate());
                 if (insert) {
                     toastMessage("You successfully requested money");
                     Homepage();

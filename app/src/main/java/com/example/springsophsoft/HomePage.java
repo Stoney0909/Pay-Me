@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -91,15 +92,23 @@ public class HomePage extends AppCompatActivity {
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.message:
-//                Toast.makeText(this," it is working",Toast.LENGTH_SHORT).show();
-//             default:
-//               return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        TransactionHelper db= new TransactionHelper(this);
+        switch (item.getItemId()){
+            case R.id.message:
+
+                if(db.getInfo(1)==""){
+//                    Toast.makeText(this," Nothing To Show",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    String message= db.getInfo(2)+" have requested $"+db.getInfo(1)+" on "+db.getInfo(3) ;
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                }
+             default:
+               return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

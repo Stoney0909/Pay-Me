@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 
 public class TransactionHelper  extends SQLiteOpenHelper {
@@ -127,6 +130,9 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         Log.d(TAG, "addData: Adding " + Person_sending + " to " + TABLE_NAME);
         Log.d(TAG, "addData: Adding " + Person_requesting + " to " + TABLE_NAME);
         Log.d(TAG, "addData: Adding " + amount + " to " + TABLE_NAME);
+            Log.d(TAG, "addData: Adding " + Message + " to " + TABLE_NAME);
+            Log.d(TAG, "addData: Adding " + date + " to " + TABLE_NAME);
+            Log.d(TAG, "addData: Adding " + "Request" + " to " + TABLE_NAME);
 
         long result = db.insert(TABLE_NAME2, null, contentValues);
 
@@ -137,5 +143,22 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         {
             return true;
         }
+    }
+    public String getInfo(int number) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor row = db.rawQuery("Select * from " + TABLE_NAME2 + " where " + COL4 + "=?", new String[]{LogIn.getString()});
+        if (row.moveToFirst()) {
+            if (number == 1) {
+                return  row.getString(row.getColumnIndex(COL2));
+            }
+            if(number==2)
+            {
+                return row.getString(row.getColumnIndex(COL3));
+            }
+            if(number==3) {
+                return row.getString(row.getColumnIndex(COL6));
+            }
+        }
+        return "";
     }
 }
