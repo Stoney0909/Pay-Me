@@ -301,7 +301,7 @@ public class Databasehelper extends SQLiteOpenHelper {
 
 
 
-    public void Update(String id, String email,String FirstName,String LastName,String Phone) {
+    public void Update(String string, String id, String email, String FirstName, String LastName, String Phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = " UPDATE " + TABLE_NAME + " SET " +
 
@@ -385,6 +385,7 @@ public class Databasehelper extends SQLiteOpenHelper {
             {
                 return row.getString(row.getColumnIndex(COL3));
             }
+
         }
         row.close();
         return "";

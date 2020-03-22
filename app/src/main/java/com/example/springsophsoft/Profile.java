@@ -140,11 +140,6 @@ public class Profile extends AppCompatActivity {
                         EmailUpdateText.setText("");
                         Homepage();
                     }
-
-
-
-
-
                 }
         }
         });

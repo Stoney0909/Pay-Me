@@ -115,7 +115,7 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         }
     }
     public boolean Request(String Person_sending, String Person_requesting,String amount,String Message, String date)
-    {
+        {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL4, Person_sending);

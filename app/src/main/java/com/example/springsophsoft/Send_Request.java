@@ -66,7 +66,7 @@ public class Send_Request extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(Send_Request.this, Send_Request.class);
+                Intent intent = new Intent(Send_Request.this, Request.class);
                 String name=Person_SendingTo;
                 intent.putExtra("Person_SendingTo",name);
                 startActivity(intent);
