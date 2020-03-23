@@ -76,6 +76,8 @@ public class Profile extends AppCompatActivity {
                     else
                     {
                         firstName = FirstNameText.getText().toString();
+                        db.setFirstName(firstName);
+                        userC = true;
                     }
 
                     if(lastName.equals(""))
@@ -85,6 +87,8 @@ public class Profile extends AppCompatActivity {
                     else
                     {
                         lastName  = LastNameText.getText().toString();
+                        userC = true;
+                        db.setLastname(lastName);
                     }
 
                     if(Phone.equals(""))

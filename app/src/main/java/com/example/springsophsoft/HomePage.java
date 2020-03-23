@@ -80,7 +80,7 @@ public class HomePage extends AppCompatActivity {
         if (db.getFirstName() == null || db.getLastName() == null){
             nameText.setText("Name:");
         }
-        else if (!db.getFirstName().equals("") || !db.getLastName().equals("")){
+        else{
             nameText.setText("Name: " + name);
         }
     }
