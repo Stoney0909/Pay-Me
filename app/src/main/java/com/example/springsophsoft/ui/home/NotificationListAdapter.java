@@ -54,7 +54,7 @@ public class NotificationListAdapter extends ArrayAdapter<Transaction> {
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.transactionlist, parent, false);
+            convertView = inflater.inflate(R.layout.notification_history, parent, false);
             viewHolder.txtReciever = (TextView) convertView.findViewById(R.id.recieverTextView);
             viewHolder.txtSender = (TextView) convertView.findViewById(R.id.senderTextView);
             viewHolder.txtAmount = (TextView) convertView.findViewById(R.id.balanceTextView);
@@ -84,24 +84,24 @@ public class NotificationListAdapter extends ArrayAdapter<Transaction> {
         else{viewHolder.txtReciever.setText(rName);}
 
         if (sName.equals("null null")|| sName.equals("not found not found") || sName.equals(" not found")) {
-            viewHolder.txtSender.setText(dataModel.getSenderid());
+            viewHolder.txtSender.setText("$"+dataModel.getSenderid());
         }
         else{viewHolder.txtSender.setText(sName);}
 
 
         viewHolder.txtReason.setText(dataModel.getReason());
         viewHolder.txtDate.setText(dataModel.getDate());
-        if (dataModel.getSenderid().equals(LogIn.getString()))
-        {
-            viewHolder.txtAmount.setTextColor(Color.parseColor("#8315D520"));
-            String amount = "+$" + dataModel.getAmount();
-            viewHolder.txtAmount.setText(amount);
-        }
-        else{
-            viewHolder.txtAmount.setTextColor(Color.parseColor("#FC0000"));
-            String amount = "-$" + dataModel.getAmount();
-            viewHolder.txtAmount.setText(amount);
-        }
+//        if (dataModel.getSenderid().equals(LogIn.getString()))
+//        {
+//            viewHolder.txtAmount.setTextColor(Color.parseColor("#8315D520"));
+//            String amount = "+$" + dataModel.getAmount();
+//            viewHolder.txtAmount.setText(amount);
+//        }
+//        else{
+//            viewHolder.txtAmount.setTextColor(Color.parseColor("#FC0000"));
+//            String amount = "-$" + dataModel.getAmount();
+//            viewHolder.txtAmount.setText(amount);
+//        }
         // Return the completed view to render on screen
         return convertView;
     }

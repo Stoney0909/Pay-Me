@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.Helper.TransactionHelper;
+import com.example.springsophsoft.ui.home.NotificationListAdapter;
 import com.example.springsophsoft.ui.home.Sent;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

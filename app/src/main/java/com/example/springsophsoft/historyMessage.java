@@ -44,9 +44,9 @@ public class historyMessage extends AppCompatActivity {
         while (data.moveToNext()){
             Transaction mytransaction = new Transaction("recieverid", "senderid", "amount","reason", "T");
 
-            mytransaction.setRecieverid(data.getString(3));
+            mytransaction.setRecieverid(data.getString(2));
           //  mytransaction.setSenderid(data.getString(2));
-            mytransaction.setAmount(data.getString(1));
+            mytransaction.setSenderid(data.getString(1));
             intamount+= Double.parseDouble(data.getString(1));
             mytransaction.setReason(data.getString(4));
             mytransaction.setDate(data.getString(5));
@@ -54,9 +54,9 @@ public class historyMessage extends AppCompatActivity {
         }
         Collections.reverse(listData);
 
-        TextView amount = (TextView) findViewById(R.id.amountSentTextView);
-        String stringamount = "$" + Double.toString(intamount);
-        amount.setText(stringamount);
+     //   TextView amount = (TextView) findViewById(R.id.amountSentTextView);
+      //  String stringamount = "$" + Double.toString(intamount);
+       // amount.setText(stringamount);
 
         NotificationListAdapter adapter = new NotificationListAdapter(listData, this);
         mListView.setAdapter(adapter);
