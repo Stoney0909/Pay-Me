@@ -26,7 +26,8 @@
         <activity android:name=".ui.signUpAndLogIn.LogIn" />
         <activity android:name=".SendMoney" />
         <activity android:name=".Request" />
-        <activity android:name=".Send_Request" />
+        <activity android:name=".Send_Request"
+            android:theme="@style/AppTheme.CustomTheme"/>
         <activity android:name=".ui.home.Recieved"/>
         <activity android:name=".ui.home.Sent"/>
         <activity android:name=".ui.signUpAndLogIn.MainActivity">
