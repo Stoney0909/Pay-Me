@@ -11,26 +11,27 @@
         android:id="@+id/imageView3"
         android:layout_width="161dp"
         android:layout_height="147dp"
-        android:layout_marginLeft="105dp"
+        android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/logonobackground" />
 
 
     <EditText
         android:id="@+id/UsernameT"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
-        android:layout_marginRight="4dp"
+        android:layout_centerHorizontal="true"
         android:inputType="text"
         android:gravity="center"
         android:hint="Username" />
 
     <EditText
         android:id="@+id/EmailT"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Email"
+        android:layout_centerHorizontal="true"
         android:inputType="textEmailAddress"
         android:layout_marginTop="250dp"
         android:layout_marginEnd="4dp"
@@ -38,18 +39,20 @@
         />
     <EditText
         android:id="@+id/PhoneT"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Phone"
         android:inputType="phone"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         />
     <EditText
         android:id="@+id/FirstNameT"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="FirstName"
@@ -60,7 +63,8 @@
         />
     <EditText
         android:id="@+id/LastNameT"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="LastName"
@@ -71,7 +75,8 @@
         />
     <Button
         android:id="@+id/btn_Update"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Update"

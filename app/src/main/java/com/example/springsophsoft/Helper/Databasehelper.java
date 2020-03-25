@@ -101,6 +101,17 @@ public class Databasehelper extends SQLiteOpenHelper {
     }
 
 
+    public void REupdatePassword(String p, String email)
+    {
+        String user = LogIn.getString();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = " UPDATE " + TABLE_NAME + " SET "
+                + COL4 + " = '" + p + "'" +
+                " Where " + COL3 + " = '" + email + "'";
+        db.execSQL(query);
+    }
+
+
     public int GetUserID()
     {
         String usernanme = LogIn.getString();

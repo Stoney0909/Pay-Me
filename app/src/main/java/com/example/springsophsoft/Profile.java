@@ -111,6 +111,8 @@ public class Profile extends AppCompatActivity {
                         }
                     }
 
+                    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
                     if( Email.equals(""))
                     {
                         Email = db.getEmail();
@@ -118,18 +120,32 @@ public class Profile extends AppCompatActivity {
                     }
                     else
                     {
-                        boolean chkemail = db.chkemail(Email);
-                        if(chkemail == false)
+                        if(Email.matches(emailPattern) && Email.length() > 0)
                         {
-                            toastMessage("Email already exists.");
-                            EmailUpdateText.setText("");
-                            emailC = false;
+                            boolean chkemail = db.chkemail(Email);
+                            if(chkemail == false)
+                            {
+                               toastMessage("Email is taken");
+                               EmailUpdateText.setText("");
+                               emailC = false;
+                            }
+                            else
+                            {
+                               Email =  EmailUpdateText.getText().toString();
+                               emailC = true;
+                            }
                         }
                         else
                         {
-                            Email =  EmailUpdateText.getText().toString();
-                            emailC = true;
-                        }
+                              toastMessage("Invalid email");
+                            EmailUpdateText.setText("");
+                            emailC = false;
+                         }
+
+
+
+
+
 
                     }
 

@@ -11,16 +11,17 @@
         android:id="@+id/imageView3"
         android:layout_width="161dp"
         android:layout_height="147dp"
-        android:layout_marginLeft="105dp"
+        android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/logonobackground" />
 
 
     <EditText
         android:id="@+id/Card_number"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="170dp"
         android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
         android:hint="Card  Number"
         android:maxLength="16"
         android:textSize="20dp"
@@ -29,11 +30,12 @@
 
     <EditText
         android:id="@+id/CVC"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
         android:hint="CVC"
         android:maxLength="3"
+        android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:inputType="numberPassword"
         android:textSize="20sp"
@@ -41,18 +43,20 @@
 
     <EditText
         android:id="@+id/F_name"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="280dp"
         android:hint="First Name"
         android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
         android:inputType="textPersonName"
         android:textSize="20sp"
         />
 
     <EditText
         android:id="@+id/Last_Name"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_marginTop="340dp"
         android:hint="Last Name"
@@ -64,10 +68,11 @@
 
     <EditText
         android:id="@+id/Eday"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
         android:hint="Expire month: mm"
+        android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:inputType="text|number"
         android:textSize="20sp"
@@ -76,7 +81,8 @@
 
     <EditText
         android:id="@+id/year"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_marginTop="460dp"
         android:hint="Expire year: YYYY"
@@ -90,7 +96,7 @@
         android:id="@+id/btn_submmit"
         android:layout_width="250dp"
         android:layout_height="66dp"
-        android:layout_marginLeft="57dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="520dp"
         android:background="@drawable/button_round"
         android:text="Summit"

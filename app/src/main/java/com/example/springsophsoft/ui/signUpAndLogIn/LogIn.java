@@ -9,8 +9,10 @@ package com.example.springsophsoft.ui.signUpAndLogIn;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
+        import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.example.springsophsoft.ForgetPassword;
         import com.example.springsophsoft.Helper.Databasehelper;
         import com.example.springsophsoft.HomePage;
         import com.example.springsophsoft.R;
@@ -18,6 +20,7 @@ package com.example.springsophsoft.ui.signUpAndLogIn;
 
 public class LogIn extends AppCompatActivity {
 
+        private TextView Fpassword;
         Databasehelper db;
         private Button login;
         private EditText username, password;
@@ -33,7 +36,16 @@ public class LogIn extends AppCompatActivity {
             login = (Button) findViewById(R.id.btnLogIn);
             username = (EditText) findViewById(R.id.usernameTextView);
             password = (EditText) findViewById(R.id.passwordTextView);
+            Fpassword = (TextView) findViewById(R.id.forgetpassword);
             db = new Databasehelper(this);
+
+            Fpassword.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v) {
+                  otherclass();
+                }
+            });
 
             login.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -58,6 +70,12 @@ public class LogIn extends AppCompatActivity {
             startActivity(intent);
         }
 
+         private void otherclass()
+         {
+             Intent intent = new Intent(this, ForgetPassword.class);
+             startActivity(intent);
+         }
+
         private void toastMessage(String message){
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
@@ -69,4 +87,7 @@ public class LogIn extends AppCompatActivity {
            return ID;
 
      }
+
+
+
 }

@@ -15,8 +15,9 @@
         />
 
     <ListView
-        android:layout_width="409dp"
-        android:layout_height="627dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="103dp"
         android:layout_marginTop="110dp"

@@ -43,6 +43,8 @@ public class SignUp extends AppCompatActivity {
                 String spassword = password.getText().toString();
                 String sconfirmpassword = confirmPassword.getText().toString();
                 user = susername;
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
 
                 if (susername.equals("")|| semail.equals("")|| spassword.equals(""))
                 {
@@ -50,27 +52,35 @@ public class SignUp extends AppCompatActivity {
                 }
                 else{
                     if(spassword.equals(sconfirmpassword)){
-                        boolean chkemail = mDatabasehelper.chkemail(semail);
-                        if (chkemail){
-                            boolean chkusername = mDatabasehelper.chkusername(susername);
-                            if (chkusername){
-                                boolean insert = mDatabasehelper.addData(susername, semail, sconfirmpassword, balance);
-                                if (insert){
-                                    toastMessage("Register Successfull");
-                                    login();
+                        if (semail.matches(emailPattern) && semail.length() > 0)
+                        {
+                            boolean chkemail = mDatabasehelper.chkemail(semail);
+                            if (chkemail){
+                                boolean chkusername = mDatabasehelper.chkusername(susername);
+                                if (chkusername){
+                                    boolean insert = mDatabasehelper.addData(susername, semail, sconfirmpassword, balance);
+                                    if (insert){
+                                        toastMessage("Register Successfull");
+                                        login();
+                                    }
+                                    else {
+                                        toastMessage("Register Failure");
+                                    }
                                 }
                                 else {
-                                    toastMessage("Register Failure");
+                                    toastMessage("Username is taken");
+                                    username.setText("");
                                 }
                             }
                             else {
-                                toastMessage("Username is taken");
+                                toastMessage("Email is taken");
+                                email.setText("");
                             }
                         }
                         else {
-                            toastMessage("Email already exists.");
+                            toastMessage("Invalid email");
+                            email.setText("");
                         }
-
                     }
                     else{
                         toastMessage("Password and Confirm Password do not Match");
