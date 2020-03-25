@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.Helper.TransactionHelper;
+import com.example.springsophsoft.ui.home.Sent;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,6 +35,8 @@ public class HomePage extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
  //  public String username;
+ TextView textCartItemCount;
+   // int mCartItemCount = 10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,33 +90,78 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home_page, menu);
+        final MenuItem menuItem = menu.findItem(R.id.message);
+        View actionView = menuItem.getActionView();
+        textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
+        setupBadge();
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(menuItem);
+
+            }
+        });
         return true;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        TransactionHelper db= new TransactionHelper(this);
-        switch (item.getItemId()){
-            case R.id.message:
-
-                if(db.getInfo(1)==""){
-//                    Toast.makeText(this," Nothing To Show",Toast.LENGTH_SHORT).show();
+    private void setupBadge() {
+        TransactionHelper db = new TransactionHelper(this);
+        int count=db.numberOfNotification();
+        if (textCartItemCount != null) {
+            if (count == 0) {
+                if (textCartItemCount.getVisibility() != View.GONE) {
+                    textCartItemCount.setVisibility(View.GONE);
                 }
-                else {
-                    String message= db.getInfo(2)+" have requested $"+db.getInfo(1)+" on "+db.getInfo(3) ;
-                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            } else {
+                textCartItemCount.setText(String.valueOf(Math.min(count, 99)));
+                if (textCartItemCount.getVisibility() != View.VISIBLE) {
+                    textCartItemCount.setVisibility(View.VISIBLE);
                 }
-             default:
-               return super.onOptionsItemSelected(item);
+            }
         }
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.message: {
+                Toast.makeText(this," Nothing To Show",Toast.LENGTH_SHORT).show();
+                open();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+   // @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        TransactionHelper db= new TransactionHelper(this);
+//        switch (item.getItemId()){
+//            case R.id.message:
+//
+//                if(db.getInfo(1)==""){
+////                    Toast.makeText(this," Nothing To Show",Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    String message= db.getInfo(2)+" have requested $"+db.getInfo(1)+" on "+db.getInfo(3) ;
+//                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+//                }
+//             default:
+//               return super.onOptionsItemSelected(item);
+//        }
+//    }
 
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    private void open(){
+        Intent intent = new Intent(this, historyMessage.class);
+        startActivity(intent);
     }
 }

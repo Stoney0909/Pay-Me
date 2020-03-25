@@ -26,6 +26,7 @@
         <activity android:name=".ui.signUpAndLogIn.LogIn" />
         <activity android:name=".SendMoney" />
         <activity android:name=".Request" />
+        <activity android:name=".historyMessage" />
         <activity android:name=".Send_Request" />
         <activity android:name=".ui.home.Recieved"/>
         <activity android:name=".ui.home.Sent"/>
