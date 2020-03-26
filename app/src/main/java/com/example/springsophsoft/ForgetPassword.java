@@ -32,32 +32,29 @@ public class ForgetPassword extends AppCompatActivity {
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 getEmail = Email;
                 boolean chkemail = db.chkemail(Email);
-                if(chkemail == false)
-                {
-                    if(Email.length() == 0)
-                    {
-                        toastMessage("PLease enter email");
-                    }
-                    else
-                    {
-                        if(!Email.matches(emailPattern))
-                        {
-                            toastMessage("Invalid email");
-                            email.setText("");
-                        }
-                        else
-                        {
-                            success();
-                        }
-                    }
+
+                if (Email.length() == 0) {
+                    toastMessage("PLease enter email");
                 }
                 else
                 {
-                    toastMessage("Undefined email");
+                    if (!Email.matches(emailPattern)) {
+                        toastMessage("Invalid email");
+                        email.setText("");
+                    }
+                    else
+                    {
+                        if (chkemail == false)
+                        {
+                            success();
+
+                        }
+                        else {
+                            toastMessage("Undefined email");
+                            email.setText("");
+                        }
+                    }
                 }
-
-
-
 
             }
         });
