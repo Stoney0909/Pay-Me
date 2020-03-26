@@ -92,7 +92,11 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME + " where " + COL4 + "=?", new String[]{id});
         return cursor;
     }
-
+    public Cursor getAllData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME + " where " + COL4 + "=? or " + COL3 + "=?", new String[]{id, id});
+        return cursor;
+    }
     public boolean add(String Person_sending, String Person_receiving,String amount,String Message, String date)
     {
         SQLiteDatabase db = this.getWritableDatabase();
