@@ -161,4 +161,17 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         }
         return "";
     }
+    public int numberOfNotification() {
+        int count=0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME2 + " where " + COL4 + "=?", new String[]{LogIn.getString()});
+        count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    public Cursor getData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME2 + " where " + COL4 + "=?", new String[]{LogIn.getString()});
+        return cursor;
+    }
 }

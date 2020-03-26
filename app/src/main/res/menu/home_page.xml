@@ -8,9 +8,15 @@
 <!--        app:showAsAction="never" />-->
     <item
         android:id="@+id/message"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_message"
-        android:title="Message"/>
+        android:title="Cart"
+        app:actionLayout="@layout/custom_action_item_layout"
+        app:showAsAction="always"/>
+<!--    <item-->
+<!--        android:id="@+id/message"-->
+<!--        android:orderInCategory="100"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        android:icon="@drawable/ic_message"-->
+<!--        android:title="Message"/>-->
 
 </menu>
