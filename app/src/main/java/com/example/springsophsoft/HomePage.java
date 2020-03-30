@@ -130,7 +130,6 @@ public class HomePage extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.message: {
-                Toast.makeText(this," Nothing To Show",Toast.LENGTH_SHORT).show();
                 open();
                 return true;
             }
