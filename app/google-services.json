@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "329046720100",
+    "firebase_url": "https://emailsend-ad87e.firebaseio.com",
+    "project_id": "emailsend-ad87e",
+    "storage_bucket": "emailsend-ad87e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329046720100:android:21b0ec2fc25b0bb0c5e971",
+        "android_client_info": {
+          "package_name": "com.example.springsophsoft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329046720100-e346d41tam2o1v67p68i2a3ajogh1dph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.springsophsoft",
+            "certificate_hash": "aab4d7ca4d436324e8d05eecc5d5739e63fa70e3"
+          }
+        },
+        {
+          "client_id": "329046720100-5is04ub94tbhv5p9dokolo06gibjgs2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr2L4_Ar-1bVleH3ZR0JKZIx_dQsF63Ng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329046720100-5is04ub94tbhv5p9dokolo06gibjgs2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

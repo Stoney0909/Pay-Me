@@ -140,13 +140,7 @@ public class Profile extends AppCompatActivity {
                               toastMessage("Invalid email");
                             EmailUpdateText.setText("");
                             emailC = false;
-                         }
-
-
-
-
-
-
+                        }
                     }
 
                     if(phoneC == true && emailC == true && userC == true)

@@ -1,5 +1,6 @@
 package com.example.springsophsoft;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,17 +11,27 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgetPassword extends AppCompatActivity {
 
     private EditText email;
     private Button sending;
+    private FirebaseAuth mAuth;
     Databasehelper db;
     public static String getEmail;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
+
+        mAuth = FirebaseAuth.getInstance();
+
         email = (EditText)findViewById(R.id.REPSemail);
         sending = (Button)findViewById(R.id.SendEmail);
         db = new Databasehelper(this);
@@ -46,8 +57,21 @@ public class ForgetPassword extends AppCompatActivity {
                     {
                         if (chkemail == false)
                         {
-                            success();
-
+                            mAuth.sendPasswordResetEmail(Email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful())
+                                    {
+                                        toastMessage("Go check email");
+                                        success();
+                                    }
+                                    else
+                                    {
+                                        String l = task.getException().getMessage();
+                                        toastMessage("Something wrong： " + l);
+                                    }
+                                }
+                            });
                         }
                         else {
                             toastMessage("Undefined email");
@@ -68,7 +92,7 @@ public class ForgetPassword extends AppCompatActivity {
 
     public void success()
     {
-        Intent intent = new Intent(this, ReSetPassword.class);
+        Intent intent = new Intent(this, LogIn.class);
         startActivity(intent);
     }
     private void toastMessage(String message){

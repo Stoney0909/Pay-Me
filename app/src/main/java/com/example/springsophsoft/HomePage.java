@@ -76,13 +76,16 @@ public class HomePage extends AppCompatActivity {
         usernameText.setText("Username: " + LogIn.getString());
 
         TextView nameText = (TextView) header.findViewById(R.id.nameTextView);
-        String name = db.getFirstName() + " " + db.getLastName();
-        if (db.getFirstName() == null || db.getLastName() == null){
-            nameText.setText("Name:");
-        }
-        else{
-            nameText.setText("Name: " + name);
-        }
+        String email = db.getEmail();
+        nameText.setText("Email: " + email);
+//        String name = db.getFirstName() + " " + db.getLastName();
+//        if (db.getFirstName() == null || db.getLastName() == null){
+//            nameText.setText("Name:");
+//        }
+//        else{
+//            nameText.setText("Name: " + name);
+//        }
+
     }
 
     @Override
