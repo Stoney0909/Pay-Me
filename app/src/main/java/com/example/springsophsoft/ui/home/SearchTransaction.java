@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.springsophsoft.Helper.Databasehelper;
@@ -26,6 +28,7 @@ import com.example.springsophsoft.ui.Search.SearchViewModel;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class SearchTransaction extends AppCompatActivity {
 
@@ -37,30 +40,22 @@ public class SearchTransaction extends AppCompatActivity {
     private EditText et;
     String user  = LogIn.getString();
 
-
-
     @Override
-    protected void onCreate(@NonNull LayoutInflater inflater,
-                            ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
 
-
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_search, container, false);
-        et = (EditText)root.findViewById(R.id.myFilter);
+        et = (EditText)findViewById(R.id.myFilter);
         db = new Databasehelper(this);
-        userlist = (ListView)root.findViewById(R.id.listView1);
+        userlist = (ListView)findViewById(R.id.listView1);
         listItem = new ArrayList<>();
-        SimpleCursorAdapter adapter2;
 
         userlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String text = userlist.getItemAtPosition(position).toString();
-                Intent intent = new Intent(this., Recieved.class);
-                intent.putExtra("Person_SendingTo",text);
-                startActivity(intent);
+                userTransaction(text);
 
                 //   toastMessage(text);
             }
@@ -81,11 +76,20 @@ public class SearchTransaction extends AppCompatActivity {
 
     }
 
+    private void userTransaction(String text){
+        Intent intent = new Intent(this, personTransaction.class);
+        intent.putExtra("Person_SendingTo",text);
+        startActivity(intent);
+
+
+    }
+
     public void viewData(){
         Cursor cursor=db.viewData();
         if(cursor.getCount()==0){
             toastMessage("The data is empty.");
-        }else {
+        }
+        else {
             while (cursor.moveToNext()){
                 listItem.add(cursor.getString(1));
             }
@@ -97,5 +101,4 @@ public class SearchTransaction extends AppCompatActivity {
     public void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
-
 }

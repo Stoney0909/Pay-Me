@@ -20,7 +20,6 @@
         <activity android:name=".ChangePassword" />
         <activity android:name=".TransMoney_card" />
         <activity android:name=".Profile" />
-        <activity android:name=".ui.home.SearchTransaction"/>
         <activity android:name=".AddingCardNumber" />
         <activity
             android:name=".HomePage"
@@ -31,6 +30,8 @@
         <activity android:name=".SendMoney" />
         <activity android:name=".Request" />
         <activity android:name=".Accept_Decline"/>
+        <activity android:name=".ui.home.SearchTransaction"/>
+        <activity android:name=".ui.home.personTransaction"/>
         <activity android:name=".historyMessage"></activity>
         <activity
             android:name=".Send_Request"

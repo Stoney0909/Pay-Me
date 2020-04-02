@@ -45,7 +45,6 @@ public class SearchFragment extends Fragment {
         db = new Databasehelper(getActivity());
         userlist = (ListView)root.findViewById(R.id.listView1);
         listItem = new ArrayList<>();
-        SimpleCursorAdapter adapter2;
 
         userlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -79,7 +78,8 @@ public class SearchFragment extends Fragment {
         Cursor cursor=db.viewData();
         if(cursor.getCount()==0){
             toastMessage("The data is empty.");
-        }else {
+        }
+        else {
             while (cursor.moveToNext()){
                     listItem.add(cursor.getString(1));
             }
