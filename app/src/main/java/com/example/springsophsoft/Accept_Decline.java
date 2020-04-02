@@ -12,20 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.Helper.TransactionHelper;
 
 public class Accept_Decline extends AppCompatActivity {
     private TextView phone, email, username;
     private Button Accept, Decline;
 
 
-    Databasehelper mydb;
+    TransactionHelper mydb;;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accept_decline);
-//        mydb = new Databasehelper(this);
+        mydb = new TransactionHelper(this);
         Intent i = getIntent();
         final String name = i.getStringExtra("Demandeur");
         final String amount = i.getStringExtra("Montant");
@@ -53,6 +54,7 @@ public class Accept_Decline extends AppCompatActivity {
                 Intent intent = new Intent(Accept_Decline.this, SendMoney.class);
                 intent.putExtra("Person_SendingTo",name);
                 startActivity(intent);
+                mydb.Delete(name,amount);
                 finish();
 
             }
@@ -62,6 +64,7 @@ public class Accept_Decline extends AppCompatActivity {
             public void onClick(View v) {
 
                 toastMessage("You successfully denied");
+                mydb.Delete(name,amount);
                 finish();
 
             }
