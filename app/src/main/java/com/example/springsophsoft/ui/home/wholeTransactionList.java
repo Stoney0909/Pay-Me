@@ -42,6 +42,15 @@ public class wholeTransactionList extends AppCompatActivity {
             }
         });
 
+        final Button searchButton = (Button) findViewById(R.id.searchButton);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search();
+            }
+        });
+
         mListView = (ListView) findViewById(R.id.wholeTransactionListView);
 
         final TransactionHelper transactiondb = new TransactionHelper(this);
@@ -79,6 +88,10 @@ public class wholeTransactionList extends AppCompatActivity {
     }
     private void sent(){
         Intent intent = new Intent(this, Sent.class);
+        startActivity(intent);
+    }
+    private void search(){
+        Intent intent = new Intent(this, SearchTransaction.class);
         startActivity(intent);
     }
 }
