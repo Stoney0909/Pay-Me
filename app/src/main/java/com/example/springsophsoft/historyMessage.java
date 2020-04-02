@@ -1,9 +1,13 @@
 package com.example.springsophsoft;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,7 +42,7 @@ public class historyMessage extends AppCompatActivity {
     }
     private void transactionList(Cursor data){
 
-        ArrayList<Transaction> listData = new ArrayList<>();
+        final ArrayList<Transaction> listData = new ArrayList<>();
         double intamount = 0;
 
         while (data.moveToNext()){
@@ -60,5 +64,32 @@ public class historyMessage extends AppCompatActivity {
 
         NotificationListAdapter adapter = new NotificationListAdapter(listData, this);
         mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String name = listData.get(position).getRecieverid();
+                String amount= listData.get(position).getSenderid();
+//                toastMessage(name);
+//                toastMessage(amount);
+                open(name,amount);
+//                toastMessage(val);
+//                String text = userlist.getItemAtPosition(position).toString();
+//                Intent intent = new Intent(ge, Accept_Decline.class);
+//                intent.putExtra("Person_SendingTo",text);
+//                startActivity(intent);
+            }
+        });
+    }
+    public void toastMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+    public void open(String name, String amount)
+    {
+        Intent i = new Intent(this, Accept_Decline.class);
+        i.putExtra("Demandeur",name);
+        i.putExtra("Montant",amount);
+        startActivity(i);
     }
 }
