@@ -22,4 +22,9 @@
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
+    <style name="AppTheme.Tran">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
 </resources>

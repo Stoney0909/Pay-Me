@@ -310,19 +310,18 @@ public class Databasehelper extends SQLiteOpenHelper {
         else return false;
     }
 
-
-
-    public void Update(String string, String id, String email, String FirstName, String LastName, String Phone) {
+    public void Update(String user, String id, String email, String FirstName, String LastName, String Phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = " UPDATE " + TABLE_NAME + " SET " +
-
+                COL2 + " = '" + id + "'" + "," +
                 COL3 + " = '" + email + "'" + "," +
                 COL5 + " = '" + FirstName + "'"+ "," +
                 COL6 + " = '" + LastName + "'" + ", " +
                 COL7 + " = '" + Phone + "'" +
-                " Where " + COL1 + " = '" + id + "'";
+                " Where " + COL2 + " = '" + user + "'";
         db.execSQL(query);
     }
+
 
     public String getUsername() {
         String username = "";

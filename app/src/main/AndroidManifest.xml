@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReSetPassword"></activity>
+        <activity android:name=".Addingcard_popView"
+            android:theme="@style/AppTheme.Tran" />
+        <activity android:name=".ReSetPassword" />
         <activity android:name=".ForgetPassword" />
         <activity
             android:name=".Trans_money_pop_view2"
@@ -29,16 +31,16 @@
         <activity android:name=".ui.signUpAndLogIn.LogIn" />
         <activity android:name=".SendMoney" />
         <activity android:name=".Request" />
-        <activity android:name=".Accept_Decline"/>
-        <activity android:name=".ui.home.SearchTransaction"/>
-        <activity android:name=".ui.home.personTransaction"/>
-        <activity android:name=".historyMessage"></activity>
+        <activity android:name=".Accept_Decline" />
+        <activity android:name=".ui.home.SearchTransaction" />
+        <activity android:name=".ui.home.personTransaction" />
+        <activity android:name=".historyMessage" />
         <activity
             android:name=".Send_Request"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".ui.home.Recieved" />
         <activity android:name=".ui.home.Sent" />
-        <activity android:name=".ui.home.wholeTransactionList"/>
+        <activity android:name=".ui.home.wholeTransactionList" />
         <activity android:name=".ui.signUpAndLogIn.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

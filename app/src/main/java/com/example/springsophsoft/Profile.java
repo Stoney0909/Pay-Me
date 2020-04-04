@@ -41,7 +41,7 @@ public class Profile extends AppCompatActivity {
                 String Phone = PhoneUpdateText.getText().toString();
                 String Email =  EmailUpdateText.getText().toString();
 
-                if(firstName.equals("") && lastName.equals("") && Phone.equals("") && Email.equals(""))
+                if(susername.equals("") && firstName.equals("") && lastName.equals("") && Phone.equals("") && Email.equals(""))
                 {
                     toastMessage("Profile Unchanged");
                 }
@@ -140,12 +140,7 @@ public class Profile extends AppCompatActivity {
                               toastMessage("Invalid email");
                             EmailUpdateText.setText("");
                             emailC = false;
-                         }
-
-
-
-
-
+                        }
 
                     }
 

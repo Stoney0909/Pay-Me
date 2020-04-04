@@ -96,4 +96,11 @@ public class CardDBHelper extends SQLiteOpenHelper {
                 " Where " + COL2 + " = '" + CardNumber + "'";
         db.execSQL(query);
     }
+
+    public void deleteCardInfo(String cardNumber)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + cardNumber + "'";
+        db.execSQL(query);
+    }
 }

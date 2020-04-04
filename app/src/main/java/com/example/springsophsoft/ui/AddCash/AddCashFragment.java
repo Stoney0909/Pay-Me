@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.springsophsoft.AddingCardNumber;
+import com.example.springsophsoft.Addingcard_popView;
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.R;
 import com.example.springsophsoft.SendMoney;
@@ -56,11 +57,12 @@ public class AddCashFragment extends Fragment {
         listing.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 String text = listing.getItemAtPosition(position).toString();
                 String balance = myDB.getCardBalance((position + 1));
                 cardNumber = text;
                 CardBalance = balance;
-                Intent intent = new Intent(getActivity(), TransMoney_card.class);
+                Intent intent = new Intent(getActivity(), Addingcard_popView.class);
                 startActivity(intent);
             }
         });
