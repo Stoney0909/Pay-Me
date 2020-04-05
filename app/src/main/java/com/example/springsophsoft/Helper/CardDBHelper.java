@@ -43,7 +43,7 @@ public class CardDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean add(String Card, String cvc,String user_name, int cardbalnce, String fname, String lanme, int month, int year)
+    public boolean add(String Card, String cvc,String user_name, String cardbalnce, String fname, String lanme, int month, int year)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

@@ -71,10 +71,9 @@ public class AddCashFragment extends Fragment {
         return root;
     }
 
-    public static float getCardBalance()
+    public static double getCardBalance()
     {
-        String CardB = CardBalance;
-        float ConvertC =  Float.parseFloat(CardB);
+        double ConvertC =  Double.parseDouble(CardBalance);
         return ConvertC;
     }
 

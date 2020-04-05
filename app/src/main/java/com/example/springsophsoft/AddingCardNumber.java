@@ -13,7 +13,7 @@ import com.example.springsophsoft.ui.AddCash.AddCashFragment;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 public class AddingCardNumber extends AppCompatActivity {
-    int cardmoney = 0;
+    String cardmoney = "0";
     CardDBHelper db;
     EditText Card_number, cvc, F_name, L_name, month, yearT;
     Button summbit;

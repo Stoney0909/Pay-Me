@@ -43,8 +43,8 @@ public class Addingcard_popView extends AppCompatActivity {
         Tmoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 otherpage();
+                finish();
             }
         });
 
