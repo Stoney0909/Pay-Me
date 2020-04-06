@@ -100,7 +100,7 @@ public class Profile extends AppCompatActivity {
                     {
                         if(Phone.length() != 10)
                         {
-                            toastMessage("PLease enter the correct phone number");
+                            toastMessage("Please enter the correct phone number");
                             PhoneUpdateText.setText("");
                             phoneC = false;
                         }
