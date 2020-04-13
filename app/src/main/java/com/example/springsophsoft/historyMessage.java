@@ -48,7 +48,7 @@ public class historyMessage extends AppCompatActivity {
 
     private static final String TAG = "historyMessage";
     private SwipeMenuListView mListView;
-    TransactionHelper mydb;;
+    TransactionHelper mydb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
