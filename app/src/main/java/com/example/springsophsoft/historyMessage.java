@@ -12,7 +12,7 @@ import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
-
+import com.example.springsophsoft.HomePage;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -48,7 +48,7 @@ public class historyMessage extends AppCompatActivity {
 
     private static final String TAG = "historyMessage";
     private SwipeMenuListView mListView;
-    TransactionHelper mydb;;
+    TransactionHelper mydb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,23 +87,6 @@ public class historyMessage extends AppCompatActivity {
 
         NotificationListAdapter adapter = new NotificationListAdapter(listData, this);
         mListView.setAdapter(adapter);
-//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                String name = listData.get(position).getRecieverid();
-//                String amount= listData.get(position).getSenderid();
-////                toastMessage(name);
-////                toastMessage(amount);
-//                open(name,amount);
-////                toastMessage(val);
-////                String text = userlist.getItemAtPosition(position).toString();
-////                Intent intent = new Intent(ge, Accept_Decline.class);
-////                intent.putExtra("Person_SendingTo",text);
-////                startActivity(intent);
-//            }
-//        });
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
@@ -152,6 +135,7 @@ public class historyMessage extends AppCompatActivity {
                         String amount= listData.get(position).getSenderid();
                         Intent intent = new Intent(historyMessage.this, SendMoney.class);
                         intent.putExtra("Person_SendingTo",name);
+                        recreate();
                         startActivity(intent);
                         mydb.Delete(name,amount);
                         break;
@@ -161,6 +145,7 @@ public class historyMessage extends AppCompatActivity {
                         String amount2= listData.get(position).getSenderid();
                         toastMessage("You successfully denied");
                         mydb.Delete(name2,amount2);
+                        recreate();
                         break;
                 }
                 // false : close the menu; true : not close the menu
@@ -178,5 +163,11 @@ public class historyMessage extends AppCompatActivity {
         i.putExtra("Demandeur",name);
         i.putExtra("Montant",amount);
         startActivity(i);
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,HomePage.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }
