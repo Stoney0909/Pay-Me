@@ -5,17 +5,12 @@ import android.os.Bundle;
 
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.Helper.TransactionHelper;
-import com.example.springsophsoft.ui.home.NotificationListAdapter;
-import com.example.springsophsoft.ui.home.Sent;
+import com.example.springsophsoft.ui.Notification.historyMessage;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,7 +25,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class HomePage extends AppCompatActivity {
 
@@ -79,14 +73,9 @@ public class HomePage extends AppCompatActivity {
         TextView usernameText = (TextView) header.findViewById(R.id.usernameTextView);
         usernameText.setText("Username: " + LogIn.getString());
 
-        TextView nameText = (TextView) header.findViewById(R.id.nameTextView);
-        String name = db.getFirstName() + " " + db.getLastName();
-        if (db.getFirstName() == null || db.getLastName() == null){
-            nameText.setText("Name:");
-        }
-        else{
-            nameText.setText("Name: " + name);
-        }
+        TextView nameText = (TextView) header.findViewById(R.id.EmailTextView);
+        String email = db.getEmail();
+        nameText.setText("Email: " + email);
     }
 
     @Override

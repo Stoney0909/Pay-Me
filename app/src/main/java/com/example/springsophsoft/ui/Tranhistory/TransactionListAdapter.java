@@ -1,4 +1,4 @@
-package com.example.springsophsoft.ui.home;
+package com.example.springsophsoft.ui.Tranhistory;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.R;
+import com.example.springsophsoft.Transaction;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 import java.util.ArrayList;

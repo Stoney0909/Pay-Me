@@ -1,4 +1,4 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.signUpAndLogIn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.R;
+import com.example.springsophsoft.ui.signUpAndLogIn.ReSetPassword;
 
 public class ForgetPassword extends AppCompatActivity {
 

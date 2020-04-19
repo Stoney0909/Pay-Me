@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,10 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.springsophsoft.Helper.Databasehelper;
-import com.example.springsophsoft.Send_Request;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 import com.example.springsophsoft.R;
-import com.example.springsophsoft.SendMoney;
 
 import java.util.ArrayList;
 

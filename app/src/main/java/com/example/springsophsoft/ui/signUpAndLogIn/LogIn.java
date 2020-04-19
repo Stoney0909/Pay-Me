@@ -3,8 +3,6 @@ package com.example.springsophsoft.ui.signUpAndLogIn;
         import androidx.appcompat.app.AppCompatActivity;
 
         import android.content.Intent;
-        import android.database.Cursor;
-        import android.database.sqlite.SQLiteDatabase;
         import android.os.Bundle;
         import android.view.View;
         import android.widget.Button;
@@ -12,11 +10,10 @@ package com.example.springsophsoft.ui.signUpAndLogIn;
         import android.widget.TextView;
         import android.widget.Toast;
 
-        import com.example.springsophsoft.ForgetPassword;
         import com.example.springsophsoft.Helper.Databasehelper;
         import com.example.springsophsoft.HomePage;
         import com.example.springsophsoft.R;
-        import com.example.springsophsoft.ui.home.User;
+        import com.example.springsophsoft.User;
 
 public class LogIn extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.AddCash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.R;
 
 public class Trans_money_pop_view2 extends AppCompatActivity {
 

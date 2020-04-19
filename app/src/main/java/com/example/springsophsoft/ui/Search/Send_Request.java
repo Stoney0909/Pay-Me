@@ -1,4 +1,4 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.Search;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.R;
 
 public class Send_Request extends AppCompatActivity {
     private TextView phone, email, username;
@@ -45,11 +45,24 @@ public class Send_Request extends AppCompatActivity {
         String m = "UserName: " + Person_SendingTo;
         username.setText(m);
         email = (TextView) findViewById(R.id.email);
-        String s = "Email: " + mydb.getInfo(5);
+        String s = "Email: " + mydb.getSearchPersonEmail(Person_SendingTo);
         email.setText(s);
         phone = (TextView) findViewById(R.id.phone);
-        String o = "Phone Number: " + mydb.getInfo(3);
-        phone.setText(o);
+        String o = "Phone Number: " + mydb.getSearchpersonPhone(Person_SendingTo);
+
+        if(mydb.getSearchpersonPhone(Person_SendingTo) == null && mydb.getSearchpersonPhone(Person_SendingTo) == null)
+        {
+            phone.setText("Phone Number: None");
+        }
+        else if(mydb.getSearchpersonPhone(Person_SendingTo).equals("null") && mydb.getSearchpersonPhone(Person_SendingTo).equals("null"))
+        {
+            phone.setText("Phone Number: None");
+        }
+        else if(mydb.getSearchpersonPhone(Person_SendingTo) != null && mydb.getSearchpersonPhone(Person_SendingTo) != null)
+        {
+            phone.setText(o);
+        }
+
         Send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +79,7 @@ public class Send_Request extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(Send_Request.this, Request.class);
+                Intent intent = new Intent(Send_Request.this, com.example.springsophsoft.ui.Search.Request.class);
                 String name=Person_SendingTo;
                 intent.putExtra("Person_SendingTo",name);
                 startActivity(intent);

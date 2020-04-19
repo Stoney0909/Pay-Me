@@ -1,20 +1,17 @@
-package com.example.springsophsoft.ui.home;
+package com.example.springsophsoft.ui.Tranhistory;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.R;
+import com.example.springsophsoft.Transaction;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
-import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.Collections;
 

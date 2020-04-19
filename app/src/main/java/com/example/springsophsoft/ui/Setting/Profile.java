@@ -1,4 +1,4 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.Setting;
 
 
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.HomePage;
+import com.example.springsophsoft.R;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 
@@ -16,7 +18,7 @@ public class Profile extends AppCompatActivity {
     Databasehelper db;
     private EditText UsernameUpdateText, EmailUpdateText, PhoneUpdateText, FirstNameText,LastNameText;
     private Button Update;
-    boolean userC = false, emailC = false, phoneC = false;
+    boolean userC = false, emailC = false, phoneC = false, nameC = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,26 +71,27 @@ public class Profile extends AppCompatActivity {
 
                     }
 
-                    if(firstName.equals(""))
+                    if(firstName.equals("") && lastName.equals(""))
                     {
                         firstName = db.getFirstName();
+                        lastName = db.getLastName();
+                        nameC = true;
                     }
-                    else
+                    else if(!firstName.equals("") && lastName.equals(""))
+                    {
+                        toastMessage("Please enter last name too");
+                    }
+                    else if(firstName.equals("") && !lastName.equals(""))
+                    {
+                        toastMessage("Please enter first nam too");
+                    }
+                    else if(!firstName.equals("") && !lastName.equals(""))
                     {
                         firstName = FirstNameText.getText().toString();
                         db.setFirstName(firstName);
-                        userC = true;
-                    }
-
-                    if(lastName.equals(""))
-                    {
-                        lastName = db.getLastName();
-                    }
-                    else
-                    {
                         lastName  = LastNameText.getText().toString();
-                        userC = true;
                         db.setLastname(lastName);
+                        nameC = true;
                     }
 
                     if(Phone.equals(""))
@@ -144,7 +147,7 @@ public class Profile extends AppCompatActivity {
 
                     }
 
-                    if(phoneC == true && emailC == true && userC == true)
+                    if(phoneC == true && emailC == true && userC == true && nameC == true)
                     {
                         db.Update(LogIn.getString(),susername,Email,firstName,lastName,Phone);
                         toastMessage("Update success");

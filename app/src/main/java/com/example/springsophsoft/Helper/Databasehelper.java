@@ -424,4 +424,34 @@ public class Databasehelper extends SQLiteOpenHelper {
         }
          return true;
     }
+
+    public String getSearchPersonEmail(String u)
+    {
+        String Email = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{u};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            Email = csr.getString(csr.getColumnIndex(COL3));
+        }
+        return Email;
+    }
+
+    public String getSearchpersonPhone(String u)
+    {
+        String Phone = "not found";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String whereclause = "Username=?";
+        String[] where = new String[]{u};
+        Cursor csr = db.query(TABLE_NAME,null,whereclause,where,null,null,null);
+        if(csr.moveToFirst())
+        {
+            Phone = csr.getString(csr.getColumnIndex(COL7));
+        }
+        return Phone;
+    }
+
+
 }

@@ -10,9 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.springsophsoft.Helper.CardDBHelper;
-import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.Helper.TransactionHelper;
+import com.example.springsophsoft.ui.Search.SendMoney;
 
 public class Accept_Decline extends AppCompatActivity {
     private TextView phone, email, username;

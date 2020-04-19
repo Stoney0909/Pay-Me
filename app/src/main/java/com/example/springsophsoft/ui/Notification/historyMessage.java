@@ -1,48 +1,32 @@
-package com.example.springsophsoft;
-
+package com.example.springsophsoft.ui.Notification;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
+import com.example.springsophsoft.Accept_Decline;
 import com.example.springsophsoft.HomePage;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.R;
-import com.example.springsophsoft.ui.Notification.NotificationViewModel;
+import com.example.springsophsoft.ui.Search.SendMoney;
 import com.example.springsophsoft.ui.home.NotificationListAdapter;
-import com.example.springsophsoft.ui.home.Transaction;
+import com.example.springsophsoft.Transaction;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-
 
 public class historyMessage extends AppCompatActivity {
 

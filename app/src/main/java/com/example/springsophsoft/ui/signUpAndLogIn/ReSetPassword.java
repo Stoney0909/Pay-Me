@@ -1,4 +1,4 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.signUpAndLogIn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,9 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.Databasehelper;
-import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
-
-import java.security.KeyStore;
+import com.example.springsophsoft.R;
 
 public class ReSetPassword extends AppCompatActivity {
 

@@ -1,11 +1,9 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.AddCash;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,11 +12,10 @@ import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.R;
 import com.example.springsophsoft.ui.AddCash.AddCashFragment;
-
-import org.w3c.dom.Text;
-
-import java.text.DecimalFormat;
+import com.example.springsophsoft.ui.AddCash.Trans_money_pop_view;
+import com.example.springsophsoft.ui.AddCash.Trans_money_pop_view2;
 
 public class TransMoney_card extends AppCompatActivity {
 

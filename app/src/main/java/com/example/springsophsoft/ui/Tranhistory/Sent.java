@@ -1,4 +1,4 @@
-package com.example.springsophsoft.ui.home;
+package com.example.springsophsoft.ui.Tranhistory;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.R;
+import com.example.springsophsoft.Transaction;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 import java.util.ArrayList;

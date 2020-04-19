@@ -25,36 +25,50 @@ public class HomeFragment extends Fragment {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Button transactoionsbtn = (Button)root.findViewById(R.id.transactbtn);
         TextView balance = (TextView)root.findViewById(R.id.balanceTextView);
+        TextView email = (TextView) root.findViewById(R.id.EmailViewHome);
+        TextView phone = (TextView) root.findViewById(R.id.PhoneViewHome);
         Databasehelper databasehelper = new Databasehelper(getActivity());
         String amount = "$" + databasehelper.getBalance();
         balance.setText(amount);
-
-        transactoionsbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                transaction();
-            }
-        });
+        String Email = databasehelper.getEmail();
+        email.setText(Email);
         Databasehelper db = new Databasehelper(getActivity());
         TextView nameTextView = (TextView)root.findViewById(R.id.nameTextView);
         String name = db.getFirstName() + " " + db.getLastName();
-        nameTextView.setText(name);
+        String PhoneNumber = db.getPhone();
 
+        if(db.getPhone() == null && db.getPhone() == null)
+        {
+            phone.setText("None");
+        }
+        else if(db.getPhone().equals("null") && db.getPhone().equals("null"))
+        {
+            phone.setText("None");
+        }
+        else if(db.getPhone() != null && db.getPhone() != null)
+        {
+            phone.setText(PhoneNumber);
+        }
+
+
+
+        if(db.getFirstName() == null && db.getLastName() == null)
+        {
+            nameTextView.setText("there");
+        }
+        else if(db.getFirstName().equals("null") && db.getLastName().equals("null"))
+        {
+            nameTextView.setText("there");
+        }
+        else if(db.getFirstName() != null && db.getLastName() != null)
+        {
+            nameTextView.setText(name);
+        }
 
 
 
         return root;
     }
-private void transaction(){
-    Intent intent = new Intent(getActivity(), wholeTransactionList.class);
-    startActivity(intent);
-}
-
-
-
-
-
 }
 

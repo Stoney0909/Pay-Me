@@ -1,7 +1,6 @@
 package com.example.springsophsoft.ui.home;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.R;
-import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
+import com.example.springsophsoft.Transaction;
 
 import java.util.ArrayList;
 

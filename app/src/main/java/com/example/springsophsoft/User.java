@@ -1,4 +1,4 @@
-package com.example.springsophsoft.ui.home;
+package com.example.springsophsoft;
 
 public class User {
 

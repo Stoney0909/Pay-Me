@@ -1,4 +1,4 @@
-package com.example.springsophsoft;
+package com.example.springsophsoft.ui.AddCash;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
+import com.example.springsophsoft.R;
 import com.example.springsophsoft.ui.AddCash.AddCashFragment;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 

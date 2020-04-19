@@ -9,38 +9,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Addingcard_popView"
+        <activity android:name=".ui.AddCash.Addingcard_popView"
             android:theme="@style/AppTheme.Tran" />
-        <activity android:name=".ReSetPassword" />
-        <activity android:name=".ForgetPassword" />
+        <activity android:name=".ui.signUpAndLogIn.ReSetPassword" />
+        <activity android:name=".ui.signUpAndLogIn.ForgetPassword" />
         <activity
-            android:name=".Trans_money_pop_view2"
+            android:name=".ui.AddCash.Trans_money_pop_view2"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity
-            android:name=".Trans_money_pop_view"
+            android:name=".ui.AddCash.Trans_money_pop_view"
             android:theme="@style/AppTheme.CustomTheme" />
-        <activity android:name=".ChangePassword" />
-        <activity android:name=".TransMoney_card" />
-        <activity android:name=".Profile" />
-        <activity android:name=".AddingCardNumber" />
+        <activity android:name=".ui.Setting.ChangePassword" />
+        <activity android:name=".ui.AddCash.TransMoney_card" />
+        <activity android:name=".ui.Setting.Profile" />
+        <activity android:name=".ui.AddCash.AddingCardNumber" />
         <activity
             android:name=".HomePage"
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.signUpAndLogIn.SignUp" />
         <activity android:name=".ui.signUpAndLogIn.LogIn" />
-        <activity android:name=".SendMoney" />
-        <activity android:name=".Request" />
+        <activity android:name=".ui.Search.SendMoney" />
+        <activity android:name=".ui.Search.Request" />
         <activity android:name=".Accept_Decline" />
-        <activity android:name=".ui.home.SearchTransaction" />
-        <activity android:name=".ui.home.personTransaction" />
-        <activity android:name=".historyMessage" />
+        <activity android:name=".ui.Tranhistory.SearchTransaction" />
+        <activity android:name=".ui.Tranhistory.personTransaction" />
+        <activity android:name=".ui.Notification.historyMessage" />
         <activity
-            android:name=".Send_Request"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity android:name=".ui.home.Recieved" />
-        <activity android:name=".ui.home.Sent" />
-        <activity android:name=".ui.home.wholeTransactionList" />
+            android:name=".ui.Search.Send_Request"
+            android:theme="@style/AppTheme.Tran" />
+        <activity android:name=".ui.Tranhistory.Recieved" />
+        <activity android:name=".ui.Tranhistory.Sent" />
+        <activity android:name=".ui.Tranhistory.wholeTransactionList" />
         <activity android:name=".ui.signUpAndLogIn.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

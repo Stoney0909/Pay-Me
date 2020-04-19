@@ -1,9 +1,8 @@
-package com.example.springsophsoft.ui.home;
+package com.example.springsophsoft.ui.Tranhistory;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.R;
+import com.example.springsophsoft.Transaction;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public class personTransaction extends AppCompatActivity {
         TextView amount = (TextView) findViewById(R.id.amountSentTextView);
         TextView sentorrec = (TextView) findViewById(R.id.textView6);
         if (intamount > 0){
-            sentorrec.setText("You have recieved ");
+            sentorrec.setText("You have recieved:");
             String stringamount = "$" + Double.toString(intamount);
             amount.setText(stringamount);
         }
@@ -83,7 +83,7 @@ public class personTransaction extends AppCompatActivity {
             amount.setText(stringamount);
         }
         else{
-            sentorrec.setText("There has been no Transactions.");
+            sentorrec.setText("No transaction history");
         }
 
         TransactionListAdapter adapter = new TransactionListAdapter(listData, this);
