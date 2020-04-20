@@ -94,7 +94,7 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
         viewHolder.txtDate.setText(dataModel.getDate());
         if (dataModel.getSenderid().equals(LogIn.getString()))
         {
-            viewHolder.txtAmount.setTextColor(Color.parseColor("#8315D520"));
+            viewHolder.txtAmount.setTextColor(Color.parseColor("#009900"));
             String amount = "+$" + dataModel.getAmount();
             viewHolder.txtAmount.setText(amount);
         }
