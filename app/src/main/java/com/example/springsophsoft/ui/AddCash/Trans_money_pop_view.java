@@ -2,6 +2,8 @@ package com.example.springsophsoft.ui.AddCash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.R;
+import com.example.springsophsoft.ui.home.HomeFragment;
 
 
 public class Trans_money_pop_view extends AppCompatActivity {
@@ -69,8 +72,6 @@ public class Trans_money_pop_view extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
     public void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();

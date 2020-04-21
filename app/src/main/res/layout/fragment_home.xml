@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ImageView
         android:id="@+id/imageView3"
@@ -19,10 +20,34 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:text="Amount"
-        android:textColor="#009900"
+        android:textColor="#698B69"
         android:layout_marginLeft="150dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="370dp"
         android:textSize="25dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:text="________________________________________________________"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:text="________________________________________________________"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="300dp"
+        android:background="#78E078"
+        android:text="   Info: "
+        android:textSize="30dp"
         />
 
     <TextView
@@ -32,7 +57,7 @@
         android:text="Balance:"
         android:layout_marginLeft="50dp"
         android:textColor="#009900"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="370dp"
         android:textSize="25dp"
         />
 
@@ -42,8 +67,8 @@
         android:layout_height="wrap_content"
         android:text="Amount:"
         android:layout_marginLeft="125dp"
-        android:textColor="#009900"
-        android:layout_marginTop="370dp"
+        android:textColor="#698B69"
+        android:layout_marginTop="420dp"
         android:textSize="25dp"
         />
 
@@ -53,8 +78,8 @@
         android:layout_height="wrap_content"
         android:text="Amount:"
         android:layout_marginLeft="135dp"
-        android:textColor="#009900"
-        android:layout_marginTop="420dp"
+        android:textColor="#698B69"
+        android:layout_marginTop="470dp"
         android:textSize="25dp"
         />
 
@@ -62,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="470dp"
         android:text="Phone: "
         android:textSize="25dp"
         android:textColor="#009900"
@@ -75,7 +100,7 @@
         android:text="Email:"
         android:textColor="#009900"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="420dp"
         />
     <TextView
         android:id="@+id/textView"
@@ -94,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="230dp"
-        android:textColor="#009900"
+        android:textColor="#698B69"
         android:text="Name"
         android:textSize="40dp"
         />

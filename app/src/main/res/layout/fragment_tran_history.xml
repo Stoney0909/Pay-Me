@@ -7,6 +7,26 @@
     >
 
     <TextView
+        android:id="@+id/amountSentTextView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:textSize="25dp"
+        android:layout_marginLeft="200dp"
+        />
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="100dp"
+        android:text="Sent: "
+        android:textSize="25dp"
+        />
+
+
+    <TextView
         android:id="@+id/A_Message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,7 +70,8 @@
     <ListView
         android:id="@+id/List_wholeTransactionListView"
         android:layout_width="wrap_content"
-        android:layout_height="650dp"
+        android:layout_height="625dp"
+        android:layout_marginTop="40dp"
 
     />
 

@@ -41,9 +41,14 @@ public class TranHistoryFragment extends Fragment {
         mListView = (ListView) root.findViewById(R.id.List_wholeTransactionListView);
         mess = (TextView) root.findViewById(R.id.A_Message);
 
+        TextView amount = (TextView) root.findViewById(R.id.amountSentTextView23);
+        TextView sentorrec = (TextView) root.findViewById(R.id.textView61);
+
+
         db = new TransactionHelper(getActivity());
         Cursor data = db.getAllData(LogIn.getString());
-        transactionList(data);
+
+        transactionList(data, amount, sentorrec);
 
 
         Re.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +74,7 @@ public class TranHistoryFragment extends Fragment {
         return root;
     }
 
-    private void transactionList(Cursor data) {
+    private void transactionList(Cursor data,TextView amount ,TextView sentorrec) {
 
         ArrayList<Transaction> listData = new ArrayList<>();
         double intamount = 0;
@@ -80,18 +85,44 @@ public class TranHistoryFragment extends Fragment {
         }
         else
         {
-            while (data.moveToNext()) {
-                Transaction mytransaction = new Transaction("recieverid", "senderid", "amount", "reason", "T");
+            while (data.moveToNext()){
+                Transaction mytransaction = new Transaction("recieverid", "senderid", "amount","reason", "T");
 
-                mytransaction.setRecieverid(data.getString(3));
-                mytransaction.setSenderid(data.getString(2));
-                mytransaction.setAmount(data.getString(1));
-                intamount += Double.parseDouble(data.getString(1));
-                mytransaction.setReason(data.getString(4));
-                mytransaction.setDate(data.getString(5));
-                listData.add(mytransaction);
+                if (data.getString(2).equals(LogIn.getString())) {
+                    mytransaction.setRecieverid(data.getString(3));
+                    mytransaction.setSenderid(data.getString(2));
+                    mytransaction.setAmount(data.getString(1));
+                    intamount += Double.parseDouble(data.getString(1));
+                    mytransaction.setReason(data.getString(4));
+                    mytransaction.setDate(data.getString(5));
+                    listData.add(mytransaction);
+                }
+                if (data.getString(3).equals(LogIn.getString()))
+                {
+                    mytransaction.setRecieverid(data.getString(3));
+                    mytransaction.setSenderid(data.getString(2));
+                    mytransaction.setAmount(data.getString(1));
+                    intamount-= Double.parseDouble(data.getString(1));
+                    mytransaction.setReason(data.getString(4));
+                    mytransaction.setDate(data.getString(5));
+                    listData.add(mytransaction);
+                }
             }
             Collections.reverse(listData);
+
+
+            if (intamount > 0){
+                sentorrec.setText("recieved:");
+                String stringamount = "$" + Double.toString(intamount);
+                amount.setText(stringamount);
+            }
+            else if (intamount < 0){
+                String stringamount = "$" + Double.toString(intamount* -1);
+                amount.setText(stringamount);
+            }
+            else{
+                sentorrec.setText("No transaction history");
+            }
 
             TransactionListAdapter adapter = new TransactionListAdapter(listData, getActivity());
             mListView.setAdapter(adapter);
