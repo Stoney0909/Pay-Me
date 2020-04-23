@@ -56,7 +56,7 @@
         android:layout_marginTop="430dp"
         android:layout_marginLeft="190dp"
         android:background="@drawable/button_round"
-        android:text="withdrawal"
+        android:text="withdraw"
         android:textColor="#ffffff"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
