@@ -61,7 +61,7 @@ public class Trans_money_pop_view extends AppCompatActivity {
 
                 Carddb.UpdateCardBalance(cardNumber, CardBalance);
                 mydb.updateBalance(AccBalance);
-                toastMessage("Transfer success. PLease go back to home and see the new update");
+                toastMessage("Transfer success. Please go back to home and see the new update.");
                 finish();
             }
         });

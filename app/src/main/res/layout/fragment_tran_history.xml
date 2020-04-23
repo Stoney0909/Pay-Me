@@ -48,13 +48,12 @@
     <Button
         android:id="@+id/btn_recieved"
         android:layout_width="100dp"
-        android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_round"
-        android:text="Receieved"
-        android:layout_marginTop="20dp"
         android:layout_alignParentLeft="true"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_round"
+        android:text="Received" />
 
     <Button
         android:id="@+id/btn_sent"

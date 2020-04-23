@@ -15,6 +15,9 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.springsophsoft.Helper.Databasehelper;
 import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.R;
+import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
+
+import javax.security.auth.login.LoginException;
 
 public class HomeFragment extends Fragment {
 
@@ -55,11 +58,11 @@ public class HomeFragment extends Fragment {
 
         if(db.getFirstName() == null && db.getLastName() == null)
         {
-            nameTextView.setText("there");
+            nameTextView.setText(LogIn.getString());
         }
         else if(db.getFirstName().equals("null") && db.getLastName().equals("null"))
         {
-            nameTextView.setText("there");
+            nameTextView.setText(LogIn.getString());
         }
         else if(db.getFirstName() != null && db.getLastName() != null)
         {

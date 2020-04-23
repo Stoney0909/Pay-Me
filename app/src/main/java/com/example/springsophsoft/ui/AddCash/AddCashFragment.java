@@ -34,6 +34,7 @@ public class AddCashFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         addCashViewModel = ViewModelProviders.of(this).get(AddCashViewModel.class);
         View root = inflater.inflate(R.layout.fragment_add_cash, container, false);
         btnAddCard = (Button)root.findViewById(R.id.btnAddCard);

@@ -99,7 +99,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="520dp"
         android:background="@drawable/button_round"
-        android:text="Summit"
+        android:text="Submit"
         />
 
 </RelativeLayout>
