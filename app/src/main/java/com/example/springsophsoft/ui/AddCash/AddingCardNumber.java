@@ -1,6 +1,9 @@
 package com.example.springsophsoft.ui.AddCash;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
+import com.example.springsophsoft.HomePage;
 import com.example.springsophsoft.R;
 import com.example.springsophsoft.ui.AddCash.AddCashFragment;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
@@ -78,6 +82,7 @@ public class AddingCardNumber extends AppCompatActivity {
                         if(inserting)
                         {
                             toastMessage("Adding card success!");
+                            AddCash();
 
                         }
                         else
@@ -94,4 +99,10 @@ public class AddingCardNumber extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+    private void AddCash()
+    {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
+
 }

@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.R;
+import com.example.springsophsoft.ui.Tranhistory.Sent;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,7 @@ public class AddCashFragment extends Fragment {
                 addCard();
             }
         });
-
+        ViewData();
         listing.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -63,7 +64,7 @@ public class AddCashFragment extends Fragment {
             }
         });
 
-        ViewData();
+
         return root;
     }
 
@@ -96,7 +97,7 @@ public class AddCashFragment extends Fragment {
                 listItem.add(cursor.getString(1));
 
             }
-            adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, listItem);
+            adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1, listItem);
             listing.setAdapter(adapter);
         }
     }

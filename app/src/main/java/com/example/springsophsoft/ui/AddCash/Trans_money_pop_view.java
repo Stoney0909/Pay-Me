@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.HomePage;
 import com.example.springsophsoft.R;
 import com.example.springsophsoft.ui.home.HomeFragment;
 
@@ -61,8 +62,9 @@ public class Trans_money_pop_view extends AppCompatActivity {
 
                 Carddb.UpdateCardBalance(cardNumber, CardBalance);
                 mydb.updateBalance(AccBalance);
-                toastMessage("Transfer success. Please go back to home and see the new update.");
+                toastMessage("Transfer success.");
                 finish();
+                AddCash();
             }
         });
         N.setOnClickListener(new View.OnClickListener() {
@@ -77,4 +79,9 @@ public class Trans_money_pop_view extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
+    private void AddCash()
+    {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
 }

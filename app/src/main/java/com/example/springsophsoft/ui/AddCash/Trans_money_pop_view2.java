@@ -2,6 +2,7 @@ package com.example.springsophsoft.ui.AddCash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
 import com.example.springsophsoft.Helper.Databasehelper;
+import com.example.springsophsoft.HomePage;
 import com.example.springsophsoft.R;
 
 public class Trans_money_pop_view2 extends AppCompatActivity {
@@ -56,8 +58,9 @@ public class Trans_money_pop_view2 extends AppCompatActivity {
                 Carddb.UpdateCardBalance(cardNumber, CardBalance);
                 mydb.updateBalance(AccBalance);
 
-                toastMessage("Transfer success");
+                toastMessage("Transfer success.");
                 finish();
+                AddCash();
             }
         });
         N.setOnClickListener(new View.OnClickListener() {
@@ -72,5 +75,10 @@ public class Trans_money_pop_view2 extends AppCompatActivity {
     }
     public void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+    private void AddCash()
+    {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
     }
 }

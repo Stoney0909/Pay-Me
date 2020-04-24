@@ -68,12 +68,13 @@ public class CardDBHelper extends SQLiteOpenHelper {
         }
     }
 
-    String username = LogIn.getString();
+
     public Cursor getCardList() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor query = db.rawQuery(" SELECT * FROM " + TABLE_NAME + " WHERE " +
-                COL4 + " = '" + username + "'", null);
-        return query;
+        String query = "SELECT * FROM "+TABLE_NAME+" WHERE " + COL4 + " = '" +LogIn.getString() + "'";
+        Cursor cursor=db.rawQuery(query,null);
+        return cursor;
+
     }
 
     public String getCardBalance(long id) {

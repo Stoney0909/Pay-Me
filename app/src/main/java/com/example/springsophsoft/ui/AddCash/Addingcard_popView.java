@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.springsophsoft.Helper.CardDBHelper;
+import com.example.springsophsoft.HomePage;
 import com.example.springsophsoft.R;
 
 public class Addingcard_popView extends AppCompatActivity {
@@ -53,12 +54,12 @@ public class Addingcard_popView extends AppCompatActivity {
             public void onClick(View v) {
                 String Cardnumber = AddCashFragment.getCard();
                 db.deleteCardInfo(Cardnumber);
+                toastMessage("Delete success.");
+                AddCash();
                 finish();
-                toastMessage("Delete success. Please refresh this page");
             }
         });
     }
-
     public void otherpage()
     {
         Intent intent = new Intent(this, TransMoney_card.class);
@@ -69,4 +70,9 @@ public class Addingcard_popView extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
+    private void AddCash()
+    {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
 }
