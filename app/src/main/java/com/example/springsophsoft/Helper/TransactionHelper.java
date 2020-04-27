@@ -26,9 +26,6 @@ public class TransactionHelper  extends SQLiteOpenHelper {
     private static final String COL7 = "status";
 
 
-
-
-
     public TransactionHelper(Context context) {
         super(context, TABLE_NAME, null, 1);
     }

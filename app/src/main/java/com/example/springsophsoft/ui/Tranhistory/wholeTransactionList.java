@@ -119,7 +119,7 @@ public class wholeTransactionList extends AppCompatActivity {
 
         TransactionListAdapter adapter = new TransactionListAdapter(listData, this);
         mListView.setAdapter(adapter);
-        mListView.setAdapter(adapter);
+
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 

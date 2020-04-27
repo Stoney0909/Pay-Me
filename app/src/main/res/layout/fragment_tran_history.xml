@@ -66,12 +66,13 @@
         android:text="Sent"
         />
 
-    <ListView
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/List_wholeTransactionListView"
         android:layout_width="wrap_content"
         android:layout_height="625dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="40dp">
 
-    />
+    </com.baoyz.swipemenulistview.SwipeMenuListView>
+
 
 </RelativeLayout>
