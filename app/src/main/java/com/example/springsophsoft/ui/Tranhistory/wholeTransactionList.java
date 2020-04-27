@@ -2,7 +2,10 @@ package com.example.springsophsoft.ui.Tranhistory;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -10,17 +13,23 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.example.springsophsoft.Helper.TransactionHelper;
 import com.example.springsophsoft.R;
 import com.example.springsophsoft.Transaction;
+import com.example.springsophsoft.ui.Notification.historyMessage;
+import com.example.springsophsoft.ui.Search.SendMoney;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class wholeTransactionList extends AppCompatActivity {
-    private ListView mListView;
-
+    private SwipeMenuListView mListView;
+    private static final String TAG = "wholeTransactionList";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +61,7 @@ public class wholeTransactionList extends AppCompatActivity {
             }
         });
 
-        mListView = (ListView) findViewById(R.id.wholeTransactionListView);
+        mListView = (SwipeMenuListView) findViewById(R.id.wholeTransactionListView);
 
         final TransactionHelper transactiondb = new TransactionHelper(this);
 
@@ -62,7 +71,7 @@ public class wholeTransactionList extends AppCompatActivity {
 
     private void transactionList(Cursor data) {
 
-        ArrayList<Transaction> listData = new ArrayList<>();
+        final ArrayList<Transaction> listData = new ArrayList<>();
         double intamount = 0;
 
         while (data.moveToNext()){
@@ -110,6 +119,73 @@ public class wholeTransactionList extends AppCompatActivity {
 
         TransactionListAdapter adapter = new TransactionListAdapter(listData, this);
         mListView.setAdapter(adapter);
+        mListView.setAdapter(adapter);
+
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+                // create "open" item
+                SwipeMenuItem openItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                openItem.setBackground(new ColorDrawable(Color.rgb(0x00, 0x66,
+                        0xff)));
+                // set item width
+                openItem.setWidth(170);
+                // set item title
+                openItem.setTitle("Send");
+                // set item title fontsize
+                openItem.setTitleSize(18);
+                // set item title font color
+                openItem.setTitleColor(Color.WHITE);
+                // add to menu
+                menu.addMenuItem(openItem);
+
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                deleteItem.setWidth(170);
+                // set a icon
+                deleteItem.setIcon(R.drawable.ic_denied);
+                // add to menu
+                menu.addMenuItem(deleteItem);
+            }
+        };
+        mListView.setMenuCreator(creator);
+
+        mListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    case 0:
+                        Log.d(TAG, "onMenuItemClick: clicked item " + index);
+                        String name = listData.get(position).getRecieverid();
+                        String amount= listData.get(position).getSenderid();
+                        Intent intent = new Intent(wholeTransactionList.this, SendMoney.class);
+                        intent.putExtra("Person_SendingTo",name);
+                        recreate();
+                        startActivity(intent);
+                     //   mydb.Delete(name,amount);
+                        break;
+                    case 1:
+                        Log.d(TAG, "onMenuItemClick: clicked item " + index);
+                        String name2 = listData.get(position).getRecieverid();
+                        String amount2= listData.get(position).getSenderid();
+                     //   toastMessage("You successfully denied");
+                     //   mydb.Delete(name2,amount2);
+                        recreate();
+                        break;
+                }
+                // false : close the menu; true : not close the menu
+                return false;
+            }
+        });
+
     }
 
     private void recieved(){

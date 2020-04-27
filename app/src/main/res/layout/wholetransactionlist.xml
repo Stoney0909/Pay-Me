@@ -55,7 +55,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ListView
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/wholeTransactionListView"
         android:layout_width="0dp"
         android:layout_height="574dp"
@@ -64,8 +64,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-    </ListView>
-
+    </com.baoyz.swipemenulistview.SwipeMenuListView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
