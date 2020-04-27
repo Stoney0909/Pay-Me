@@ -40,7 +40,6 @@
             android:theme="@style/AppTheme.Tran" />
         <activity android:name=".ui.Tranhistory.Recieved" />
         <activity android:name=".ui.Tranhistory.Sent" />
-        <activity android:name=".ui.Tranhistory.wholeTransactionList" />
         <activity android:name=".ui.signUpAndLogIn.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

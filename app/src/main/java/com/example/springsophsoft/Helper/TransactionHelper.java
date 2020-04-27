@@ -180,10 +180,16 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME2 + " where " + COL4 + "=?", new String[]{LogIn.getString()});
         return cursor;
     }
-   public void Delete(String name, String amount){
+   public void Delete(String name, String amount ){
        SQLiteDatabase db = this.getReadableDatabase();
        String query= "Delete from "+TABLE_NAME2+" Where "+COL3+ " = '" + name + "'"+" And "+COL2+
                " = '" + amount + "'";
+       db.execSQL(query);
+   }
+   public void DeleteEntry(String Sender, String amount, String text, String Reciever, String date){
+       SQLiteDatabase db = this.getReadableDatabase();
+       String query= "Delete from "+TABLE_NAME2+" Where "+ COL3 + " = '" + Reciever + "'"+" And "+COL2+
+               " = '" + amount + "' and " + COL5 + " = '" + text +"' and " + COL4 + " = '" + Sender + "' and " + COL6 + " = '" + date + "'";
        db.execSQL(query);
    }
 }

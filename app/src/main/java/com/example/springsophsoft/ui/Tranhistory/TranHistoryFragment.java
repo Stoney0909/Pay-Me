@@ -168,7 +168,8 @@ public class TranHistoryFragment extends Fragment {
                     {
                         case 0:
                         toastMessage("Prosition: " + position);
-                        //Code delete database here
+                        db.DeleteEntry(listData.get(position).getSenderid(), listData.get(position).getAmount(), listData.get(position).getReason(), listData.get(position).getRecieverid(), listData.get(position).getDate());
+                        
                     }
                     return true;
                 }
