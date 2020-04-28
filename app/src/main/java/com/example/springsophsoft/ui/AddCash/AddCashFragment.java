@@ -100,6 +100,7 @@ public class AddCashFragment extends Fragment {
             adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1, listItem);
             listing.setAdapter(adapter);
         }
+
     }
 
     public void toastMessage(String message){

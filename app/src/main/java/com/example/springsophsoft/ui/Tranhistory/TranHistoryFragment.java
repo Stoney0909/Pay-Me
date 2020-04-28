@@ -26,6 +26,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.example.springsophsoft.Helper.TransactionHelper;
+import com.example.springsophsoft.HomePage;
 import com.example.springsophsoft.R;
 import com.example.springsophsoft.Transaction;
 import com.example.springsophsoft.ui.signUpAndLogIn.LogIn;
@@ -168,7 +169,8 @@ public class TranHistoryFragment extends Fragment {
                     {
                         case 0:
                         db.DeleteEntry(listData.get(position).getRecieverid(), listData.get(position).getAmount(), listData.get(position).getReason(), listData.get(position).getSenderid(), listData.get(position).getDate());
-
+                        toastMessage("Delete success");
+                        getActivity().recreate();
                     }
                     return true;
                 }

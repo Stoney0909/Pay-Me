@@ -83,7 +83,6 @@ public class AddingCardNumber extends AppCompatActivity {
                         {
                             toastMessage("Adding card success!");
                             AddCash();
-
                         }
                         else
                         {
