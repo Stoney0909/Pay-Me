@@ -53,7 +53,6 @@ public class TransactionHelper  extends SQLiteOpenHelper {
 
     }
 
-
     public boolean addData(Integer amount, String reciever, String sender, String message, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -84,23 +83,26 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME + " where " + COL3 + "=?", new String[]{id});
         return cursor;
     }
+
     public Cursor getDataSent(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME + " where " + COL4 + "=?", new String[]{id});
         return cursor;
     }
+
     public Cursor getDataPerson(String id, String person){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME + " where " + COL4 + "=? or " +COL3 + "=? and " + COL3 + "=? or " + COL4 + "=?", new String[]{id, id, person, person});
         return cursor;
     }
+
     public Cursor getAllData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME + " where " + COL4 + "=? or " + COL3 + "=?", new String[]{id, id});
         return cursor;
     }
-    public boolean add(String Person_sending, String Person_receiving,String amount,String Message, String date)
-    {
+
+    public boolean add(String Person_sending, String Person_receiving,String amount,String Message, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL4, Person_sending);
@@ -123,8 +125,8 @@ public class TransactionHelper  extends SQLiteOpenHelper {
             return true;
         }
     }
-    public boolean Request(String Person_sending, String Person_requesting,String amount,String Message, String date)
-        {
+
+    public boolean Request(String Person_sending, String Person_requesting,String amount,String Message, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL4, Person_sending);
@@ -150,6 +152,7 @@ public class TransactionHelper  extends SQLiteOpenHelper {
             return true;
         }
     }
+
     public String getInfo(int number) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor row = db.rawQuery("Select * from " + TABLE_NAME2 + " where " + COL4 + "=?", new String[]{LogIn.getString()});
@@ -167,6 +170,7 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         }
         return "";
     }
+
     public int numberOfNotification() {
         int count=0;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -175,21 +179,31 @@ public class TransactionHelper  extends SQLiteOpenHelper {
         cursor.close();
         return count;
     }
+
     public Cursor getData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME2 + " where " + COL4 + "=?", new String[]{LogIn.getString()});
         return cursor;
     }
-   public void Delete(String name, String amount ){
+
+    public void Delete(String name, String amount ){
        SQLiteDatabase db = this.getReadableDatabase();
-       String query= "Delete from "+TABLE_NAME2+" Where "+COL3+ " = '" + name + "'"+" And "+COL2+
+       String query= "Delete from "+TABLE_NAME2+" Where "+COL3+ " = '" + name + "'"+" And "+ COL2 +
                " = '" + amount + "'";
        db.execSQL(query);
    }
-   public void DeleteEntry(String Sender, String amount, String text, String Reciever, String date){
+
+    public void DeleteEntry(String Sender, String amount, String text, String Reciever, String date){
        SQLiteDatabase db = this.getReadableDatabase();
-       String query= "Delete from "+TABLE_NAME2+" Where "+ COL3 + " = '" + Reciever + "'"+" And "+COL2+
-               " = '" + amount + "' and " + COL5 + " = '" + text +"' and " + COL4 + " = '" + Sender + "' and " + COL6 + " = '" + date + "'";
-       db.execSQL(query);
-   }
+       Log.d("Delete Sender:", Sender);
+        Log.d("Delete Reciever:", Reciever);
+        Log.d("Delete amount", amount);
+        Log.d("Delete reason", text);
+        Log.d("Delete date", date);
+
+        Integer intAmount = Integer.parseInt(amount);
+       db.execSQL( "Delete from " + TABLE_NAME + " Where "+ COL4 + "=? and "+ COL5 +
+               "=? and " + COL3 + "=? and "+ COL6 + "=? and "+ COL2 +
+                       "= " + intAmount, new String[]{Sender, text, Reciever, date});
+    }
 }

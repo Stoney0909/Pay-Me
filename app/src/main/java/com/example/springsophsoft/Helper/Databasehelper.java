@@ -44,8 +44,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public String getPhone()
-    {
+    public String getPhone() {
         String usernanme = LogIn.getString();
         String Phone = "not found";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -59,8 +58,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         return Phone;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         String usernanme = LogIn.getString();
         String Email = "not found";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -74,9 +72,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         return Email;
     }
 
-
-    public String getPassword()
-    {
+    public String getPassword() {
         String usernanme = LogIn.getString();
         String password = "not found";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -90,8 +86,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         return password;
     }
 
-    public void updatePassword(String p)
-    {
+    public void updatePassword(String p) {
         String user = LogIn.getString();
         SQLiteDatabase db = this.getWritableDatabase();
         String query = " UPDATE " + TABLE_NAME + " SET "
@@ -100,9 +95,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-
-    public void REupdatePassword(String p, String email)
-    {
+    public void REupdatePassword(String p, String email) {
         String user = LogIn.getString();
         SQLiteDatabase db = this.getWritableDatabase();
         String query = " UPDATE " + TABLE_NAME + " SET "
@@ -111,9 +104,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-
-    public int GetUserID()
-    {
+    public int GetUserID() {
         String usernanme = LogIn.getString();
         String where = COL2 +" LIKE '%"+usernanme+"%'";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -233,7 +224,6 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-
     public void updateBalance(String balance, String username){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = " UPDATE " + TABLE_NAME + " SET "
@@ -322,7 +312,6 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-
     public String getUsername() {
         String username = "";
         Cursor cursor = this.getReadableDatabase().query(
@@ -370,6 +359,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         Cursor cursor=db.rawQuery(query,null);
         return cursor;
     }
+
     public String getInfo(int number) {
         SQLiteDatabase db=this.getReadableDatabase();
         String query = "SELECT "+COL5+" , " +COL6+" , "+COL7+" , " +COL2+" , " +COL3+
@@ -401,7 +391,6 @@ public class Databasehelper extends SQLiteOpenHelper {
         return "";
     }
 
-
     public String getIdOfPersonLogin(String username) {
         SQLiteDatabase db=this.getReadableDatabase();
         String query = "SELECT "+COL1+
@@ -413,6 +402,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         row.close();
         return "";
     }
+
     public boolean chkemailForProfile(String ID,String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL1 + " != '" + ID + "'";
@@ -425,8 +415,7 @@ public class Databasehelper extends SQLiteOpenHelper {
          return true;
     }
 
-    public String getSearchPersonEmail(String u)
-    {
+    public String getSearchPersonEmail(String u) {
         String Email = "not found";
         SQLiteDatabase db = this.getReadableDatabase();
         String whereclause = "Username=?";
@@ -439,8 +428,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         return Email;
     }
 
-    public String getSearchpersonPhone(String u)
-    {
+    public String getSearchpersonPhone(String u) {
         String Phone = "not found";
         SQLiteDatabase db = this.getReadableDatabase();
         String whereclause = "Username=?";
@@ -452,6 +440,5 @@ public class Databasehelper extends SQLiteOpenHelper {
         }
         return Phone;
     }
-
 
 }

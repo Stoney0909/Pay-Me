@@ -167,9 +167,8 @@ public class TranHistoryFragment extends Fragment {
                     switch (index)
                     {
                         case 0:
-                        toastMessage("Prosition: " + position);
-                        db.DeleteEntry(listData.get(position).getSenderid(), listData.get(position).getAmount(), listData.get(position).getReason(), listData.get(position).getRecieverid(), listData.get(position).getDate());
-                        
+                        db.DeleteEntry(listData.get(position).getRecieverid(), listData.get(position).getAmount(), listData.get(position).getReason(), listData.get(position).getSenderid(), listData.get(position).getDate());
+
                     }
                     return true;
                 }
